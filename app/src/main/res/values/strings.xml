@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">AgendaOdonto</string>
+    <string name="label_email">E-mail</string>
+    <string name="label_password">Senha</string>
+    <string name="btn_login">Entrar</string>
+    <string name="link_go_to_register">Não possui cadastro? Registre-se.</string>
+    <string name="avatar">CC</string>
+    <string name="btn_login_google">Entre com Google</string>
+    <string name="home_btn_agendar">Agendar Consulta</string>
+    <string name="home_btn_historico">Minhas Consultas</string>
+</resources>

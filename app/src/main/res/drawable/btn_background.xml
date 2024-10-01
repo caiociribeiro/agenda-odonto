@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Ripple effect for pressed state -->
+    <item android:state_pressed="true">
+        <ripple
+            android:color="?attr/colorControlHighlight"> <!-- Adjust ripple color if needed -->
+            <item android:drawable="@color/primary" /> <!-- Reference to the button color -->
+        </ripple>
+    </item>
+
+    <!-- Default state -->
+    <item>
+        <shape>
+            <solid android:color="@color/primary" /> <!-- Button background color -->
+            <corners android:radius="4dp" /> <!-- Adjust radius to desired value -->
+            <padding
+                android:left="10dp"
+                android:right="10dp"
+                android:top="5dp"
+                android:bottom="5dp" />
+        </shape>
+    </item>
+</selector>
