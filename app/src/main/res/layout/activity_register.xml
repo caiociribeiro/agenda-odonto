@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main"
+    android:id="@+id/register"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -11,14 +11,28 @@
 
     <!-- Logo of the app -->
     <TextView
-        android:id="@+id/tv_logo_main"
+        android:id="@+id/tv_label_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
-        android:text="@string/app_name"
+        android:text="@string/label_register"
         android:textColor="#000000"
         android:textSize="32sp"
         android:textStyle="bold" />
+
+    <!-- Name input field -->
+    <EditText
+        android:id="@+id/et_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/et_border"
+        android:hint="@string/label_name"
+        android:textColorHint="@color/grey_lt"
+        android:inputType="textPersonName"
+        android:padding="12dp"
+        android:textColor="@color/black" />
 
     <!-- Email input field -->
     <EditText
@@ -31,6 +45,20 @@
         android:hint="@string/label_email"
         android:textColorHint="@color/grey_lt"
         android:inputType="textEmailAddress"
+        android:padding="12dp"
+        android:textColor="@color/black" />
+
+    <!-- Date of birth input field -->
+    <EditText
+        android:id="@+id/et_dob"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/et_border"
+        android:hint="@string/label_dob"
+        android:textColorHint="@color/grey_lt"
+        android:inputType="date"
         android:padding="12dp"
         android:textColor="@color/black" />
 
@@ -48,11 +76,9 @@
         android:padding="12dp"
         android:textColor="@color/black" />
 
-    <!-- Login button -->
-
-    <!-- Register clickable text -->
+    <!-- Register button -->
     <Button
-        android:id="@+id/btn_login"
+        android:id="@+id/btn_register"
         style="@style/Widget.AppCompat.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -60,42 +86,8 @@
         android:layout_marginBottom="16dp"
         android:background="@drawable/btn_background"
         android:padding="12dp"
-        android:stateListAnimator="@android:anim/accelerate_decelerate_interpolator"
-        android:text="@string/btn_login"
+        android:text="@string/btn_register"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="#FFFFFF" />
-
-    <Button
-        android:id="@+id/btn_login_google"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/btn_background"
-        android:backgroundTint="@color/red_google"
-        android:drawableStart="@drawable/ic_google_brand"
-        android:drawableTint="#FFF"
-        android:padding="12dp"
-        android:stateListAnimator="@android:anim/accelerate_decelerate_interpolator"
-        android:text="@string/btn_login_google"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="#FFFFFF" />
-
-
-    <TextView
-        android:id="@+id/tv_register"
-        android:layout_width="240dp"
-        android:layout_height="48dp"
-        android:layout_gravity="center"
-        android:clickable="true"
-        android:focusable="true"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="@string/link_go_to_register"
-        android:textColor="#0000FF"
-        android:textSize="14sp"
-        app:drawableEndCompat="@drawable/ic_link"
-        app:drawableTint="#0000FF" />
-
 
 </LinearLayout>

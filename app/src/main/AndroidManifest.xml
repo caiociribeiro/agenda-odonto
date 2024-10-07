@@ -10,10 +10,18 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AgendaOdonto"
-        tools:targetApi="31">
+        android:theme="@style/Theme.AgendaOdonto">
         <activity
-            android:name=".activity_home"
+            android:name=".BaseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DoctorListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HomeActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
