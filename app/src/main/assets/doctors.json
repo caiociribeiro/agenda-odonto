@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Dr. Fulana",
+    "specialty": "Dentista Geral",
+    "rating": 4.8,
+    "avatar": "avatar_john_doe"
+  },
+  {
+    "name": "Dr. Ciclano",
+    "specialty": "Ortodontista",
+    "rating": 4.6,
+    "avatar": "avatar_jane_smith"
+  }
+]
