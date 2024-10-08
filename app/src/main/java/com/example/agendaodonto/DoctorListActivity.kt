@@ -2,21 +2,17 @@ package com.example.agendaodonto
 
 import DoctorAdapter
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.reflect.TypeToken
 import com.google.gson.Gson
 import java.io.InputStreamReader
 
-class DoctorListActivity : AppCompatActivity() {
+class DoctorListActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_doctor_list)
+        layoutInflater.inflate(R.layout.activity_doctor_list, findViewById(R.id.content_frame))
 
         // Carrega a lista de médicos
         val doctorList = loadDoctorList()
