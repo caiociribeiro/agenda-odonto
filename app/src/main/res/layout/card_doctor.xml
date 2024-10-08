@@ -7,7 +7,7 @@
     android:layout_margin="8dp"
     app:cardElevation="4dp"
     app:cardCornerRadius="4dp"
-    app:cardBackgroundColor="@color/primary">
+    app:cardBackgroundColor="@color/secondary">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -28,8 +28,9 @@
         <!-- Nome do médico -->
         <TextView
             android:id="@+id/tv_doctor_name"
-            android:layout_width="275dp"
-            android:layout_height="22dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -40,8 +41,9 @@
         <!-- Especialidade do médico -->
         <TextView
             android:id="@+id/tv_specialty"
-            android:layout_width="275dp"
-            android:layout_height="18dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:textColor="@android:color/darker_gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/iv_doctor_avatar"
@@ -49,22 +51,18 @@
 
         <LinearLayout
             android:id="@+id/ll_rating"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
+            android:layout_width="42dp"
+            android:layout_height="19dp"
+            android:layout_marginStart="8dp"
             android:orientation="horizontal"
             app:layout_constraintStart_toEndOf="@id/iv_doctor_avatar"
-
             app:layout_constraintTop_toBottomOf="@id/tv_specialty">
 
-
             <!-- Avaliação média -->
-
             <TextView
                 android:id="@+id/tv_doctor_rating"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginStart="4dp"
                 android:paddingEnd="2dp"
                 android:text="4.8"
                 android:textColor="@color/white"

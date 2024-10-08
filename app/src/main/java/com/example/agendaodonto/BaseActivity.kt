@@ -3,6 +3,7 @@ package com.example.agendaodonto
 import android.content.Intent
 import android.os.Bundle
 import android.widget.FrameLayout
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -45,8 +46,8 @@ abstract class BaseActivity : AppCompatActivity() {
         }
 
         // Set up header avatar click to open the navigation drawer
-        val avatar: TextView = findViewById(R.id.tv_avatar)
-        avatar.setOnClickListener {
+        val navIcon: ImageView = findViewById(R.id.iv_menu)
+        navIcon.setOnClickListener {
             drawerLayout.openDrawer(GravityCompat.START) // Open the navigation drawer
         }
     }
