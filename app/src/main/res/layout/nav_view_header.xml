@@ -11,13 +11,13 @@
 
 
     <ImageView
-        android:id="@+id/iv_menu"
+        android:id="@+id/iv_user_avatar"
         android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_height="68dp"
         android:layout_marginStart="8dp"
         android:contentDescription="@string/avatar"
         android:focusable="true"
-        android:padding="6dp"
+        android:padding="12dp"
         android:scaleType="fitCenter"
         android:src="@drawable/profile_avatar"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -29,13 +29,12 @@
         android:id="@+id/tv_logo_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="2dp"
         android:text="@string/user_name"
         android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/iv_menu"
+        app:layout_constraintStart_toEndOf="@+id/iv_user_avatar"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
