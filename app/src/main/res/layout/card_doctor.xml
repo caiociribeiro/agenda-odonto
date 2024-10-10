@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    app:cardElevation="4dp"
-    app:cardCornerRadius="4dp"
-    app:cardBackgroundColor="@color/secondary">
+    app:cardBackgroundColor="@color/white"
+    app:strokeColor="@color/grey_lt"
+    app:strokeWidth="0.25dp"
+    app:cardCornerRadius="4dp">
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -65,7 +67,7 @@
                 android:layout_height="match_parent"
                 android:paddingEnd="2dp"
                 android:text="4.8"
-                android:textColor="@color/white"
+                android:textColor="@color/secondary"
                 android:textSize="14sp" />
 
             <ImageView
@@ -76,4 +78,4 @@
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

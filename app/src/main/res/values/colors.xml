@@ -4,6 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="primary">#007C70</color>
     <color name="secondary">#006659</color>
+    <color name="grey">#333</color>
     <color name="grey_lt">#BBBBBB</color>
     <color name="red_google">#DB4437</color>
 </resources>

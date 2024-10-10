@@ -16,9 +16,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:text="@string/label_register"
-        android:textColor="#000000"
-        android:textSize="32sp"
-        android:textStyle="bold" />
+        android:textColor="@color/grey"
+        android:textSize="32sp" />
 
     <!-- Name input field -->
     <EditText
@@ -77,17 +76,18 @@
         android:textColor="@color/black" />
 
     <!-- Register button -->
-    <Button
-        android:id="@+id/btn_register"
-        style="@style/Widget.AppCompat.Button"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/btn_background"
+        app:backgroundTint="@color/primary"
         android:padding="12dp"
+        android:stateListAnimator="@android:anim/accelerate_decelerate_interpolator"
         android:text="@string/btn_register"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="#FFFFFF" />
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp" />
 
 </LinearLayout>

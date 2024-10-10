@@ -49,36 +49,36 @@
     <!-- Login button -->
 
     <!-- Register clickable text -->
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_login"
-        style="@style/Widget.AppCompat.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/btn_background"
+        app:backgroundTint="@color/primary"
         android:padding="12dp"
         android:stateListAnimator="@android:anim/accelerate_decelerate_interpolator"
         android:text="@string/btn_login"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="#FFFFFF" />
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_login_google"
-        style="@style/Widget.AppCompat.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/btn_background"
         android:backgroundTint="@color/red_google"
-        android:drawableStart="@drawable/ic_google_brand"
-        android:drawableTint="#FFF"
         android:padding="12dp"
         android:stateListAnimator="@android:anim/accelerate_decelerate_interpolator"
         android:text="@string/btn_login_google"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="#FFFFFF" />
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:icon="@drawable/ic_google_brand"
+        app:iconGravity="start"
+        app:iconTint="#FFF" />
 
 
     <TextView
