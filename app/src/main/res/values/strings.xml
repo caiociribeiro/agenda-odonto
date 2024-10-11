@@ -7,6 +7,7 @@
     <string name="label_password">Senha</string>
     <string name="label_dob">Data de Nascimento</string>
     <string name="label_register">Cadastro</string>
+    <string name="label_phone">Número de Celular</string>
 
     <string name="btn_register">Cadastrar</string>
     <string name="btn_login">Entrar</string>
@@ -21,10 +22,22 @@
 
     <!-- nav menu -->
     <string name="s_nav_profile">Perfil</string>
+    <string name="s_nav_dados_pessoais">Dados Pessoais</string>
     <string name="s_nav_notifications">Notificações</string>
     <string name="s_nav_logout">Sair</string>
 
     <string name="label_agendamento">Agendamento</string>
 
     <string name="user_name">Caio Ribeiro</string>
+
+    <!-- nome paginas -->
+    <string name="home">Home</string>
+    <string name="dados_pessoais">Dados Pessoais</string>
+
+    <string name="profile_save_changes">Salvar Mudanças</string>
+    <string name="profile_name">Fulano de Tal</string>
+    <string name="profile_email">fulano@agendaodonto.com</string>
+    <string name="profile_phone">(85)99991–5355</string>
+    <string name="profile_dob">01/01/1994</string>
+    <string name="profile_edit">Editar</string>
 </resources>

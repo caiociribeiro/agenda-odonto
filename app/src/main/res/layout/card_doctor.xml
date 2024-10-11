@@ -5,77 +5,71 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    app:cardBackgroundColor="@color/white"
-    app:strokeColor="@color/grey_lt"
-    app:strokeWidth="0.25dp"
+    app:cardBackgroundColor="@color/grey_ltr"
     app:cardCornerRadius="4dp">
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp">
 
-        <!-- Avatar do médico -->
         <ImageView
             android:id="@+id/iv_doctor_avatar"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_marginEnd="16dp"
-            android:src="@drawable/avatar_background"
+            android:scaleType="centerCrop"
+            android:background="@drawable/avatar_background"
+            android:clipToOutline="true"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
 
-        <!-- Nome do médico -->
-        <TextView
-            android:id="@+id/tv_doctor_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:textColor="@android:color/black"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/iv_doctor_avatar"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <!-- Especialidade do médico -->
-        <TextView
-            android:id="@+id/tv_specialty"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:textColor="@android:color/darker_gray"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/iv_doctor_avatar"
-            app:layout_constraintTop_toBottomOf="@id/tv_doctor_name" />
-
         <LinearLayout
-            android:id="@+id/ll_rating"
-            android:layout_width="42dp"
-            android:layout_height="19dp"
-            android:layout_marginStart="8dp"
-            android:orientation="horizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@id/iv_doctor_avatar"
-            app:layout_constraintTop_toBottomOf="@id/tv_specialty">
+            app:layout_constraintTop_toTopOf="parent">
 
-            <!-- Avaliação média -->
             <TextView
-                android:id="@+id/tv_doctor_rating"
+                android:id="@+id/tv_doctor_name"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:paddingEnd="2dp"
-                android:text="4.8"
-                android:textColor="@color/secondary"
-                android:textSize="14sp" />
+                android:layout_height="wrap_content"
+                android:textColor="@color/grey"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-            <ImageView
-                android:id="@+id/iv_star"
-                android:layout_width="16dp"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_star" />
+            <TextView
+                android:id="@+id/tv_specialty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/grey" />
+
+            <LinearLayout
+                android:id="@+id/ll_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_doctor_rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingEnd="2dp"
+                    android:text="4.8"
+                    android:textColor="@color/secondary"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:id="@+id/iv_star"
+                    android:layout_width="16dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_star" />
+            </LinearLayout>
         </LinearLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
