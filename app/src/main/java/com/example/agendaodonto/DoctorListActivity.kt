@@ -2,6 +2,7 @@ package com.example.agendaodonto
 
 import DoctorAdapter
 import android.os.Bundle
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.reflect.TypeToken
@@ -13,6 +14,9 @@ class DoctorListActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         layoutInflater.inflate(R.layout.activity_doctor_list, findViewById(R.id.content_frame))
+
+        val pageName = findViewById<TextView>(R.id.tv_page_name)
+        pageName.text = "Agendamento"
 
         // Carrega a lista de médicos
         val doctorList = loadDoctorList()

@@ -4,8 +4,9 @@
         <item name="android:windowBackground">@color/white</item>
         <item name="android:colorPrimary">@color/primary</item>
         <item name="android:colorSecondary">@color/secondary</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/grey</item>
         <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:textColorHint">@color/grey_lt</item>
     </style>
 
     <style name="Theme.AgendaOdonto" parent="Base.Theme.AgendaOdonto" />

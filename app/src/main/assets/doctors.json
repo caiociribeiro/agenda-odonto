@@ -1,14 +1,62 @@
 [
   {
-    "name": "Dr. Fulana",
+    "name": "Dr. Carlos Silva",
     "specialty": "Dentista Geral",
-    "rating": 4.8,
-    "avatar": "avatar_john_doe"
+    "rating": 4.9,
+    "avatar": "avatar_carlos_silva"
   },
   {
-    "name": "Dr. Ciclano",
+    "name": "Dra. Fernanda Souza",
     "specialty": "Ortodontista",
+    "rating": 4.7,
+    "avatar": "avatar_fernanda_souza"
+  },
+  {
+    "name": "Dr. Rafael Almeida",
+    "specialty": "Cirurgiao Dentista",
+    "rating": 5.0,
+    "avatar": "avatar_rafael_almeida"
+  },
+  {
+    "name": "Dra. Juliana Costa",
+    "specialty": "Endodontista",
+    "rating": 4.8,
+    "avatar": "avatar_juliana_costa"
+  },
+  {
+    "name": "Dr. Bruno Oliveira",
+    "specialty": "Periodontista",
     "rating": 4.6,
-    "avatar": "avatar_jane_smith"
+    "avatar": "avatar_bruno_oliveira"
+  },
+  {
+    "name": "Dra. Larissa Mendes",
+    "specialty": "Dentista Pediátrico",
+    "rating": 4.9,
+    "avatar": "avatar_larissa_mendes"
+  },
+  {
+    "name": "Dr. Marcelo Ferreira",
+    "specialty": "Implantodontista",
+    "rating": 4.7,
+    "avatar": "avatar_marcelo_ferreira"
+  },
+  {
+    "name": "Dra. Marina Santos",
+    "specialty": "Dentista Estético",
+    "rating": 4.8,
+    "avatar": "avatar_marina_santos"
+  },
+  {
+    "name": "Dr. Pedro Rocha",
+    "specialty": "Protético",
+    "rating": 4.9,
+    "avatar": "avatar_pedro_rocha"
+  },
+  {
+    "name": "Dra. Ana Beatriz Lima",
+    "specialty": "Cirurgiã Bucomaxilofacial",
+    "rating": 5.0,
+    "avatar": "avatar_ana_beatriz_lima"
   }
 ]

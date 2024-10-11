@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.agendaodonto.Doctor
 import com.example.agendaodonto.R
+import com.bumptech.glide.Glide
 
 class DoctorAdapter(private val doctorList: List<Doctor>) :
     RecyclerView.Adapter<DoctorAdapter.DoctorViewHolder>() {
@@ -31,8 +32,11 @@ class DoctorAdapter(private val doctorList: List<Doctor>) :
         holder.doctorSpecialty.text = doctor.specialty
         holder.doctorRating.text = doctor.rating.toString()
 
-        // Exemplo de avatar (se precisar carregar de uma URL, pode usar Glide ou Picasso)
-        holder.doctorAvatar.setImageResource(R.drawable.avatar_background)
+        val imageUrl = "https://i.pravatar.cc/200?uniqueParam=${System.currentTimeMillis()}";
+
+        Glide.with(holder.itemView.context)
+            .load(imageUrl)  // Replace with the actual URL
+            .into(holder.doctorAvatar)  // Load the image into ImageView
 
         // Clique para selecionar o médico e ir para a página de calendário (pode ser implementado depois)
         holder.itemView.setOnClickListener {
