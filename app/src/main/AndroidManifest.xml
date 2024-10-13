@@ -14,8 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AgendaOdonto">
         <activity
-            android:name=".DadosPessoaisActivity"
+            android:name=".HistoricoConsultasActivity"
             android:exported="false" />
+        <activity
+            android:name=".DadosPessoaisActivity"
+            android:exported="false"
+            android:launchMode="singleTop" />
         <activity
             android:name=".BaseActivity"
             android:exported="false" />
@@ -27,7 +31,8 @@
             android:exported="false" />
         <activity
             android:name=".HomeActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:launchMode="singleTop" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

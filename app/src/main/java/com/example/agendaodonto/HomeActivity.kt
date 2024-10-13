@@ -20,5 +20,11 @@ class HomeActivity : BaseActivity() {
             startActivity(intent)
         }
 
+        val historicoConsulta: Button = findViewById(R.id.btn_home_historico)
+        historicoConsulta.setOnClickListener {
+            val intent = Intent(this, HistoricoConsultasActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 }

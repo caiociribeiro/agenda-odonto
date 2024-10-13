@@ -8,6 +8,8 @@
     app:headerLayout="@layout/nav_view_header"
     app:itemTextAppearance="@style/TextAppearance.AppCompat.Medium"
     app:itemTextColor="@color/black"
+    app:itemIconTint="@color/primary"
+    app:itemIconSize="16dp"
     app:menu="@menu/nav_menu" />
 
 
