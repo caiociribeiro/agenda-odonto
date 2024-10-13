@@ -14,30 +14,34 @@
     <string name="btn_login_google">Entre com Google</string>
 
     <string name="link_go_to_register">Não possui cadastro? Registre-se.</string>
-    <string name="avatar">CC</string>
+    <string name="avatar_letters">AA</string>
+
+    <string name="user_name">Caio Ribeiro</string>
 
     <!-- home -->
     <string name="home_btn_agendar">Agendar Consulta</string>
     <string name="home_btn_historico">Minhas Consultas</string>
 
     <!-- nav menu -->
-    <string name="s_nav_profile">Perfil</string>
-    <string name="s_nav_dados_pessoais">Dados Pessoais</string>
-    <string name="s_nav_notifications">Notificações</string>
-    <string name="s_nav_logout">Sair</string>
-
+    <string name="nav_inicio">Início</string>
+    <string name="nav_dados_pessoais">Dados Pessoais</string>
+    <string name="nav_notifications">Notificações</string>
+    <string name="nav_logout">Sair da Conta</string>
     <string name="label_agendamento">Agendamento</string>
 
-    <string name="user_name">Caio Ribeiro</string>
-
     <!-- nome paginas -->
-    <string name="home">Home</string>
+    <string name="entrar">Entrar</string>
+    <string name="home">Início</string>
     <string name="dados_pessoais">Dados Pessoais</string>
+    <string name="agendamento">Agendamento</string>
+    <string name="historico">Histórico</string>
 
+    <!-- dados usuario -->
     <string name="profile_save_changes">Salvar Mudanças</string>
     <string name="profile_name">Fulano de Tal</string>
     <string name="profile_email">fulano@agendaodonto.com</string>
     <string name="profile_phone">(85)99991–5355</string>
     <string name="profile_dob">01/01/1994</string>
     <string name="profile_edit">Editar</string>
+    <string name="profile_user_type">Paciente</string>
 </resources>

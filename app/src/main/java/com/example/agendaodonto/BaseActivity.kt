@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -21,6 +22,13 @@ abstract class BaseActivity : AppCompatActivity() {
 
         navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
+                R.id.nav_inicio -> {
+                    val intent = Intent(this, HomeActivity::class.java)
+                    startActivity(intent)
+                    drawerLayout.closeDrawers()
+                    true
+                }
+
                 R.id.nav_dados_pessoais -> {
                     val intent = Intent(this, DadosPessoaisActivity::class.java)
                     startActivity(intent)
