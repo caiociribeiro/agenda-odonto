@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.FrameLayout
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -16,7 +15,6 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_base)
 
-        // Configurar o NavigationView, se necessário
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
 
@@ -48,14 +46,12 @@ abstract class BaseActivity : AppCompatActivity() {
             }
         }
 
-        // Set up header avatar click to open the navigation drawer
         val navIcon: ImageView = findViewById(R.id.iv_menu)
         navIcon.setOnClickListener {
-            drawerLayout.openDrawer(GravityCompat.START) // Open the navigation drawer
+            drawerLayout.openDrawer(GravityCompat.START)
         }
     }
 
-    // Função para configurar o layout específico de cada página
     fun setContent(layoutResID: Int) {
         val frameLayout: FrameLayout = findViewById(R.id.content_frame)
         layoutInflater.inflate(layoutResID, frameLayout, true)
