@@ -18,16 +18,13 @@ class DoctorListActivity : BaseActivity() {
         val pageName = findViewById<TextView>(R.id.tv_page_name)
         pageName.text = "Agendamento"
 
-        // Carrega a lista de médicos
         val doctorList = loadDoctorList()
 
-        // Configura o RecyclerView
         val recyclerView = findViewById<RecyclerView>(R.id.rv_doctor_list)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = DoctorAdapter(doctorList) // Atribui o adaptador
+        recyclerView.adapter = DoctorAdapter(doctorList)
     }
 
-    // Função para carregar a lista de médicos do arquivo JSON
     private fun loadDoctorList(): List<Doctor> {
         val inputStream = assets.open("doctors.json")
         val reader = InputStreamReader(inputStream)

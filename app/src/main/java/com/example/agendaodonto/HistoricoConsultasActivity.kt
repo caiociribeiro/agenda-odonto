@@ -29,7 +29,6 @@ class HistoricoConsultasActivity : BaseActivity() {
         val recyclerView: RecyclerView = findViewById(R.id.rv_consultas)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        // Load the consultations data (can be from a database or JSON)
         val consultas = loadConsultas()
 
         val adapter = ConsultaAdapter(consultas)
@@ -47,10 +46,8 @@ class HistoricoConsultasActivity : BaseActivity() {
     private fun showYearPickerDialog() {
         val dialogView = layoutInflater.inflate(R.layout.dialog_year_picker, null)
 
-        // Inicializa o NumberPicker no layout do dialog
         val yearPicker: NumberPicker = dialogView.findViewById(R.id.picker_year)
 
-        // Configura o NumberPicker
         val currentYear = Calendar.getInstance().get(Calendar.YEAR)
         yearPicker.minValue = currentYear - 10
         yearPicker.maxValue = currentYear + 10

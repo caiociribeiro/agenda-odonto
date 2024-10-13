@@ -18,14 +18,12 @@ class DadosPessoaisActivity : BaseActivity() {
         val pageName = findViewById<TextView>(R.id.tv_page_name)
         pageName.text = getString(R.string.dados_pessoais)
 
-        // Inicializar o ImageView para a imagem de perfil
         profileImageView = findViewById(R.id.profile_image)
         profileImageView.setOnClickListener {
             selectImage()
         }
     }
 
-    // Função para abrir a galeria e permitir que o usuário escolha uma imagem
     private fun selectImage() {
         val intent = Intent(
             Intent.ACTION_PICK,
@@ -35,7 +33,7 @@ class DadosPessoaisActivity : BaseActivity() {
         startActivityForResult(intent, PICK_IMAGE_REQUEST)
     }
 
-    // Método chamado quando o usuário seleciona uma imagem
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null) {
