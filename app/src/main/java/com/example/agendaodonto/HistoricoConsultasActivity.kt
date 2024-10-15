@@ -48,6 +48,8 @@ class HistoricoConsultasActivity : CommonInterfaceActivity() {
 
         val yearPicker: NumberPicker = dialogView.findViewById(R.id.picker_year)
 
+        yearPicker.textSize = 80f
+
         val currentYear = Calendar.getInstance().get(Calendar.YEAR)
         yearPicker.minValue = currentYear - 10
         yearPicker.maxValue = currentYear + 10

@@ -22,15 +22,6 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="UseCompoundDrawables">
 
-
-        <ImageView
-            android:id="@+id/ic_calendar"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:contentDescription="Icone de consulta"
-            android:src="@drawable/ic_calendar_picker"
-            app:tint="@color/primary" />
-
         <TextView
             android:id="@+id/tv_selected_year"
             android:layout_width="wrap_content"

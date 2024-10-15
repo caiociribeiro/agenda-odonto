@@ -4,9 +4,8 @@ import android.os.Bundle
 import android.text.InputFilter
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.widget.doOnTextChanged
 import com.google.android.material.textfield.TextInputLayout
 import com.niwattep.materialslidedatepicker.SlideDatePickerDialog
 import com.niwattep.materialslidedatepicker.SlideDatePickerDialogCallback
@@ -64,9 +63,20 @@ class RegisterActivity : BaseActivity(), SlideDatePickerDialogCallback {
 
         btnRegister.setOnClickListener {
             if (!passwordsMatch(etPassword.text.toString(), etPasswordConfirm.text.toString())) {
-                etPassword.error = getString(R.string.error_password_mismatch)
+                tilPassword.error = " "
+                tilPasswordConfirm.error = "Senhas não coincidem"
                 print("test")
             }
+        }
+
+        etPassword.doOnTextChanged { _, _, _, _ ->
+            tilPassword.error = null
+            tilPasswordConfirm.error = null
+        }
+
+        etPasswordConfirm.doOnTextChanged { _, _, _, _ ->
+            tilPassword.error = null
+            tilPasswordConfirm.error = null
         }
     }
 

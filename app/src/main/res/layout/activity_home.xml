@@ -9,6 +9,7 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_home_agendar"
         android:layout_width="match_parent"
+        app:shapeAppearance="?attr/shapeAppearanceCornerSmall"
         android:layout_height="100dp"
         android:layout_marginHorizontal="40dp"
         android:backgroundTint="@color/secondary"
@@ -25,6 +26,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_home_historico"
+        app:shapeAppearance="?attr/shapeAppearanceCornerSmall"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginHorizontal="40dp"

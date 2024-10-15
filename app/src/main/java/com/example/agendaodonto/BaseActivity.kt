@@ -1,17 +1,21 @@
 package com.example.agendaodonto
 
+import android.content.Intent
 import android.text.InputFilter
 import android.util.Log
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.Timestamp
 import java.text.SimpleDateFormat
 import java.util.*
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.auth
+import com.google.firebase.Firebase
 
 open class BaseActivity : AppCompatActivity() {
-
     fun applyInputFilters(editText: EditText, isEmail: Boolean = false) {
         val inputFilter = InputFilter { source, start, end, dest, dstart, dend ->
             for (i in start until end) {
@@ -57,5 +61,24 @@ open class BaseActivity : AppCompatActivity() {
                     Log.e("FetchUserData", "Error fetching user data", exception)
                 }
         }
+    }
+
+    fun signIn(auth: FirebaseAuth, email: String, password: String) {
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    val user = auth.currentUser
+                    val intent = Intent(this, HomeActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                    // updateUI(user)
+                } else {
+                    Toast.makeText(
+                        baseContext,
+                        "Authentication failed.",
+                        Toast.LENGTH_SHORT,
+                    ).show()
+                }
+            }
     }
 }
