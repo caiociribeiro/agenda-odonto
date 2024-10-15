@@ -1,59 +1,61 @@
 package com.example.agendaodonto
 
-import android.content.Intent
-import android.os.Bundle
-import android.widget.FrameLayout
-import android.widget.ImageView
+import android.text.InputFilter
+import android.util.Log
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.GravityCompat
-import androidx.drawerlayout.widget.DrawerLayout
-import com.google.android.material.navigation.NavigationView
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.Timestamp
+import java.text.SimpleDateFormat
+import java.util.*
 
-abstract class BaseActivity : AppCompatActivity() {
+open class BaseActivity : AppCompatActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_base)
-
-        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
-        val navView: NavigationView = findViewById(R.id.nav_view)
-
-        navView.setNavigationItemSelectedListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.nav_inicio -> {
-                    val intent = Intent(this, HomeActivity::class.java)
-                    startActivity(intent)
-                    drawerLayout.closeDrawers()
-                    true
-                }
-
-                R.id.nav_dados_pessoais -> {
-                    val intent = Intent(this, DadosPessoaisActivity::class.java)
-                    startActivity(intent)
-                    drawerLayout.closeDrawers()
-                    true
-                }
-
-                R.id.nav_logout -> {
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                    drawerLayout.closeDrawers()
-                    true
-                }
-
-                else -> false
+    fun applyInputFilters(editText: EditText, isEmail: Boolean = false) {
+        val inputFilter = InputFilter { source, start, end, dest, dstart, dend ->
+            for (i in start until end) {
+                if (source[i] == '\\' || source[i] == '\n' || source[i] == '\t') return@InputFilter "" // Block backslash
             }
-        }
 
-        val navIcon: ImageView = findViewById(R.id.iv_menu)
-        navIcon.setOnClickListener {
-            drawerLayout.openDrawer(GravityCompat.START)
+            if (isEmail) {
+                val lowercaseInput = source.toString().lowercase(Locale.getDefault())
+                if (lowercaseInput != source.toString()) {
+                    return@InputFilter lowercaseInput // Convert email to lowercase
+                }
+            }
+            null
         }
+        editText.filters = arrayOf(inputFilter)
     }
 
-    fun setContent(layoutResID: Int) {
-        val frameLayout: FrameLayout = findViewById(R.id.content_frame)
-        layoutInflater.inflate(layoutResID, frameLayout, true)
+    fun fetchUserData(
+        user: FirebaseUser?,
+        onDataFetched: (String, String, String, String, String) -> Unit
+    ) {
+        if (user != null) {
+            val firestore = FirebaseFirestore.getInstance()
+            val userId = user.uid
+
+            firestore.collection("users").document(userId).get()
+                .addOnSuccessListener { document ->
+                    if (document != null && document.exists()) {
+                        val name = document.getString("name") ?: ""
+                        val email = document.getString("email") ?: ""
+                        val phoneNumber = document.getString("phoneNumber") ?: ""
+                        val userType = document.getString("userType") ?: ""
+
+                        val dobTimestamp = document.get("dateOfBirth") as? Timestamp
+                        val dob = dobTimestamp?.toDate()?.let { date ->
+                            SimpleDateFormat("dd/MM/yyyy", Locale("pt", "BR")).format(date)
+                        } ?: ""
+
+                        onDataFetched(name, email, phoneNumber, dob, userType)
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    Log.e("FetchUserData", "Error fetching user data", exception)
+                }
+        }
     }
 }

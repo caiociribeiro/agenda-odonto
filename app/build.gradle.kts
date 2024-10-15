@@ -1,9 +1,15 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("com.google.gms.google-services")
 }
 
 android {
+    signingConfigs {
+        getByName("debug") {
+            storeFile = file("C:\\Users\\caio\\.android\\debug.keystore")
+        }
+    }
     namespace = "com.example.agendaodonto"
     compileSdk = 34
 
@@ -46,7 +52,18 @@ dependencies {
     implementation(libs.firebase.crashlytics.buildtools)
     implementation(libs.glide)
     implementation(libs.circleimageview)
+    implementation(libs.material.slide.date.picker)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    // firebase
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.database)
+    implementation(libs.firebase.firestore)
+    implementation(libs.firebase.auth)
+
+    implementation(libs.library)
 }

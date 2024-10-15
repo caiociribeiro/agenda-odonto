@@ -7,9 +7,8 @@
     android:background="@color/white"
     android:gravity="center"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="32dp">
 
-    <!-- Logo of the app -->
     <TextView
         android:id="@+id/tv_label_register"
         android:layout_width="wrap_content"
@@ -19,75 +18,95 @@
         android:textColor="@color/grey"
         android:textSize="32sp" />
 
-    <!-- Name input field -->
-    <EditText
-        android:id="@+id/et_name"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/et_border"
         android:hint="@string/label_name"
-        android:textColorHint="@color/grey_lt"
-        android:inputType="textPersonName"
-        android:padding="12dp"
-        android:textColor="@color/black" />
+        app:errorEnabled="true"
+        app:errorContentDescription="@string/error_name">
 
-    <!-- Email input field -->
-    <EditText
-        android:id="@+id/et_email"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:inputType="textPersonName" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/et_border"
         android:hint="@string/label_email"
-        android:textColorHint="@color/grey_lt"
-        android:inputType="textEmailAddress"
-        android:padding="12dp"
-        android:textColor="@color/black" />
+        app:errorEnabled="true">
 
-    <!-- Date of birth input field -->
-    <EditText
-        android:id="@+id/et_dob"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:inputType="textEmailAddress" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/et_border"
-        android:hint="@string/label_dob"
-        android:textColorHint="@color/grey_lt"
-        android:inputType="date"
-        android:padding="12dp"
-        android:textColor="@color/black" />
+        app:errorEnabled="true"
+        android:hint="@string/label_dob">
 
-    <!-- Password input field -->
-    <EditText
-        android:id="@+id/et_password"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_dob"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:clickable="true"
+            android:focusable="false" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
+        app:errorEnabled="true"
+        app:errorIconDrawable="@android:color/transparent"
+        app:endIconMode="password_toggle"
+        android:hint="@string/label_password">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_password_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
-        android:background="@drawable/et_border"
-        android:hint="@string/label_password"
-        android:textColorHint="@color/grey_lt"
-        android:inputType="textPassword"
-        android:padding="12dp"
-        android:textColor="@color/black" />
+        app:endIconMode="password_toggle"
+        app:helperTextEnabled="true"
+        android:hint="Confirme a Senha">
 
-    <!-- Register button -->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_login"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_password_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btn_register"
+        style="@style/Widget.Material3.Button.ElevatedButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
         android:layout_marginBottom="16dp"
-        app:backgroundTint="@color/primary"
         android:padding="12dp"
         android:stateListAnimator="@android:anim/accelerate_decelerate_interpolator"
         android:text="@string/btn_register"
-        android:textAllCaps="false"
         android:textColor="#FFFFFF"
-        android:textSize="16sp" />
-
+        android:textSize="16sp"
+        app:backgroundTint="@color/primary" />
 </LinearLayout>

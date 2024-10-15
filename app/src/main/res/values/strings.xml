@@ -9,16 +9,22 @@
     <string name="label_register">Cadastro</string>
     <string name="label_phone">Número de Celular</string>
 
+    <!-- butoes -->
     <string name="btn_register">Cadastrar</string>
     <string name="btn_login">Entrar</string>
     <string name="btn_login_google">Entre com Google</string>
+    <string name="btn_save_changes">Salvar Modificações </string>
+    <string name="btn_edit">Editar</string>
 
-    <string name="link_go_to_register">Não possui cadastro? Registre-se.</string>
-    <string name="avatar_letters">AA</string>
+    <!-- page names -->
+    <string name="entrar">Entrar</string>
+    <string name="home">Início</string>
+    <string name="dados_pessoais">Dados Pessoais</string>
+    <string name="agendamento">Agendamento</string>
+    <string name="historico">Histórico</string>
+    <string name="link_register">Não possui cadastro? Registre-se.</string>
 
-    <string name="user_name">Caio Ribeiro</string>
-
-    <!-- home -->
+    <!-- home page -->
     <string name="home_btn_agendar">Agendar Consulta</string>
     <string name="home_btn_historico">Minhas Consultas</string>
 
@@ -29,19 +35,19 @@
     <string name="nav_logout">Sair da Conta</string>
     <string name="label_agendamento">Agendamento</string>
 
-    <!-- nome paginas -->
-    <string name="entrar">Entrar</string>
-    <string name="home">Início</string>
-    <string name="dados_pessoais">Dados Pessoais</string>
-    <string name="agendamento">Agendamento</string>
-    <string name="historico">Histórico</string>
-
     <!-- dados usuario -->
-    <string name="profile_save_changes">Salvar Mudanças</string>
-    <string name="profile_name">Fulano de Tal</string>
-    <string name="profile_email">fulano@agendaodonto.com</string>
-    <string name="profile_phone">(85)99991–5355</string>
-    <string name="profile_dob">01/01/1994</string>
-    <string name="profile_edit">Editar</string>
-    <string name="profile_user_type">Paciente</string>
+    <string name="user_name">Fulano de Tal</string>
+    <string name="user_email">fulano@agendaodonto.com</string>
+    <string name="user_phone">(85)99991–5355</string>
+    <string name="user_dob">01/01/1994</string>
+    <string name="user_type">Paciente</string>
+
+    <!-- content description -->
+    <string name="cd_edit_ic">Editar</string>
+
+    <!--Errors -->
+    <string name="error_name">Nome inválido. Por favor, insira outro.</string>
+    <string name="error_password_mismatch"></string>
+
+    <string name="rating">Nota media: </string>
 </resources>

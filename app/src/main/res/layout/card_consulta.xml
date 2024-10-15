@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Widget.Material3.CardView.Filled"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="8dp"
@@ -24,9 +25,10 @@
             android:padding="12dp">
 
             <ImageView
+                android:layout_gravity="center"
                 android:id="@+id/ic_calendar"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
                 android:layout_marginEnd="8dp"
                 android:contentDescription="Icone de consulta"
                 android:src="@drawable/ic_calendar"
@@ -46,9 +48,10 @@
                 android:id="@+id/tv_nome_medico"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Consulta com Dra. Fabiana Melo"
+                android:text="Dra. Fabiana Melo"
                 android:layout_marginStart="8dp"
                 android:textSize="16sp" />
+
         </LinearLayout>
 
         <!-- Expanded view (Files related to the consultation) -->
@@ -59,6 +62,12 @@
             android:orientation="vertical"
             android:padding="16dp"
             android:visibility="gone">
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                app:dividerColor="@color/grey_lt" />
 
             <TextView
                 android:id="@+id/tv_titulo_arquivos"
@@ -74,4 +83,24 @@
                 android:text="Arquivo 1.pdf" />
         </LinearLayout>
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_icon_arrow_down"
+        style="@style/Widget.Material3.Button.IconButton"
+        android:layout_gravity="top|end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:icon="@drawable/ic_arrow_down_24px"
+        app:iconTint="@color/grey" />
+
+
+    <Button
+        android:id="@+id/btn_icon_arrow_up"
+        style="@style/Widget.Material3.Button.IconButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
+        android:visibility="gone"
+        app:icon="@drawable/ic_arrow_up_24px"
+        app:iconTint="@color/grey" />
 </com.google.android.material.card.MaterialCardView>
