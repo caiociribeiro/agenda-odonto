@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:padding="16dp"
-        tools:listitem="@layout/card_doctor"
+        tools:listitem="@layout/card_dentista"
         app:layout_constraintTop_toBottomOf="@id/tv_subtitle"
         app:layout_constraintBottom_toBottomOf="parent" />
 

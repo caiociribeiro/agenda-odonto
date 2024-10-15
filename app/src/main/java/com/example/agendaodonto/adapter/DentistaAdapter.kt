@@ -1,3 +1,5 @@
+package com.example.agendaodonto.adapter
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,14 +9,14 @@ import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.annotation.MenuRes
 import androidx.recyclerview.widget.RecyclerView
-import com.example.agendaodonto.Doctor
+import com.example.agendaodonto.Dentista
 import com.example.agendaodonto.R
 import com.bumptech.glide.Glide
 import me.zhanghai.android.materialratingbar.MaterialRatingBar
 
 
-class DoctorAdapter(private val doctorList: List<Doctor>) :
-    RecyclerView.Adapter<DoctorAdapter.DoctorViewHolder>() {
+class DentistaAdapter(private val doctorList: List<Dentista>) :
+    RecyclerView.Adapter<DentistaAdapter.DoctorViewHolder>() {
 
     class DoctorViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val doctorName: TextView = view.findViewById(R.id.tv_doctor_name)
@@ -27,7 +29,7 @@ class DoctorAdapter(private val doctorList: List<Doctor>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DoctorViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.card_doctor, parent, false)
+            .inflate(R.layout.card_dentista, parent, false)
         return DoctorViewHolder(view)
     }
 
@@ -38,7 +40,7 @@ class DoctorAdapter(private val doctorList: List<Doctor>) :
         holder.doctorRating.text = doctor.rating.toString()
         holder.ratingBar.rating = doctor.rating
 
-        val imageUrl = "https://i.pravatar.cc/200?uniqueParam=${System.currentTimeMillis()}";
+        val imageUrl = "https://i.pravatar.cc/200?uniqueParam=${System.currentTimeMillis()}"
 
         Glide.with(holder.itemView.context)
             .load(imageUrl)
@@ -49,7 +51,7 @@ class DoctorAdapter(private val doctorList: List<Doctor>) :
         }
 
         holder.btnCardMenu.setOnClickListener { v ->
-            showCardMenu(v, R.menu.card_doctor_menu)
+            showCardMenu(v, R.menu.card_dentista_menu)
         }
     }
 

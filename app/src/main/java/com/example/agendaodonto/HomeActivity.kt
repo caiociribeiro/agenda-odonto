@@ -16,7 +16,7 @@ class HomeActivity : CommonInterfaceActivity() {
 
         val agendarConsulta: Button = findViewById(R.id.btn_home_agendar)
         agendarConsulta.setOnClickListener {
-            val intent = Intent(this, DoctorListActivity::class.java)
+            val intent = Intent(this, DentistaListActivity::class.java)
             startActivity(intent)
         }
 

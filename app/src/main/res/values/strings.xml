@@ -25,7 +25,7 @@
     <string name="link_register">Não possui cadastro? Registre-se.</string>
 
     <!-- home page -->
-    <string name="home_btn_agendar">Agendar Consulta</string>
+    <string name="home_btn_agendar">Agendar</string>
     <string name="home_btn_historico">Minhas Consultas</string>
 
     <!-- nav menu -->

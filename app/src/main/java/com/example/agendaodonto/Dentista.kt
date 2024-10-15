@@ -1,6 +1,6 @@
 package com.example.agendaodonto
 
-data class Doctor(
+data class Dentista(
     val name: String,
     val specialty: String,
     val rating: Float,
