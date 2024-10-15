@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "703964563266",
+    "project_id": "agenda-odonto-52d5e",
+    "storage_bucket": "agenda-odonto-52d5e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:703964563266:android:f81260320fd767b9e66adb",
+        "android_client_info": {
+          "package_name": "com.example.agendaodonto"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBubvgv473vxbiGrwvJgPanKH-3zbUPt8E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -9,7 +9,7 @@ import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.reflec
 import com.google.gson.Gson
 import java.io.InputStreamReader
 
-class DoctorListActivity : BaseActivity() {
+class DoctorListActivity : CommonInterfaceActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

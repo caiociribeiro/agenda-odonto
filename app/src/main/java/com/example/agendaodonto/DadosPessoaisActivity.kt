@@ -4,10 +4,11 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 
-class DadosPessoaisActivity : BaseActivity() {
+class DadosPessoaisActivity : CommonInterfaceActivity() {
     private lateinit var profileImageView: ImageView
     private val PICK_IMAGE_REQUEST = 1
 
@@ -41,4 +42,6 @@ class DadosPessoaisActivity : BaseActivity() {
             profileImageView.setImageURI(selectedImage)
         }
     }
+
+    fun selectImage(view: View) {}
 }

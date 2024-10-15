@@ -9,4 +9,5 @@
     <color name="grey_lt">#BBBBBB</color>
     <color name="grey_ltr">#F0F0F0</color>
     <color name="red_google">#DB4437</color>
+    <color name="red">#FF0000</color>
 </resources>

@@ -1,17 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
     app:cardBackgroundColor="@color/grey_ltr"
-    app:cardCornerRadius="4dp">
+    app:cardCornerRadius="4dp"
+    app:strokeColor="@android:color/transparent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp">
+
+        <!-- Icon button aligned to top-right corner -->
+
+        <!-- Avatar Image -->
+        <Button
+            android:id="@+id/btn_card_menu"
+            style="?attr/materialIconButtonFilledStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="-16dp"
+            android:layout_marginEnd="-16dp"
+            android:backgroundTint="@android:color/transparent"
+            app:icon="@drawable/ic_more_vert_24px"
+            app:iconTint="@color/primary" />
 
         <ImageView
             android:id="@+id/iv_doctor_avatar"
@@ -21,19 +37,17 @@
             android:scaleType="centerCrop"
             android:background="@drawable/avatar_background"
             android:clipToOutline="true"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true" />
 
+        <!-- LinearLayout for doctor details -->
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
             android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@id/iv_doctor_avatar"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_toEndOf="@id/iv_doctor_avatar"
+            android:layout_alignTop="@id/iv_doctor_avatar"
+            android:layout_alignBottom="@id/iv_doctor_avatar">
 
             <TextView
                 android:id="@+id/tv_doctor_name"
@@ -49,27 +63,31 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/grey" />
 
+            <!-- Rating and doctor rating together -->
             <LinearLayout
-                android:id="@+id/ll_rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
+                <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                    android:id="@+id/rb_rating"
+                    style="@style/Widget.MaterialRatingBar.RatingBar"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:maxHeight="16dp"
+                    android:rating="4.3"
+                    app:mrb_progressTint="@color/primary" />
+
                 <TextView
                     android:id="@+id/tv_doctor_rating"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:paddingEnd="2dp"
-                    android:text="4.8"
-                    android:textColor="@color/secondary"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="4.3 (33)"
                     android:textSize="14sp" />
 
-                <ImageView
-                    android:id="@+id/iv_star"
-                    android:layout_width="16dp"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/ic_star" />
             </LinearLayout>
         </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
+
 </com.google.android.material.card.MaterialCardView>

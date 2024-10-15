@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.agendaodonto.adapter.ConsultaAdapter
 import java.util.Calendar
 
-class HistoricoConsultasActivity : BaseActivity() {
+class HistoricoConsultasActivity : CommonInterfaceActivity() {
 
     private lateinit var selectedYearTextView: LinearLayout
     private lateinit var selectedYear: TextView

@@ -50,7 +50,7 @@
 
     <!-- Register clickable text -->
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_login"
+        android:id="@+id/btn_register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
@@ -89,7 +89,7 @@
         android:clickable="true"
         android:focusable="true"
         android:gravity="center_horizontal|center_vertical"
-        android:text="@string/link_go_to_register"
+        android:text="@string/link_register"
         android:textColor="#0000FF"
         android:textSize="14sp"
         app:drawableEndCompat="@drawable/ic_link"
