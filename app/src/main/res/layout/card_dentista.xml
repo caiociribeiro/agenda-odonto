@@ -4,7 +4,7 @@
     style="?attr/materialCardViewElevatedStyle"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
+    android:layout_marginBottom="12dp"
     app:cardCornerRadius="4dp">
 
     <RelativeLayout
@@ -12,9 +12,6 @@
         android:layout_height="wrap_content"
         android:padding="16dp">
 
-        <!-- Icon button aligned to top-right corner -->
-
-        <!-- Avatar Image -->
         <Button
             android:id="@+id/btn_card_menu"
             style="?attr/materialIconButtonFilledStyle"
@@ -39,7 +36,6 @@
             android:layout_centerVertical="true"
             android:layout_alignParentStart="true" />
 
-        <!-- LinearLayout for doctor details -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -62,7 +58,6 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/grey" />
 
-            <!-- Rating and doctor rating together -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

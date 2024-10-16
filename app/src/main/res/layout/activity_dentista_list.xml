@@ -3,18 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="8dp">
+    android:padding="20dp">
 
 
     <TextView
+        android:layout_marginTop="-4dp"
         android:id="@+id/tv_subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Selecione o dentista"
+        android:text="Para continuar, selecione o dentista"
         android:textColor="@color/grey"
+        android:textStyle="bold"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@id/rv_doctor_list"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,9 +23,10 @@
         android:id="@+id/rv_doctor_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:padding="16dp"
-        tools:listitem="@layout/card_dentista"
+        android:layout_marginTop="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_subtitle"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        tools:layout_editor_absoluteX="8dp"
+        tools:listitem="@layout/card_dentista" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

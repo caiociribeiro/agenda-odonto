@@ -15,6 +15,7 @@
         <item name="boxStrokeErrorColor">@color/red</item>
 
         <item name="colorControlNormal">@color/white</item>
+
     </style>
 
     <style name="Theme.AgendaOdonto" parent="Base.Theme.AgendaOdonto" />

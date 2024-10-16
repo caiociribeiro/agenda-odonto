@@ -6,41 +6,22 @@
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/register"
+        android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="32dp">
+        android:padding="32dp"
+        android:visibility="visible">
 
         <TextView
-            android:id="@+id/tv_label_register"
+            android:id="@+id/tv_logo_main"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
-            android:text="@string/label_register"
-            android:textColor="@color/grey"
+            android:text="@string/entrar"
             android:textSize="32sp"
             android:textStyle="bold" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:hint="@string/label_name"
-            app:errorEnabled="true"
-            app:errorContentDescription="@string/error_name">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="-3dp"
-                android:padding="14dp"
-                android:inputType="textPersonName" />
-        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_email"
@@ -57,26 +38,6 @@
                 android:layout_marginBottom="-3dp"
                 android:padding="14dp"
                 android:inputType="textEmailAddress" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_dob"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            app:errorEnabled="true"
-            app:endIconMode="custom"
-            app:endIconDrawable="@drawable/ic_calendar_today_24px"
-            android:hint="@string/label_dob">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_dob"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="14dp"
-                android:inputType="none"
-                android:cursorVisible="false"
-                android:clickable="true" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -97,38 +58,85 @@
                 android:layout_marginBottom="-3dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_password_confirm"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginBottom="24dp"
-            app:endIconMode="password_toggle"
-            app:errorEnabled="true"
-            android:hint="Confirme a Senha">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_password_confirm"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="-3dp"
-                android:padding="14dp"
-                android:inputType="textPassword" />
-        </com.google.android.material.textfield.TextInputLayout>
-
         <Button
             android:id="@+id/btn_register"
-            style="@style/Widget.Material3.Button.ElevatedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="16dp"
+            app:backgroundTint="@color/primary"
+            android:padding="12dp"
+            android:text="@string/btn_login"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp">
+
+            <TextView
+                android:id="@+id/tvText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="ou" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:layout_toLeftOf="@id/tvText"
+                android:background="@color/grey_lt" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="16dp"
+                android:layout_toEndOf="@id/tvText"
+                android:background="@color/grey_lt" />
+
+        </RelativeLayout>
+
+        <Button
+            style="@style/Widget.Material3.Button.ElevatedButton.Icon"
+            android:id="@+id/btn_login_google"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/red_google"
             android:padding="12dp"
-            android:stateListAnimator="@android:anim/accelerate_decelerate_interpolator"
-            android:text="@string/btn_register"
+            android:text="@string/btn_login_google"
+            android:textAllCaps="false"
+            app:iconGravity="textStart"
+            app:iconPadding="16dp"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
-            app:backgroundTint="@color/primary" />
+            app:icon="@drawable/ic_google_brand"
+            app:iconTint="#FFF" />
+
+
+        <TextView
+            android:id="@+id/tv_register"
+            android:layout_width="240dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="@string/link_register"
+            android:textColor="#0000FF"
+            android:textSize="14sp"
+            app:drawableEndCompat="@drawable/ic_link"
+            app:drawableTint="#0000FF" />
+
     </LinearLayout>
 
     <include layout="@layout/loading_overlay" />
