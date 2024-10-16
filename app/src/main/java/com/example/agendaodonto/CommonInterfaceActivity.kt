@@ -1,6 +1,7 @@
 package com.example.agendaodonto
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.FrameLayout
 import android.widget.ImageView
@@ -20,8 +21,8 @@ abstract class CommonInterfaceActivity : BaseActivity() {
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
 
-        val userData = getUserData()
-        updateUI(userData)
+        updateNavDrawer(getUserData())
+
 
         navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
@@ -42,11 +43,11 @@ abstract class CommonInterfaceActivity : BaseActivity() {
                 R.id.nav_logout -> {
                     Firebase.auth.signOut()
 
+
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish()
 
-                    drawerLayout.closeDrawers()
                     true
                 }
 
@@ -69,15 +70,15 @@ abstract class CommonInterfaceActivity : BaseActivity() {
 
     }
 
-    private fun updateUI(userData: Map<String, String?>) {
+    fun updateNavDrawer(data: Map<String, String?>) {
         val navView: NavigationView = findViewById(R.id.nav_view)
         val headerView = navView.getHeaderView(0)
 
         val tvUserName: TextView = headerView.findViewById(R.id.tv_user_name)
         val ivUserAvatar: ImageView = headerView.findViewById(R.id.iv_user_avatar)
 
-        val name = userData["name"]
-        val avatar = userData["avatar"]
+        val name = data["name"]
+        val avatar = data["avatar"]
 
         tvUserName.text = name
 
@@ -98,5 +99,9 @@ abstract class CommonInterfaceActivity : BaseActivity() {
     fun setContent(layoutResID: Int) {
         val frameLayout: FrameLayout = findViewById(R.id.content_frame)
         layoutInflater.inflate(layoutResID, frameLayout, true)
+    }
+
+    override fun onStart() {
+        super.onStart()
     }
 }

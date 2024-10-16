@@ -11,7 +11,9 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.widget.doOnTextChanged
 import com.google.android.material.textfield.TextInputLayout
+import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 import com.niwattep.materialslidedatepicker.SlideDatePickerDialog
 import com.niwattep.materialslidedatepicker.SlideDatePickerDialogCallback
 import java.util.Calendar
@@ -22,6 +24,7 @@ class RegisterActivity : BaseActivity(), SlideDatePickerDialogCallback {
     private lateinit var tilEmail: TextInputLayout
     private lateinit var tilPassword: TextInputLayout
     private lateinit var tilPasswordConfirm: TextInputLayout
+    private lateinit var tilDob: TextInputLayout
 
     private lateinit var etDob: EditText
     private lateinit var etName: EditText
@@ -35,10 +38,13 @@ class RegisterActivity : BaseActivity(), SlideDatePickerDialogCallback {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
+        auth = Firebase.auth
+
         tilName = findViewById(R.id.til_name)
         tilPassword = findViewById(R.id.til_password)
         tilPasswordConfirm = findViewById(R.id.til_password_confirm)
         tilEmail = findViewById(R.id.til_email)
+        tilDob = findViewById(R.id.til_dob)
 
         etName = findViewById(R.id.et_name)
         etEmail = findViewById(R.id.et_email)
@@ -71,9 +77,10 @@ class RegisterActivity : BaseActivity(), SlideDatePickerDialogCallback {
             if (isValidUserInformation(name, email, dob, password, passwordConfirm)) {
                 Toast.makeText(
                     baseContext,
-                    "Tudo Ok.",
-                    Toast.LENGTH_SHORT,
+                    "Tudo ok",
+                    Toast.LENGTH_SHORT
                 ).show()
+                signUp(auth, name, email, dob, password)
             }
         }
 
@@ -116,7 +123,11 @@ class RegisterActivity : BaseActivity(), SlideDatePickerDialogCallback {
     }
 
     private fun isValidDob(dob: String): Boolean {
-        return dob != ""
+        if (dob.isBlank()) {
+            tilDob.error = "Insira uma data de nascimento"
+            return false
+        }
+        return true
     }
 
     private fun isValidName(name: String): Boolean {
@@ -156,23 +167,6 @@ class RegisterActivity : BaseActivity(), SlideDatePickerDialogCallback {
             .show(supportFragmentManager, "TAG")
     }
 
-    private fun signUp(name: String, email: String, dob: String, password: String) {
-        auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    val user = auth.currentUser
-                    // updateUI(user)
-                } else {
-                    Toast.makeText(
-                        baseContext,
-                        "Falha na autenticacao",
-                        Toast.LENGTH_SHORT,
-                    ).show()
-                    // updateUI(null)
-                }
-            }
-
-    }
 
     private fun isValidUserInformation(
         name: String,
@@ -181,10 +175,14 @@ class RegisterActivity : BaseActivity(), SlideDatePickerDialogCallback {
         password: String,
         passwordConfirm: String
     ): Boolean {
-        return isValidName(name) && isValidPassword(
-            password,
-            passwordConfirm
-        ) && isValidEmail(email)
+        var valid = true;
+
+        if (!isValidName(name)) valid = false
+        if (!isValidEmail(email)) valid = false
+        if (!isValidPassword(password, passwordConfirm)) valid = false
+        if (!isValidDob(dob)) valid = false
+
+        return valid
     }
 
 }

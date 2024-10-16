@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.android.material.textfield.TextInputLayout
@@ -43,7 +44,9 @@ open class BaseActivity : AppCompatActivity() {
             val firestore = FirebaseFirestore.getInstance()
             val userId = user.uid
 
-            firestore.collection("users").document(userId).get()
+            firestore.collection("users")
+                .document(userId)
+                .get()
                 .addOnSuccessListener { document ->
                     if (document != null && document.exists()) {
                         val name = document.getString("name") ?: ""
@@ -84,13 +87,14 @@ open class BaseActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     val user = auth.currentUser
-                    val intent = Intent(this, HomeActivity::class.java)
-                    startActivity(intent)
-                    finish()
 
                     fetchUserData(user) { name, email, phoneNumber, dob, userType, avatar ->
                         saveUserData(name, email, phoneNumber, dob, userType, avatar)
                     }
+
+                    val intent = Intent(this, HomeActivity::class.java)
+                    startActivity(intent)
+                    finish()
 
                 } else {
                     main.visibility = View.VISIBLE
@@ -102,8 +106,66 @@ open class BaseActivity : AppCompatActivity() {
             }
     }
 
+    fun signUp(auth: FirebaseAuth, name: String, email: String, dob: String, password: String) {
 
-    private fun saveUserData(
+        val registerLayout: LinearLayout = findViewById(R.id.register)
+        val loading: ConstraintLayout = findViewById(R.id.loading_overlay)
+
+        registerLayout.visibility = View.GONE
+        loading.visibility = View.VISIBLE
+
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    val user = auth.currentUser
+                    val userId = user?.uid
+
+                    val firestore = FirebaseFirestore.getInstance()
+                    val userData = hashMapOf(
+                        "name" to name,
+                        "email" to email,
+                        "dateOfBirth" to dob,
+                        "phoneNumber" to "",
+                        "userType" to "Paciente",
+                        "avatar" to ""
+                    )
+
+                    userId?.let {
+                        firestore.collection("users").document(it).set(userData)
+                            .addOnSuccessListener {
+                                fetchUserData(user) { name, email, phoneNumber, dob, userType, avatar ->
+                                    saveUserData(name, email, phoneNumber, dob, userType, avatar)
+                                }
+
+                                val intent = Intent(this, HomeActivity::class.java)
+                                startActivity(intent)
+                                finish()
+                            }
+                            .addOnFailureListener { e ->
+                                registerLayout.visibility = View.VISIBLE
+                                loading.visibility = View.GONE
+                                Toast.makeText(
+                                    baseContext,
+                                    "Error saving user data: ${e.message}",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
+                    }
+                } else {
+                    registerLayout.visibility = View.VISIBLE
+                    loading.visibility = View.GONE
+
+                    Toast.makeText(
+                        baseContext,
+                        "Algo deu errado. Tente novamente mais tarde.",
+                        Toast.LENGTH_LONG,
+                    ).show()
+                }
+            }
+
+    }
+
+    fun saveUserData(
         name: String,
         email: String,
         phoneNumber: String,
@@ -116,30 +178,24 @@ open class BaseActivity : AppCompatActivity() {
 
         editor.putString("name", name)
         editor.putString("email", email)
+        editor.putString("avatar", avatar)
         editor.putString("phoneNumber", phoneNumber)
         editor.putString("dob", dob)
         editor.putString("userType", userType)
-        editor.putString("avatar", avatar)
 
         editor.apply()
     }
 
     fun getUserData(): Map<String, String?> {
         val sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE)
-        val name = sharedPreferences.getString("name", null)
-        val email = sharedPreferences.getString("email", null)
-        val phoneNumber = sharedPreferences.getString("phoneNumber", null)
-        val dob = sharedPreferences.getString("dob", null)
-        val userType = sharedPreferences.getString("userType", null)
-        val avatar = sharedPreferences.getString("avatar", null)
-
         return mapOf(
-            "name" to name,
-            "email" to email,
-            "phoneNumber" to phoneNumber,
-            "dob" to dob,
-            "userType" to userType,
-            "avatar" to avatar
+            "name" to sharedPreferences.getString("name", null),
+            "email" to sharedPreferences.getString("email", null),
+            "phoneNumber" to sharedPreferences.getString("phoneNumber", null),
+            "dob" to sharedPreferences.getString("dob", null),
+            "userType" to sharedPreferences.getString("userType", null),
+            "avatar" to sharedPreferences.getString("avatar", null)
         )
     }
+
 }

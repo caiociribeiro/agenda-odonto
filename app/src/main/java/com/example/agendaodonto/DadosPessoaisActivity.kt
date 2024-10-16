@@ -9,7 +9,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.google.android.material.navigation.NavigationView
+import com.google.firebase.firestore.auth.User
 
 class DadosPessoaisActivity : CommonInterfaceActivity() {
     private lateinit var profileImageView: ImageView
@@ -27,8 +27,7 @@ class DadosPessoaisActivity : CommonInterfaceActivity() {
             selectImage()
         }
 
-        val userData = getUserData()
-        updateUI(userData)
+        updatePersonalData(getUserData())
     }
 
     private fun selectImage() {
@@ -51,7 +50,7 @@ class DadosPessoaisActivity : CommonInterfaceActivity() {
 
     fun selectImage(view: View) {}
 
-    private fun updateUI(userData: Map<String, String?>) {
+    private fun updatePersonalData(data: Map<String, String?>) {
         val ivUserAvatar: ImageView = findViewById(R.id.profile_image)
         val tvUserName: TextView = findViewById(R.id.tv_name)
         val tvUserType: TextView = findViewById(R.id.tv_user_type)
@@ -60,19 +59,15 @@ class DadosPessoaisActivity : CommonInterfaceActivity() {
         val etDob: EditText = findViewById(R.id.et_dob)
         val etPhoneNumber: EditText = findViewById(R.id.et_phone)
 
-        val name = userData["name"]
-        val email = userData["email"]
-        val userType = userData["userType"]
-        val dob = userData["etDob"]
-        val avatar = userData["avatar"]
-        val phoneNumber = userData["phoneNumber"]
 
-        tvUserName.text = name
-        tvUserType.text = userType
-        etName.setText(name)
-        etEmail.setText(email)
-        etDob.setText(dob)
-        etPhoneNumber.setText(phoneNumber)
+        tvUserName.text = data["name"]
+        tvUserType.text = data["userType"]
+        etName.setText(data["name"])
+        etEmail.setText(data["email"])
+        etDob.setText(data["dob"])
+        etPhoneNumber.setText(data["phoneNumber"])
+
+        val avatar = data["avatar"]
 
         if (avatar != null) {
             if (avatar.isNotEmpty()) {
