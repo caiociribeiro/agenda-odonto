@@ -80,12 +80,13 @@ open class BaseActivity : AppCompatActivity() {
         val main: LinearLayout = findViewById(R.id.main)
         val loading: ConstraintLayout = findViewById(R.id.loading_overlay)
 
-        main.visibility = View.GONE
-        loading.visibility = View.VISIBLE
 
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
+                    main.visibility = View.GONE
+                    loading.visibility = View.VISIBLE
+
                     val user = auth.currentUser
 
                     fetchUserData(user) { name, email, phoneNumber, dob, userType, avatar ->
@@ -98,9 +99,6 @@ open class BaseActivity : AppCompatActivity() {
 
 
                 } else {
-                    main.visibility = View.VISIBLE
-                    loading.visibility = View.GONE
-
                     emailInputText.error = " "
                     passwordInputText.error = "E-mail ou senha incorretos."
                 }
@@ -112,12 +110,14 @@ open class BaseActivity : AppCompatActivity() {
         val registerLayout: LinearLayout = findViewById(R.id.register)
         val loading: ConstraintLayout = findViewById(R.id.loading_overlay)
 
-        registerLayout.visibility = View.GONE
-        loading.visibility = View.VISIBLE
 
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
+
+                    registerLayout.visibility = View.GONE
+                    loading.visibility = View.VISIBLE
+
                     val user = auth.currentUser
                     val userId = user?.uid
 
@@ -149,8 +149,6 @@ open class BaseActivity : AppCompatActivity() {
                                 }
                             }
                             .addOnFailureListener { e ->
-                                registerLayout.visibility = View.VISIBLE
-                                loading.visibility = View.GONE
                                 Toast.makeText(
                                     baseContext,
                                     "Error saving user data: ${e.message}",
@@ -159,8 +157,6 @@ open class BaseActivity : AppCompatActivity() {
                             }
                     }
                 } else {
-                    registerLayout.visibility = View.VISIBLE
-                    loading.visibility = View.GONE
 
                     Toast.makeText(
                         baseContext,
