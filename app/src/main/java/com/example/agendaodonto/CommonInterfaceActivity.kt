@@ -3,6 +3,7 @@ package com.example.agendaodonto
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
@@ -22,7 +23,6 @@ abstract class CommonInterfaceActivity : BaseActivity() {
         val navView: NavigationView = findViewById(R.id.nav_view)
 
         updateNavDrawer(getUserData())
-
 
         navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
@@ -71,6 +71,7 @@ abstract class CommonInterfaceActivity : BaseActivity() {
     }
 
     fun updateNavDrawer(data: Map<String, String?>) {
+        Log.d("myTag", "UI Update...")
         val navView: NavigationView = findViewById(R.id.nav_view)
         val headerView = navView.getHeaderView(0)
 
@@ -99,9 +100,5 @@ abstract class CommonInterfaceActivity : BaseActivity() {
     fun setContent(layoutResID: Int) {
         val frameLayout: FrameLayout = findViewById(R.id.content_frame)
         layoutInflater.inflate(layoutResID, frameLayout, true)
-    }
-
-    override fun onStart() {
-        super.onStart()
     }
 }
