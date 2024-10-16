@@ -121,10 +121,16 @@ open class BaseActivity : AppCompatActivity() {
                     val userId = user?.uid
 
                     val firestore = FirebaseFirestore.getInstance()
+
+                    val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                    val date: Date = sdf.parse(dob) ?: Date()
+
+                    val dobAsTimestamp = Timestamp(date)
+
                     val userData = hashMapOf(
                         "name" to name,
                         "email" to email,
-                        "dateOfBirth" to dob,
+                        "dateOfBirth" to dobAsTimestamp,
                         "phoneNumber" to "",
                         "userType" to "Paciente",
                         "avatar" to ""
