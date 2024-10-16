@@ -90,11 +90,12 @@ open class BaseActivity : AppCompatActivity() {
 
                     fetchUserData(user) { name, email, phoneNumber, dob, userType, avatar ->
                         saveUserData(name, email, phoneNumber, dob, userType, avatar)
+
+                        val intent = Intent(this, HomeActivity::class.java)
+                        startActivity(intent)
+                        finish()
                     }
 
-                    val intent = Intent(this, HomeActivity::class.java)
-                    startActivity(intent)
-                    finish()
 
                 } else {
                     main.visibility = View.VISIBLE
@@ -141,11 +142,11 @@ open class BaseActivity : AppCompatActivity() {
                             .addOnSuccessListener {
                                 fetchUserData(user) { name, email, phoneNumber, dob, userType, avatar ->
                                     saveUserData(name, email, phoneNumber, dob, userType, avatar)
-                                }
 
-                                val intent = Intent(this, HomeActivity::class.java)
-                                startActivity(intent)
-                                finish()
+                                    val intent = Intent(this, HomeActivity::class.java)
+                                    startActivity(intent)
+                                    finish()
+                                }
                             }
                             .addOnFailureListener { e ->
                                 registerLayout.visibility = View.VISIBLE
@@ -179,6 +180,8 @@ open class BaseActivity : AppCompatActivity() {
         userType: String,
         avatar: String
     ) {
+        Log.d("myTag", "Salvando dados do usuario...")
+
         val sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE)
         val editor = sharedPreferences.edit()
 
