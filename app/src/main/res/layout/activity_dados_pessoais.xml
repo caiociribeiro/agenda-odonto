@@ -19,7 +19,6 @@
         app:layout_constraintStart_toStartOf="@id/tv_label_name"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Nome do usuário -->
 
     <Button
         android:id="@+id/btn_card_menu"
@@ -45,7 +44,6 @@
         app:layout_constraintStart_toEndOf="@id/profile_image"
         app:layout_constraintTop_toTopOf="@id/profile_image" />
 
-    <!-- Tipo de usuário -->
     <TextView
         android:id="@+id/tv_user_type"
         android:layout_width="wrap_content"
@@ -54,19 +52,6 @@
         android:layout_marginStart="16dp"
         app:layout_constraintStart_toEndOf="@id/profile_image"
         app:layout_constraintTop_toBottomOf="@id/tv_name" />
-
-    <TextView
-        android:id="@+id/btn_edit_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="Clique na imagem para editar"
-        android:visibility="invisible"
-        android:textSize="11sp"
-        app:icon="@drawable/ic_image"
-        app:iconTint="@color/white"
-        app:layout_constraintStart_toEndOf="@id/profile_image"
-        app:layout_constraintTop_toBottomOf="@+id/tv_user_type" />
 
     <TextView
         android:id="@+id/tv_label_name"
@@ -97,6 +82,7 @@
             android:id="@+id/et_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="14dp"
             android:enabled="false"
             android:minHeight="48dp"
             android:textSize="16sp" />
@@ -128,6 +114,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:enabled="false"
+            android:padding="14dp"
             android:minHeight="48dp"
             android:textSize="16sp" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -163,6 +150,7 @@
             android:layout_height="wrap_content"
             android:enabled="false"
             android:inputType="phone"
+            android:padding="14dp"
             android:minHeight="48dp"
             android:textSize="16sp" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -198,6 +186,7 @@
             android:layout_marginTop="8dp"
             android:inputType="date"
             android:minHeight="48dp"
+            android:padding="14dp"
             android:textSize="16sp"
             android:enabled="false"
 

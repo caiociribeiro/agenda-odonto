@@ -7,10 +7,6 @@
     android:padding="16dp"
     tools:context=".HistoricoConsultasActivity">
 
-    <!-- NumberPicker for year selection -->
-
-    <!-- RecyclerView to display expandable cards -->
-
     <Button
         android:id="@+id/btn_selected_year"
         style="@style/Widget.Material3.Button.ElevatedButton.Icon"

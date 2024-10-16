@@ -3,7 +3,10 @@ package com.example.agendaodonto
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
+import com.google.firebase.firestore.core.UserData
 
 class HomeActivity : CommonInterfaceActivity() {
 

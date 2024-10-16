@@ -2,9 +2,12 @@ package com.example.agendaodonto
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.widget.doOnTextChanged
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
@@ -33,19 +36,21 @@ class MainActivity : BaseActivity() {
         etEmail = findViewById(R.id.et_email)
         etPassword = findViewById(R.id.et_password)
 
+
         applyInputFilters(etEmail)
         applyInputFilters(etPassword)
 
         val btnLogin = findViewById<Button>(R.id.btn_register)
         btnLogin.setOnClickListener {
-            if (etEmail.text.toString() != "" && etPassword.text.toString() != "")
+            if (etEmail.text.toString() != "" && etPassword.text.toString() != "") {
                 signIn(
                     auth,
                     etEmail.text.toString(),
                     etPassword.text.toString(),
                     tilEmail,
-                    tilPassword
+                    tilPassword,
                 )
+            }
         }
 
         etEmail.doOnTextChanged { _, _, _, _ ->
@@ -74,5 +79,6 @@ class MainActivity : BaseActivity() {
             startActivity(intent)
             finish()
         }
+
     }
 }

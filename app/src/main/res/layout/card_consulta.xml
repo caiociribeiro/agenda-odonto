@@ -16,7 +16,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Initial collapsed view (Date and Doctor) -->
         <LinearLayout
             android:id="@+id/collapsed_view"
             android:layout_width="match_parent"
@@ -54,7 +53,6 @@
 
         </LinearLayout>
 
-        <!-- Expanded view (Files related to the consultation) -->
         <LinearLayout
             android:id="@+id/expanded_view"
             android:layout_width="match_parent"
@@ -75,7 +73,6 @@
                 android:layout_height="wrap_content"
                 android:text="Arquivos relacionados" />
 
-            <!-- Example of a file item (You can create a dynamic list if needed) -->
             <TextView
                 android:id="@+id/tv_arquivo"
                 android:layout_width="wrap_content"
