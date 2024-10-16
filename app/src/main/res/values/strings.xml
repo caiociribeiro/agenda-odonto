@@ -17,6 +17,7 @@
 
     <!-- home -->
     <string name="home_btn_agendar">Agendar Consulta</string>
+    <string name="home_btn_medicos">Lista de Médicos</string>
     <string name="home_btn_historico">Minhas Consultas</string>
 
     <!-- nav menu -->

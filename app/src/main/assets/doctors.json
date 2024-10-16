@@ -1,11 +1,13 @@
 [
   {
+    "id": 1,
     "name": "Dr. Fulana",
     "specialty": "Dentista Geral",
     "rating": 4.8,
     "avatar": "avatar_john_doe"
   },
   {
+    "id": 2,
     "name": "Dr. Ciclano",
     "specialty": "Ortodontista",
     "rating": 4.6,

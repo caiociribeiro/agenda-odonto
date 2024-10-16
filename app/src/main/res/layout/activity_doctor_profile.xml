@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center_horizontal"
+    android:background="@android:color/white">
+
+    <include layout="@layout/header"/>
+
+    <!-- Linha horizontal para foto e nome -->
+    <LinearLayout
+        android:layout_width="308dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <!-- Imagem do dentista -->
+
+        <!-- Nome do dentista -->
+        <ImageView
+            android:id="@+id/img_dentist"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="16dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_dentist" />
+
+        <TextView
+            android:id="@+id/tv_dentist_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Dr. João Dentão"
+            android:textColor="@android:color/black"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Especialidade do dentista -->
+    <TextView
+        android:id="@+id/tv_specialty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Especialidade: Ortodontia e Implantes"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:textStyle="bold" />
+
+    <!-- Avaliação com 5 estrelas pequenas (usando PNG) -->
+    <LinearLayout
+        android:id="@+id/ll_star_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/star1"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/ic_star_empty" />
+
+        <ImageView
+            android:id="@+id/star2"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/ic_star_empty" />
+
+        <ImageView
+            android:id="@+id/star3"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/ic_star_empty" />
+
+        <ImageView
+            android:id="@+id/star4"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/ic_star_empty" />
+
+        <ImageView
+            android:id="@+id/star5"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/ic_star_empty" />
+    </LinearLayout>
+
+
+    <!-- Seção Avaliações -->
+    <TextView
+        android:id="@+id/tv_reviews_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Avaliações"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- Comentário de avaliação do paciente -->
+    <LinearLayout
+        android:id="@+id/ll_patient_reviews"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Exemplo de Avaliação -->
+        <TextView
+            android:id="@+id/tv_patient_review"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vânia: Ótimo atendimento!"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Juvenal: Lindo."
+            android:textSize="16sp"
+            android:textColor="@android:color/black"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Robério: Muito Cuidadoso."
+            android:textSize="16sp"
+            android:textColor="@android:color/black"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Paula: Muito Cuidadoso."
+            android:textSize="16sp"
+            android:textColor="@android:color/black"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>
