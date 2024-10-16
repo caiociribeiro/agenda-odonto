@@ -6,14 +6,13 @@ import android.util.Log
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.Timestamp
 import java.text.SimpleDateFormat
 import java.util.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.auth
-import com.google.firebase.Firebase
 
 open class BaseActivity : AppCompatActivity() {
     fun applyInputFilters(editText: EditText, isEmail: Boolean = false) {
@@ -63,7 +62,13 @@ open class BaseActivity : AppCompatActivity() {
         }
     }
 
-    fun signIn(auth: FirebaseAuth, email: String, password: String) {
+    fun signIn(
+        auth: FirebaseAuth,
+        email: String,
+        password: String,
+        emailInputText: TextInputLayout,
+        passwordInputText: TextInputLayout
+    ) {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
@@ -73,11 +78,8 @@ open class BaseActivity : AppCompatActivity() {
                     finish()
                     // updateUI(user)
                 } else {
-                    Toast.makeText(
-                        baseContext,
-                        "Authentication failed.",
-                        Toast.LENGTH_SHORT,
-                    ).show()
+                    emailInputText.error = " "
+                    passwordInputText.error = "E-mail ou senha incorretos."
                 }
             }
     }

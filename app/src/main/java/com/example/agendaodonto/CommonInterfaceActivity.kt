@@ -7,6 +7,8 @@ import android.widget.ImageView
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
 
 abstract class CommonInterfaceActivity : BaseActivity() {
 
@@ -34,9 +36,12 @@ abstract class CommonInterfaceActivity : BaseActivity() {
                 }
 
                 R.id.nav_logout -> {
+                    Firebase.auth.signOut()
+
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish()
+
                     drawerLayout.closeDrawers()
                     true
                 }

@@ -6,9 +6,8 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="32dp">
 
-    <!-- Logo of the app -->
     <TextView
         android:id="@+id/tv_logo_main"
         android:layout_width="wrap_content"
@@ -18,52 +17,89 @@
         android:textSize="32sp"
         android:textStyle="bold" />
 
-    <!-- Email input field -->
-    <EditText
-        android:id="@+id/et_email"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/et_border"
         android:hint="@string/label_email"
-        android:textColorHint="@color/grey_lt"
-        android:inputType="textEmailAddress"
-        android:padding="12dp"
-        android:textColor="@color/black" />
+        app:errorEnabled="true">
 
-    <!-- Password input field -->
-    <EditText
-        android:id="@+id/et_password"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-3dp"
+            android:padding="14dp"
+            android:inputType="textEmailAddress" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/et_border"
         android:hint="@string/label_password"
-        android:textColorHint="@color/grey_lt"
-        android:inputType="textPassword"
-        android:padding="12dp"
-        android:textColor="@color/black" />
+        app:endIconMode="password_toggle"
+        app:errorEnabled="true">
 
-    <!-- Login button -->
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:padding="14dp"
+            android:layout_marginBottom="-3dp" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Register clickable text -->
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:id="@+id/btn_register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginBottom="16dp"
         app:backgroundTint="@color/primary"
         android:padding="12dp"
-        android:stateListAnimator="@android:anim/accelerate_decelerate_interpolator"
         android:text="@string/btn_login"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
         android:textSize="16sp" />
 
-    <com.google.android.material.button.MaterialButton
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp">
+
+        <TextView
+            android:id="@+id/tvText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="ou" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:layout_toLeftOf="@id/tvText"
+            android:background="@color/grey_lt" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="16dp"
+            android:layout_toEndOf="@id/tvText"
+            android:background="@color/grey_lt" />
+
+    </RelativeLayout>
+
+    <Button
+        style="@style/Widget.Material3.Button.ElevatedButton.Icon"
         android:id="@+id/btn_login_google"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -71,13 +107,13 @@
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/red_google"
         android:padding="12dp"
-        android:stateListAnimator="@android:anim/accelerate_decelerate_interpolator"
         android:text="@string/btn_login_google"
         android:textAllCaps="false"
+        app:iconGravity="textStart"
+        app:iconPadding="16dp"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         app:icon="@drawable/ic_google_brand"
-        app:iconGravity="start"
         app:iconTint="#FFF" />
 
 
@@ -94,6 +130,5 @@
         android:textSize="14sp"
         app:drawableEndCompat="@drawable/ic_link"
         app:drawableTint="#0000FF" />
-
 
 </LinearLayout>

@@ -3,7 +3,6 @@ package com.example.agendaodonto
 import android.app.AlertDialog
 import android.os.Bundle
 import android.widget.Button
-import android.widget.LinearLayout
 import android.widget.NumberPicker
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,8 +12,7 @@ import java.util.Calendar
 
 class HistoricoConsultasActivity : CommonInterfaceActivity() {
 
-    private lateinit var selectedYearTextView: LinearLayout
-    private lateinit var selectedYear: TextView
+    private lateinit var selectedYear: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,10 +32,9 @@ class HistoricoConsultasActivity : CommonInterfaceActivity() {
         val adapter = ConsultaAdapter(consultas)
         recyclerView.adapter = adapter
 
-        selectedYearTextView = findViewById(R.id.date_picker)
-        selectedYear = findViewById(R.id.tv_selected_year)
+        selectedYear = findViewById(R.id.btn_selected_year)
 
-        selectedYearTextView.setOnClickListener {
+        selectedYear.setOnClickListener {
             showYearPickerDialog()
         }
 
