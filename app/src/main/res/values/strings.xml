@@ -54,5 +54,13 @@
     <string name="settings_notification">Notificações</string>
 
     <string name="rating">Nota media: </string>
+    <string name="label_usa_aparelho">Usa aparelho?</string>
+    <string name="label_sim">Sim</string>
+    <string name="label_nao">Nao</string>
+    <string name="label_frequencia_escova_dentes">Com que frequencia voce escova os dentes?</string>
+    <string name="label_motivo_consulta">Abaixo, descreva os seus sintomas ou motivos da consulta:</string>
+    <string name="bnt_confirmar_agendamento">Confirmar Agendamento</string>
+    <string name="label_alergia">Possui alergias? Se sim, nos diga quais:</string>
+    <string name="label_fumante">Fuma?</string>
 
 </resources>
