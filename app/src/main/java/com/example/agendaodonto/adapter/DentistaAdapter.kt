@@ -1,5 +1,6 @@
 package com.example.agendaodonto.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.agendaodonto.Dentista
 import com.example.agendaodonto.R
 import com.bumptech.glide.Glide
+import com.example.agendaodonto.AgendarCalendarioActivity
+import com.example.agendaodonto.DoctorProfileActivity
 import me.zhanghai.android.materialratingbar.MaterialRatingBar
 
 
@@ -47,11 +50,14 @@ class DentistaAdapter(private val doctorList: List<Dentista>) :
             .into(holder.doctorAvatar)
 
         holder.itemView.setOnClickListener {
-            // TODO: Navegar para a página de calendário
+            val context = holder.itemView.context
+            val intent = Intent(context, AgendarCalendarioActivity::class.java)
+            intent.putExtra("doctorName", doctor.name)  // Pass the doctor's name
+            context.startActivity(intent)
         }
 
         holder.btnCardMenu.setOnClickListener { v ->
-            showCardMenu(v, R.menu.card_dentista_menu)
+            showCardMenu(v, R.menu.card_dentista_menu, doctor)
         }
     }
 
@@ -59,16 +65,24 @@ class DentistaAdapter(private val doctorList: List<Dentista>) :
         return doctorList.size
     }
 
-    private fun showCardMenu(view: View, @MenuRes menuRes: Int) {
+    private fun showCardMenu(view: View, @MenuRes menuRes: Int, doctor: Dentista) {
         val popup = PopupMenu(view.context, view)
         popup.menuInflater.inflate(menuRes, popup.menu)
 
         popup.setOnMenuItemClickListener { item ->
             when (item.itemId) {
-                R.id.option_1 -> {
+                R.id.option_1 -> { // First option in the popup menu
+                    val context = view.context
+                    val intent = Intent(context, DoctorProfileActivity::class.java)
+
+                    // Pass the doctor's details to the profile activity
+                    intent.putExtra("doctorName", doctor.name)
+                    intent.putExtra("doctorSpecialty", doctor.specialty)
+                    intent.putExtra("doctorRating", doctor.rating)
+
+                    context.startActivity(intent)
                     true
                 }
-
                 else -> false
             }
         }
