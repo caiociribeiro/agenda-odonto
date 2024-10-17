@@ -10,7 +10,6 @@ import com.google.gson.Gson
 import java.io.InputStreamReader
 
 class DentistaListActivity : CommonInterfaceActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         layoutInflater.inflate(R.layout.activity_dentista_list, findViewById(R.id.content_frame))

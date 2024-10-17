@@ -1,0 +1,65 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#F5F5F5">
+
+    <!-- Spinner para selecionar médicos -->
+    <Spinner
+        android:id="@+id/doctor_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/rounded_corners"
+        android:padding="10dp"
+        android:textColor="@android:color/black" />
+
+    <!-- Calendário com bordas arredondadas -->
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/rounded_corners"
+        android:clickable="false"
+        android:dateTextAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:defaultFocusHighlightEnabled="false"
+        android:elevation="4dp"
+        android:focusedMonthDateColor="#000000"
+        android:padding="16dp"
+        android:selectedWeekBackgroundColor="@color/black"
+        android:textColor="#000000"
+        android:weekNumberColor="#33000000"
+        android:weekSeparatorLineColor="#19000000"
+
+        />
+
+    <!-- Texto de horários disponíveis -->
+    <TextView
+        android:id="@+id/tv_available_times_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Horários disponíveis:"
+        android:textSize="18sp"
+        android:textColor="#333333"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- Lista de horários disponíveis com bordas arredondadas -->
+    <TextView
+        android:id="@+id/available_times"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_corners"
+        android:elevation="4dp"
+        android:padding="10dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:textColor="@android:color/black"
+        android:textSize="16sp" />
+
+
+</LinearLayout>

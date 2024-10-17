@@ -42,9 +42,18 @@
             android:name=".HomeActivity"
             android:exported="false"
             android:launchMode="singleTop" />
+        <activity android:name=".DoctorProfileActivity" />
+
+        <activity android:name=".ProfileListActivity" />
+
+        <activity
+            android:name=".AgendarCalendarioActivity"
+            android:configChanges="locale" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
