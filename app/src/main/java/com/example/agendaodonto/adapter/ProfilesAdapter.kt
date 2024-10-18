@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.agendaodonto.Dentista
+import com.example.agendaodonto.models.Dentista
 import com.example.agendaodonto.DoctorProfileActivity
 import com.example.agendaodonto.R
 

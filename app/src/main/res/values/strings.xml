@@ -63,4 +63,8 @@
     <string name="label_alergia">Possui alergias? Se sim, nos diga quais:</string>
     <string name="label_fumante">Fuma?</string>
 
+    <!-- content description -->
+
+    <string name="cd_btn_delete_notification">Excluir notificacao</string>
+
 </resources>
