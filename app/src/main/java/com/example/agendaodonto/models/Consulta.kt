@@ -1,4 +1,4 @@
-package com.example.agendaodonto
+package com.example.agendaodonto.models
 
 data class Consulta(
     val data: String,

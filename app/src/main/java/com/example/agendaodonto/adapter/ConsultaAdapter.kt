@@ -8,7 +8,7 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.agendaodonto.Consulta
+import com.example.agendaodonto.models.Consulta
 import com.example.agendaodonto.R
 
 class ConsultaAdapter(private val consultas: List<Consulta>) :

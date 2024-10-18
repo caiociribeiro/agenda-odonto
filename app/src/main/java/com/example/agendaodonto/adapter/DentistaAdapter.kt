@@ -10,7 +10,7 @@ import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.annotation.MenuRes
 import androidx.recyclerview.widget.RecyclerView
-import com.example.agendaodonto.Dentista
+import com.example.agendaodonto.models.Dentista
 import com.example.agendaodonto.R
 import com.bumptech.glide.Glide
 import com.example.agendaodonto.AgendarCalendarioActivity
