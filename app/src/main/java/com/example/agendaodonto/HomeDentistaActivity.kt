@@ -1,0 +1,16 @@
+package com.example.agendaodonto
+
+import android.os.Bundle
+import android.widget.TextView
+
+class HomeDentistaActivity : CommonInterfaceActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        layoutInflater.inflate(R.layout.activity_home_dentista, findViewById(R.id.content_frame))
+
+        val pageName = findViewById<TextView>(R.id.tv_page_name)
+        pageName.text = getString(R.string.home)
+
+
+    }
+}
