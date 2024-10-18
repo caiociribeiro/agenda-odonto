@@ -15,7 +15,9 @@
         android:theme="@style/Theme.AgendaOdonto">
         <activity
             android:name=".NotificationsActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:launchMode="singleTop"
+            />
         <activity
             android:name=".AgendarFormActivity"
             android:exported="false" />
@@ -24,7 +26,9 @@
             android:exported="false" />
         <activity
             android:name=".SettingsActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:launchMode="singleTop"
+            />
         <activity
             android:name=".BaseActivity"
             android:exported="false" />
@@ -40,7 +44,9 @@
             android:exported="false" />
         <activity
             android:name=".DentistaListActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:launchMode="singleTop"
+            />
         <activity
             android:name=".RegisterActivity"
             android:exported="false" />
@@ -49,7 +55,6 @@
             android:exported="false"
             android:launchMode="singleTop" />
         <activity android:name=".DoctorProfileActivity" />
-        <activity android:name=".ProfileListActivity" />
         <activity
             android:name=".AgendarCalendarioActivity"
             android:configChanges="locale" />

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
@@ -65,6 +66,12 @@ abstract class CommonInterfaceActivity : BaseActivity() {
         val navIcon: ImageView = findViewById(R.id.iv_menu)
         navIcon.setOnClickListener {
             drawerLayout.openDrawer(GravityCompat.START)
+        }
+
+        val btnNotifications: Button = findViewById(R.id.btn_notifications)
+        btnNotifications.setOnClickListener {
+            val intent = Intent(this, NotificationsActivity::class.java)
+            startActivity(intent)
         }
 
 
