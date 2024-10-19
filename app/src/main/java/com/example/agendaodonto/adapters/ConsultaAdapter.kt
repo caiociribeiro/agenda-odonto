@@ -1,4 +1,4 @@
-package com.example.agendaodonto.adapter
+package com.example.agendaodonto.adapters
 
 import android.animation.ValueAnimator
 import android.view.LayoutInflater

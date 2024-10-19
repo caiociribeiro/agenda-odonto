@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.agendaodonto.ConsultaFormDentistaActivity
 import com.example.agendaodonto.R
-import com.example.agendaodonto.adapter.ConsultaPacienteAdapter
+import com.example.agendaodonto.adapters.ConsultaPacienteAdapter
 import com.example.agendaodonto.models.ConsultaPaciente
 
 class ConsultasPendenteFragment : Fragment() {
