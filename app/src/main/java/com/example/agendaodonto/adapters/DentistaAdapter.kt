@@ -1,4 +1,4 @@
-package com.example.agendaodonto.adapter
+package com.example.agendaodonto.adapters
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -83,6 +83,7 @@ class DentistaAdapter(private val doctorList: List<Dentista>) :
                     context.startActivity(intent)
                     true
                 }
+
                 else -> false
             }
         }

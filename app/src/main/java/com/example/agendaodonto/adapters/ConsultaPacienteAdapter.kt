@@ -1,11 +1,10 @@
-package com.example.agendaodonto.adapter
+package com.example.agendaodonto.adapters
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.agendaodonto.R
 import com.example.agendaodonto.models.ConsultaPaciente

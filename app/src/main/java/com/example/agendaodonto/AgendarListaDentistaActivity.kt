@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.agendaodonto.adapter.DentistaAdapter
+import com.example.agendaodonto.adapters.DentistaAdapter
 import com.example.agendaodonto.models.Dentista
 import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.reflect.TypeToken
 import com.google.gson.Gson

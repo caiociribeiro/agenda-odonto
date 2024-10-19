@@ -7,7 +7,7 @@ import android.widget.NumberPicker
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.agendaodonto.adapter.ConsultaAdapter
+import com.example.agendaodonto.adapters.ConsultaAdapter
 import com.example.agendaodonto.models.Consulta
 import java.util.Calendar
 
