@@ -4,9 +4,7 @@
     style="@style/Widget.Material3.CardView.Filled"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="8dp"
     android:layout_marginTop="8dp"
-    android:layout_marginEnd="8dp"
     app:cardBackgroundColor="@color/grey_ltr"
     app:cardCornerRadius="8dp">
 
@@ -26,9 +24,9 @@
             <ImageView
                 android:layout_gravity="center"
                 android:id="@+id/ic_calendar"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:layout_marginEnd="8dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="12dp"
                 android:contentDescription="Icone de consulta"
                 android:src="@drawable/ic_calendar"
                 app:tint="@color/primary" />

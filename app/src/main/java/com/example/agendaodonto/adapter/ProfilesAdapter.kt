@@ -35,7 +35,7 @@ class ProfilesAdapter(private val doctorList: List<Dentista>) :
         holder.doctorRating.text = doctor.rating.toString()
 
         // Definir o avatar (pode ser uma imagem padrão ou carregada dinamicamente)
-        holder.doctorAvatar.setImageResource(R.drawable.ic_dentist)
+        holder.doctorAvatar.setImageResource(R.drawable.ic_dentista)
 
         // Ao clicar no card, abrir a DoctorProfileActivity e passar os dados do médico
         holder.itemView.setOnClickListener {
