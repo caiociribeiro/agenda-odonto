@@ -44,6 +44,7 @@ open class BaseActivity : AppCompatActivity() {
             val firestore = FirebaseFirestore.getInstance()
             val userId = user.uid
 
+
             firestore.collection("users")
                 .document(userId)
                 .get()
@@ -67,6 +68,7 @@ open class BaseActivity : AppCompatActivity() {
                     Log.e("FetchUserData", "Error fetching user data", exception)
                 }
         }
+
     }
 
     fun signIn(
@@ -92,9 +94,15 @@ open class BaseActivity : AppCompatActivity() {
                     fetchUserData(user) { name, email, phoneNumber, dob, userType, avatar ->
                         saveUserData(name, email, phoneNumber, dob, userType, avatar)
 
-                        val intent = Intent(this, HomeActivity::class.java)
-                        startActivity(intent)
-                        finish()
+                        if (userType == "dentista") {
+                            val intent = Intent(this, HomeDentistaActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        } else if (userType == "paciente") {
+                            val intent = Intent(this, HomeActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        }
                     }
 
 

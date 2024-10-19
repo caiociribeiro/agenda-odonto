@@ -36,7 +36,7 @@ class LoginActivity : BaseActivity() {
         applyInputFilters(etEmail)
         applyInputFilters(etPassword)
 
-        val btnLogin = findViewById<Button>(R.id.btn_register)
+        val btnLogin = findViewById<Button>(R.id.btn_login)
         btnLogin.setOnClickListener {
             if (etEmail.text.toString() != "" && etPassword.text.toString() != "") {
                 signIn(

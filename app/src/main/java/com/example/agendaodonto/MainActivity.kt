@@ -16,9 +16,24 @@ class MainActivity : BaseActivity() {
         val currentUser = auth.currentUser
         if (currentUser != null) {
 
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
-            finish()
+            val sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE)
+            val userType = sharedPreferences.getString("userType", null)
+
+            if (userType == "dentista") {
+                val intent = Intent(this, HomeDentistaActivity::class.java)
+                startActivity(intent)
+                finish()
+            } else if (userType == "paciente") {
+                val intent = Intent(this, HomeActivity::class.java)
+                startActivity(intent)
+                finish()
+            } else {
+                auth.signOut()
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+
         } else {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)

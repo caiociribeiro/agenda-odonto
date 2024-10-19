@@ -66,5 +66,11 @@
     <!-- content description -->
 
     <string name="cd_btn_delete_notification">Excluir notificacao</string>
+    <string name="tab_consultas_historico_sem_pacientes">Você ainda não possui pacientes.</string>
+    <string name="btn_form_consulta_dentista">Enviar</string>
+    <string name="label_consulta_obs">Observações</string>
+    <string name="label_arquivos_upload">Enviar arquivos</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

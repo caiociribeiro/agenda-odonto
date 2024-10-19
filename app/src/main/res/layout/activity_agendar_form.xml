@@ -1,102 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/agendamento"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="24dp">
 
     <TextView
-        android:id="@+id/tv_label_agendamento"
+        android:id="@+id/tv_subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:text="@string/label_agendamento"
-        android:textColor="#000000"
-        android:textSize="32sp"
-        android:textStyle="bold" />
-
+        android:layout_marginTop="4dp"
+        android:text="Para finalizar, preencha o formulario abaixo"
+        android:textColor="@color/grey"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/usa_aparelho_label"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/label_usa_aparelho"
-        android:textAlignment="center"
-        android:textColor="#000000" />
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_subtitle"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <RadioGroup
         android:id="@+id/usa_aparelho_radio_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/usa_aparelho_label"
+        app:layout_constraintStart_toStartOf="parent">
 
         <RadioButton
             android:id="@+id/usa_aparelho_sim"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/label_sim"
-            android:textColor="#000000" />
+            android:text="@string/label_sim" />
 
         <RadioButton
             android:id="@+id/usa_aparelho_no"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:text="@string/label_nao"
-            android:textColor="#000000" />
+            android:text="@string/label_nao" />
     </RadioGroup>
 
     <TextView
         android:id="@+id/fumante_label"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/label_fumante"
-        android:textAlignment="center"
-        android:textColor="#000000" />
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/usa_aparelho_radio_group"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <RadioGroup
         android:id="@+id/fumante_radio_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/fumante_label"
+        app:layout_constraintStart_toStartOf="parent">
 
         <RadioButton
             android:id="@+id/fumante_sim"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/label_sim"
-            android:textColor="#000000" />
+            android:text="@string/label_sim" />
 
         <RadioButton
             android:id="@+id/fumante_no"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:text="@string/label_nao"
-            android:textColor="#000000" />
+            android:text="@string/label_nao" />
     </RadioGroup>
 
     <TextView
         android:id="@+id/escova_constantemente_label"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
         android:text="@string/label_frequencia_escova_dentes"
-        android:textColor="#000000" />
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/fumante_radio_group"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <RadioGroup
         android:id="@+id/esconva_constantemente_radio_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/escova_constantemente_label"
+        app:layout_constraintStart_toStartOf="parent">
 
         <RadioButton
             android:id="@+id/escova_constantemente_sim"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
             android:text="@string/label_sim"
@@ -104,7 +108,7 @@
 
         <RadioButton
             android:id="@+id/escova_constantemente_nao"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/label_nao"
             android:textColor="#000000" />
@@ -112,29 +116,31 @@
 
     <TextView
         android:id="@+id/alergico_label"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/label_alergia"
-        android:textAlignment="center"
-        android:textColor="#000000" />
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/esconva_constantemente_radio_group"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <RadioGroup
         android:id="@+id/alergico_radio_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/alergico_label"
+        app:layout_constraintStart_toStartOf="parent">
 
         <RadioButton
             android:id="@+id/alergico_sim"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="false"
             android:text="@string/label_sim"
             android:textColor="#000000" />
 
         <RadioButton
             android:id="@+id/alergico_nao"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
             android:text="@string/label_nao"
@@ -142,35 +148,34 @@
     </RadioGroup>
 
     <TextView
-        android:id="@+id/label_motivo_consulta"
-        android:layout_width="match_parent"
+        android:id="@+id/label_consulta_motivo"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#000000"
-        android:textAlignment="center"
-        android:text="@string/label_motivo_consulta" />
+        android:layout_marginTop="8dp"
+        android:text="@string/label_motivo_consulta"
+        app:layout_constraintTop_toBottomOf="@id/alergico_radio_group"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/motivo_consulta"
+        android:id="@+id/consulta_motivo"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginBottom="16dp"
-        android:hint="@string/label_motivo_consulta"
+        android:layout_height="200dp"
         android:textColorHint="@color/grey_lt"
         android:inputType="text"
+        android:textColor="@color/black"
         android:padding="12dp"
-        android:textColor="@color/black" />
+        app:layout_constraintTop_toBottomOf="@id/label_consulta_motivo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/btn_agendar"
-        style="@style/Widget.AppCompat.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginBottom="16dp"
         android:padding="12dp"
         android:text="@string/bnt_confirmar_agendamento"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="#FFFFFF" />
-
-</LinearLayout>
+        app:layout_constraintTop_toBottomOf="@id/consulta_motivo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

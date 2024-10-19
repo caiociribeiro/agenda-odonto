@@ -10,10 +10,13 @@ import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.reflec
 import com.google.gson.Gson
 import java.io.InputStreamReader
 
-class DentistaListActivity : CommonInterfaceActivity() {
+class AgendarListaDentistaActivity : CommonInterfaceActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        layoutInflater.inflate(R.layout.activity_dentista_list, findViewById(R.id.content_frame))
+        layoutInflater.inflate(
+            R.layout.activity_agendar_lista_dentista,
+            findViewById(R.id.content_frame)
+        )
 
         val pageName = findViewById<TextView>(R.id.tv_page_name)
         pageName.text = "Agendamento"

@@ -7,18 +7,15 @@
     android:padding="24dp"
     tools:context=".HistoricoConsultasActivity">
 
-    <Button
-        android:id="@+id/btn_selected_year"
-        style="@style/Widget.Material3.Button.ElevatedButton.Icon"
-        app:icon="@drawable/ic_calendar_today_24px"
+    <TextView
+        android:layout_marginTop="-4dp"
+        android:id="@+id/tv_subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/primary"
-        android:textColor="@color/white"
-        app:iconTint="@color/white"
-        android:text="2024"
+        android:text="Seus Pacientes"
+        android:textColor="@color/grey"
+        android:textStyle="bold"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,10 +23,10 @@
         android:id="@+id/tv_no_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sem consultas nesse periodo."
+        android:text="@string/tab_consultas_historico_sem_pacientes"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_selected_year"
+        app:layout_constraintTop_toBottomOf="parent"
         android:visibility="gone" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -39,7 +36,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_selected_year"
-        tools:listitem="@layout/card_consulta" />
+        app:layout_constraintTop_toBottomOf="@id/tv_subtitle"
+        tools:listitem="@layout/card_paciente" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

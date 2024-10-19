@@ -26,7 +26,7 @@
             android:layout_gravity="center"
             android:layout_marginEnd="16dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_dentist" />
+            android:src="@drawable/ic_dentista" />
 
         <TextView
             android:id="@+id/tv_dentist_name"
@@ -101,7 +101,7 @@
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@android:color/black"
-        android:layout_marginBottom="8dp"/>
+        android:layout_marginBottom="8dp" />
 
     <!-- Comentário de avaliação do paciente -->
     <LinearLayout
@@ -117,28 +117,28 @@
             android:layout_height="wrap_content"
             android:text="Vânia: Ótimo atendimento!"
             android:textSize="16sp"
-            android:textColor="@android:color/black"/>
+            android:textColor="@android:color/black" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Juvenal: Lindo."
             android:textSize="16sp"
-            android:textColor="@android:color/black"/>
+            android:textColor="@android:color/black" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Robério: Muito Cuidadoso."
             android:textSize="16sp"
-            android:textColor="@android:color/black"/>
+            android:textColor="@android:color/black" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Paula: Muito Cuidadoso."
             android:textSize="16sp"
-            android:textColor="@android:color/black"/>
+            android:textColor="@android:color/black" />
 
 
     </LinearLayout>
