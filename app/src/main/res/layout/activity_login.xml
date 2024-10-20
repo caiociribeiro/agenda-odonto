@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:layout_width="match_parent"
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <LinearLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="32dp"
+        android:padding="16dp"
         android:visibility="visible">
 
         <TextView
@@ -36,8 +36,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="-3dp"
-                android:padding="14dp"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                android:padding="14dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -53,23 +53,26 @@
                 android:id="@+id/et_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="-3dp"
                 android:inputType="textPassword"
-                android:padding="14dp"
-                android:layout_marginBottom="-3dp" />
+                android:padding="14dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_login"
+            style="@style/Widget.Material3.Button.ElevatedButton.Icon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:layout_marginHorizontal="16dp"
-            app:backgroundTint="@color/primary"
+            android:layout_marginTop="16dp"
             android:padding="12dp"
             android:text="@string/btn_login"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            app:backgroundTint="@color/primary"
+            app:shapeAppearance="?attr/shapeAppearanceSmallComponent" />
+
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -104,9 +107,9 @@
 
         </RelativeLayout>
 
-        <Button
-            style="@style/Widget.Material3.Button.ElevatedButton.Icon"
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_login_google"
+            style="@style/Widget.Material3.Button.ElevatedButton.Icon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
@@ -115,12 +118,13 @@
             android:padding="12dp"
             android:text="@string/btn_login_google"
             android:textAllCaps="false"
-            app:iconGravity="textStart"
-            app:iconPadding="16dp"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
             app:icon="@drawable/ic_google_brand"
-            app:iconTint="#FFF" />
+            app:iconGravity="start"
+            app:iconPadding="-15dp"
+            app:iconTint="#FFF"
+            app:shapeAppearance="?attr/shapeAppearanceSmallComponent" />
 
 
         <TextView
@@ -132,10 +136,10 @@
             android:focusable="true"
             android:gravity="center_horizontal|center_vertical"
             android:text="@string/link_register"
-            android:textColor="#0000FF"
+            android:textColor="@color/secondary"
             android:textSize="14sp"
             app:drawableEndCompat="@drawable/ic_link"
-            app:drawableTint="#0000FF" />
+            app:drawableTint="@color/secondary" />
 
     </LinearLayout>
 

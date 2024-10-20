@@ -1,4 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+
     <style name="Base.Theme.AgendaOdonto" parent="Theme.Material3.Light.NoActionBar">
         <item name="android:windowBackground">@color/white</item>
         <item name="android:colorPrimary">@color/primary</item>
