@@ -1,9 +1,9 @@
 package com.example.agendaodonto
 
+import android.app.Activity
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.ImageView
@@ -23,14 +23,22 @@ abstract class CommonInterfaceActivity : BaseActivity() {
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
 
-        updateNavDrawer(getUserData())
+        val userData = getUserData()
+
+        updateNavDrawer(userData)
 
         navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.nav_inicio -> {
-                    val intent = Intent(this, HomeActivity::class.java)
-                    startActivity(intent)
-                    drawerLayout.closeDrawers()
+                    if (userData["userType"] == "dentista") {
+                        val intent = Intent(this, HomeDentistaActivity::class.java)
+                        startActivity(intent)
+                        drawerLayout.closeDrawers()
+                    } else {
+                        val intent = Intent(this, HomeActivity::class.java)
+                        startActivity(intent)
+                        drawerLayout.closeDrawers()
+                    }
                     true
                 }
 
@@ -78,7 +86,6 @@ abstract class CommonInterfaceActivity : BaseActivity() {
     }
 
     fun updateNavDrawer(data: Map<String, String?>) {
-        Log.d("myTag", "UI Update...")
         val navView: NavigationView = findViewById(R.id.nav_view)
         val headerView = navView.getHeaderView(0)
 

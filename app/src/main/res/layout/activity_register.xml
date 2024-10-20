@@ -12,7 +12,7 @@
         android:background="@color/white"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="32dp">
+        android:padding="16dp">
 
         <TextView
             android:id="@+id/tv_label_register"
@@ -116,9 +116,10 @@
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_register"
             style="@style/Widget.Material3.Button.ElevatedButton"
+            app:shapeAppearance="?attr/shapeAppearanceSmallComponent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"

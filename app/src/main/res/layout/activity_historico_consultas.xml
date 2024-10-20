@@ -7,18 +7,17 @@
     android:padding="24dp"
     tools:context=".HistoricoConsultasActivity">
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_selected_year"
-        style="@style/Widget.Material3.Button.ElevatedButton.Icon"
-        app:icon="@drawable/ic_calendar_today_24px"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        app:shapeAppearance="?attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/primary"
         android:textColor="@color/white"
-        app:iconTint="@color/white"
         android:text="2024"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

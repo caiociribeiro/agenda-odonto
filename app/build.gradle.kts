@@ -45,8 +45,8 @@ dependencies {
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
-    implementation("com.caverock:androidsvg:1.4")
-    implementation("com.google.android.material:material:1.9.0")
+    implementation(libs.androidsvg)
+    implementation(libs.material.v190)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
@@ -55,6 +55,8 @@ dependencies {
     implementation(libs.glide)
     implementation(libs.circleimageview)
     implementation(libs.material.slide.date.picker)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

@@ -22,7 +22,7 @@
             android:layout_height="24dp"
             android:layout_marginEnd="12dp"
             android:contentDescription="Icone de consulta"
-            android:src="@drawable/ic_calendar"
+            android:src="@drawable/ic_clinical_notes_24px"
             app:tint="@color/primary" />
 
         <TextView
