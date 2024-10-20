@@ -15,7 +15,8 @@
         android:theme="@style/Base.Theme.AgendaOdonto">
         <activity
             android:name=".ConsultaFormDentistaActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".HomeDentistaActivity"
             android:exported="false" />

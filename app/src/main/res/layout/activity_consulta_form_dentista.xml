@@ -79,13 +79,13 @@
 
 
     <com.google.android.material.button.MaterialButton
-        app:shapeAppearance="?attr/shapeAppearanceSmallComponent"
         android:id="@+id/btn_agendar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="12dp"
         android:text="@string/btn_form_consulta_dentista"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:shapeAppearance="?attr/shapeAppearanceSmallComponent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
