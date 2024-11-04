@@ -11,6 +11,9 @@
     <color name="red_google">#DB4437</color>
     <color name="red">#FF0000</color>
 
+    <color name="secondaryContainer">#00FFFFFF</color>
+
 
     <!-- Dark theme -->
+    <color name="primary_dark">#369387</color>
 </resources>

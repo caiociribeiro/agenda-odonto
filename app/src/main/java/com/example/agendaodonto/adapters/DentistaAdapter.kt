@@ -52,7 +52,7 @@ class DentistaAdapter(private val doctorList: List<Dentista>) :
         holder.itemView.setOnClickListener {
             val context = holder.itemView.context
             val intent = Intent(context, AgendarCalendarioActivity::class.java)
-            intent.putExtra("doctorName", doctor.name)  // Pass the doctor's name
+            intent.putExtra("doctorName", doctor.name)
             context.startActivity(intent)
         }
 
@@ -71,11 +71,10 @@ class DentistaAdapter(private val doctorList: List<Dentista>) :
 
         popup.setOnMenuItemClickListener { item ->
             when (item.itemId) {
-                R.id.option_1 -> { // First option in the popup menu
+                R.id.option_1 -> {
                     val context = view.context
                     val intent = Intent(context, DoctorProfileActivity::class.java)
 
-                    // Pass the doctor's details to the profile activity
                     intent.putExtra("doctorName", doctor.name)
                     intent.putExtra("doctorSpecialty", doctor.specialty)
                     intent.putExtra("doctorRating", doctor.rating)
