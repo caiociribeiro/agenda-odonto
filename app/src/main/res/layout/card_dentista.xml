@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="?attr/materialCardViewElevatedStyle"
     android:layout_width="match_parent"
+    app:cardBackgroundColor="@color/white"
+    app:strokeWidth="0dp"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="12dp"
-    app:cardCornerRadius="4dp">
+    app:cardCornerRadius="0dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -29,20 +29,20 @@
             android:id="@+id/iv_doctor_avatar"
             android:layout_width="64dp"
             android:layout_height="64dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
             android:layout_marginEnd="16dp"
-            android:scaleType="centerCrop"
             android:background="@drawable/avatar_background"
             android:clipToOutline="true"
-            android:layout_centerVertical="true"
-            android:layout_alignParentStart="true" />
+            android:scaleType="centerCrop" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_toEndOf="@id/iv_doctor_avatar"
             android:layout_alignTop="@id/iv_doctor_avatar"
-            android:layout_alignBottom="@id/iv_doctor_avatar">
+            android:layout_alignBottom="@id/iv_doctor_avatar"
+            android:layout_toEndOf="@id/iv_doctor_avatar"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tv_doctor_name"
@@ -83,5 +83,4 @@
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
-
 </com.google.android.material.card.MaterialCardView>

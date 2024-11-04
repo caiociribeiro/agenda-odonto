@@ -1,15 +1,16 @@
 package com.example.agendaodonto
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.CalendarView
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import java.util.Locale
 
 class AgendarCalendarioActivity : CommonInterfaceActivity() {
@@ -17,10 +18,14 @@ class AgendarCalendarioActivity : CommonInterfaceActivity() {
     private lateinit var calendarView: CalendarView
     private lateinit var availableTimesTextView: TextView
     private lateinit var doctorSpinner: Spinner // Spinner para selecionar médicos
+    private lateinit var btnNext: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        layoutInflater.inflate(R.layout.activity_agendar_calendario, findViewById(R.id.content_frame))
+        layoutInflater.inflate(
+            R.layout.activity_agendar_calendario,
+            findViewById(R.id.content_frame)
+        )
 
         val pageName = findViewById<TextView>(R.id.tv_page_name)
         pageName.text = "Agendamento"
@@ -51,6 +56,14 @@ class AgendarCalendarioActivity : CommonInterfaceActivity() {
             val selectedDate = "$dayOfMonth/${month + 1}/$year"
             loadAvailableTimes(selectedDate)
         }
+
+        btnNext = findViewById(R.id.btn_next)
+        btnNext.setOnClickListener {
+            val intent = Intent(this, AgendarFormActivity::class.java)
+            startActivity(intent)
+
+            // TODO: enviar via intent info do dia/hora escolhido
+        }
     }
 
     // Configuração do Spinner de médicos
@@ -68,9 +81,18 @@ class AgendarCalendarioActivity : CommonInterfaceActivity() {
 
         // Configura o listener para capturar a seleção do médico
         doctorSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View,
+                position: Int,
+                id: Long
+            ) {
                 val selectedDoctor = parent.getItemAtPosition(position).toString()
-                Toast.makeText(applicationContext, "Médico selecionado: $selectedDoctor", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    applicationContext,
+                    "Médico selecionado: $selectedDoctor",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {

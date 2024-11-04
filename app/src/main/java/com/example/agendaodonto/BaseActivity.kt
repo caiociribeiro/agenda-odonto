@@ -9,6 +9,7 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.example.agendaodonto.activities.HomeActivityTemp
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.Timestamp
@@ -99,7 +100,7 @@ open class BaseActivity : AppCompatActivity() {
                             startActivity(intent)
                             finish()
                         } else if (userType == "paciente") {
-                            val intent = Intent(this, HomeActivity::class.java)
+                            val intent = Intent(this, HomeActivityTemp::class.java)
                             startActivity(intent)
                             finish()
                         }

@@ -9,10 +9,10 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_home_agendar"
         android:layout_width="match_parent"
-        app:shapeAppearance="?attr/shapeAppearanceCornerSmall"
         android:layout_height="100dp"
         android:layout_marginHorizontal="40dp"
         android:backgroundTint="@color/secondary"
+        android:fontFamily="@font/mulish_bold"
         android:padding="12dp"
         android:text="@string/home_btn_agendar"
         android:textAllCaps="false"
@@ -22,7 +22,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.253" />
+        app:layout_constraintVertical_bias="0.253"
+        app:shapeAppearance="?attr/shapeAppearanceCornerSmall" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_home_historico"

@@ -1,6 +1,7 @@
 package com.example.agendaodonto
 
 import android.content.Intent
+import com.example.agendaodonto.activities.HomeActivityTemp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
 import com.google.firebase.Firebase
@@ -8,7 +9,7 @@ import com.google.firebase.Firebase
 class MainActivity : BaseActivity() {
     private lateinit var auth: FirebaseAuth
 
-    public override fun onStart() {
+    override fun onStart() {
         super.onStart()
 
         auth = Firebase.auth
@@ -24,7 +25,7 @@ class MainActivity : BaseActivity() {
                 startActivity(intent)
                 finish()
             } else if (userType == "paciente") {
-                val intent = Intent(this, HomeActivity::class.java)
+                val intent = Intent(this, HomeActivityTemp::class.java)
                 startActivity(intent)
                 finish()
             } else {

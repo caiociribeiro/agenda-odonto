@@ -22,7 +22,7 @@
     <string name="dados_pessoais">Dados Pessoais</string>
     <string name="agendamento">Agendamento</string>
     <string name="historico">Histórico</string>
-    <string name="link_register">Não possui cadastro? Registre-se.</string>
+    <string name="link_register">Não possui cadastro? Crie sua conta.</string>
     <string name="settings">Preferências</string>
 
     <!-- home page -->
@@ -73,5 +73,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="link_forgot_password">Esqueci minha senha</string>
+    <string name="lista_dentistas_fragment_pt">Escolha o profissional para fazer o agendamento</string>
+
 
 </resources>
