@@ -30,13 +30,13 @@ class MainActivity : BaseActivity() {
                 finish()
             } else {
                 auth.signOut()
-                val intent = Intent(this, LoginActivity::class.java)
+                val intent = Intent(this, GreetingActivity::class.java)
                 startActivity(intent)
                 finish()
             }
 
         } else {
-            val intent = Intent(this, LoginActivity::class.java)
+            val intent = Intent(this, GreetingActivity::class.java)
             startActivity(intent)
             finish()
         }
