@@ -19,35 +19,35 @@ import me.zhanghai.android.materialratingbar.MaterialRatingBar
 
 
 class DentistaAdapter(private val doctorList: List<Dentista>) :
-    RecyclerView.Adapter<DentistaAdapter.DoctorViewHolder>() {
+    RecyclerView.Adapter<DentistaAdapter.DentistaViewHolder>() {
 
-    class DoctorViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val doctorName: TextView = view.findViewById(R.id.tv_doctor_name)
-        val doctorSpecialty: TextView = view.findViewById(R.id.tv_specialty)
-        val doctorRating: TextView = view.findViewById(R.id.tv_doctor_rating)
-        val doctorAvatar: ImageView = view.findViewById(R.id.iv_doctor_avatar)
+    class DentistaViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val name: TextView = view.findViewById(R.id.tv_doctor_name)
+        val especialidade: TextView = view.findViewById(R.id.tv_specialty)
+        val ratings: TextView = view.findViewById(R.id.tv_doctor_rating)
+        val avatar: ImageView = view.findViewById(R.id.iv_doctor_avatar)
         val ratingBar: MaterialRatingBar = view.findViewById(R.id.rb_rating)
         val btnCardMenu: Button = view.findViewById(R.id.btn_card_menu)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DoctorViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DentistaViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.card_dentista, parent, false)
-        return DoctorViewHolder(view)
+        return DentistaViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: DoctorViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: DentistaViewHolder, position: Int) {
         val doctor = doctorList[position]
-        holder.doctorName.text = doctor.name
-        holder.doctorSpecialty.text = doctor.specialty
-        holder.doctorRating.text = doctor.rating.toString()
+        holder.name.text = doctor.name
+        holder.especialidade.text = doctor.especialidade
+        holder.ratings.text = doctor.rating.toString()
         holder.ratingBar.rating = doctor.rating
 
-        val imageUrl = "https://i.pravatar.cc/200?uniqueParam=${System.currentTimeMillis()}"
+        val imageUrl = if (doctor.avatar != "") doctor.avatar else R.drawable.user
 
         Glide.with(holder.itemView.context)
             .load(imageUrl)
-            .into(holder.doctorAvatar)
+            .into(holder.avatar)
 
         holder.itemView.setOnClickListener {
             val context = holder.itemView.context
@@ -75,9 +75,9 @@ class DentistaAdapter(private val doctorList: List<Dentista>) :
                     val context = view.context
                     val intent = Intent(context, DoctorProfileActivity::class.java)
 
-                    intent.putExtra("doctorName", doctor.name)
-                    intent.putExtra("doctorSpecialty", doctor.specialty)
-                    intent.putExtra("doctorRating", doctor.rating)
+                    intent.putExtra("name", doctor.name)
+                    intent.putExtra("especialidade", doctor.especialidade)
+                    intent.putExtra("rating", doctor.rating)
 
                     context.startActivity(intent)
                     true

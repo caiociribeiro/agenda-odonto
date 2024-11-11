@@ -31,7 +31,7 @@ class ProfilesAdapter(private val doctorList: List<Dentista>) :
 
         // Definir os dados do médico no card
         holder.doctorName.text = doctor.name
-        holder.doctorSpecialty.text = doctor.specialty
+        holder.doctorSpecialty.text = doctor.especialidade
         holder.doctorRating.text = doctor.rating.toString()
 
         // Definir o avatar (pode ser uma imagem padrão ou carregada dinamicamente)
@@ -44,7 +44,7 @@ class ProfilesAdapter(private val doctorList: List<Dentista>) :
 
             // Passar os dados do médico para a DoctorProfileActivity
             intent.putExtra("doctorName", doctor.name)
-            intent.putExtra("doctorSpecialty", doctor.specialty)
+            intent.putExtra("doctorSpecialty", doctor.especialidade)
             intent.putExtra("doctorRating", doctor.rating)
 
             context.startActivity(intent)

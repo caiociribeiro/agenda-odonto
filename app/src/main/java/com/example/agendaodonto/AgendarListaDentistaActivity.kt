@@ -23,7 +23,7 @@ class AgendarListaDentistaActivity : CommonInterfaceActivity() {
 
         val doctorList = loadDoctorList()
 
-        val recyclerView = findViewById<RecyclerView>(R.id.rv_doctor_list)
+        val recyclerView = findViewById<RecyclerView>(R.id.rv_dentistas_list)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = DentistaAdapter(doctorList)
     }
