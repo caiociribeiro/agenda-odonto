@@ -13,6 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Base.Theme.AgendaOdonto">
         <activity
+            android:name=".LoginDentistaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".GreetingActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.HomeActivityTemp"
             android:exported="false" />
         <activity
@@ -73,7 +79,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

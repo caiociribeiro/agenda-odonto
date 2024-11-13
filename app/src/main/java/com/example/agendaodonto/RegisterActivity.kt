@@ -66,17 +66,16 @@ class RegisterActivity : BaseActivity(), SlideDatePickerDialogCallback {
         btnRegister.setOnClickListener {
             val name = etName.text.toString()
             val email = etEmail.text.toString()
-            val dob = etDob.text.toString()
             val password = etPassword.text.toString()
             val passwordConfirm = etPasswordConfirm.text.toString()
 
-            if (isValidUserInformation(name, email, dob, password, passwordConfirm)) {
+            if (isValidUserInformation(name, email, password, passwordConfirm)) {
                 Toast.makeText(
                     baseContext,
                     "Tudo ok",
                     Toast.LENGTH_SHORT
                 ).show()
-                signUp(auth, name, email, dob, password)
+                signUp(auth, name, email, password)
             }
         }
 
@@ -115,14 +114,6 @@ class RegisterActivity : BaseActivity(), SlideDatePickerDialogCallback {
             return false
         }
 
-        return true
-    }
-
-    private fun isValidDob(dob: String): Boolean {
-        if (dob.isBlank()) {
-            tilDob.error = "Insira uma data de nascimento"
-            return false
-        }
         return true
     }
 
@@ -167,7 +158,6 @@ class RegisterActivity : BaseActivity(), SlideDatePickerDialogCallback {
     private fun isValidUserInformation(
         name: String,
         email: String,
-        dob: String,
         password: String,
         passwordConfirm: String
     ): Boolean {
@@ -176,7 +166,6 @@ class RegisterActivity : BaseActivity(), SlideDatePickerDialogCallback {
         if (!isValidName(name)) valid = false
         if (!isValidEmail(email)) valid = false
         if (!isValidPassword(password, passwordConfirm)) valid = false
-        if (!isValidDob(dob)) valid = false
 
         return valid
     }
