@@ -25,7 +25,7 @@ class MainActivity : BaseActivity() {
                 startActivity(intent)
                 finish()
             } else if (userType == "paciente") {
-                val intent = Intent(this, HomeActivityTemp::class.java)
+                val intent = Intent(this, HomeActivity::class.java)
                 startActivity(intent)
                 finish()
             } else {

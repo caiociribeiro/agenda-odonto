@@ -113,7 +113,7 @@ open class BaseActivity : AppCompatActivity() {
                             startActivity(intent)
                             finish()
                         } else {
-                            val intent = Intent(this, HomeActivityTemp::class.java)
+                            val intent = Intent(this, HomeActivity::class.java)
                             startActivity(intent)
                             finish()
                         }

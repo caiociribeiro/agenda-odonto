@@ -6,6 +6,8 @@ import android.widget.TextView
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
 
 class HomeDentistaActivity : CommonInterfaceActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,5 +30,18 @@ class HomeDentistaActivity : CommonInterfaceActivity() {
                 else -> null
             }
         }.attach()
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        val auth = Firebase.auth
+        val user = auth.currentUser
+
+        if (user != null) gerarDisponibilidadeDentista(user.uid)
+        else {
+            auth.signOut()
+            finish()
+        }
     }
 }

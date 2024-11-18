@@ -75,6 +75,7 @@
     <string name="link_forgot_password">Esqueci minha senha</string>
     <string name="lista_dentistas_fragment_pt">Escolha o profissional para fazer o agendamento</string>
     <string name="login_dentista">Área do Dentista</string>
+    <string name="agendamento_lista_dentistas_titulo">Para continuar, selecione o dentista</string>
 
 
 </resources>
