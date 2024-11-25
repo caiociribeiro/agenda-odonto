@@ -1,5 +1,6 @@
 package com.example.agendaodonto
 
+import NotificationsActivity
 import android.app.Activity
 import android.content.Intent
 import android.content.SharedPreferences
@@ -88,7 +89,6 @@ abstract class CommonInterfaceActivity : BaseActivity() {
     fun updateNavDrawer(data: Map<String, String?>) {
         val navView: NavigationView = findViewById(R.id.nav_view)
         val headerView = navView.getHeaderView(0)
-
         val tvUserName: TextView = headerView.findViewById(R.id.tv_user_name)
         val ivUserAvatar: ImageView = headerView.findViewById(R.id.iv_user_avatar)
 

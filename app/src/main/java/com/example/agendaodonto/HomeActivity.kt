@@ -1,5 +1,6 @@
 package com.example.agendaodonto
 
+import NotificationsActivity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -25,6 +26,13 @@ class HomeActivity : CommonInterfaceActivity() {
             val intent = Intent(this, HistoricoConsultasActivity::class.java)
             startActivity(intent)
         }
+
+        val notificationsActivity = NotificationsActivity()
+        val currentUserId = notificationsActivity.getCurrentUserId()
+        if (currentUserId != null) {
+            notificationsActivity.showNotificationForUpcomingConsultation(currentUserId)
+        }
+
 
     }
 }
