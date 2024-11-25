@@ -49,15 +49,13 @@ class AgendarCalendarioActivity : CommonInterfaceActivity() {
             finish()
         }
 
+
         btnNext.setOnClickListener {
 
             val chipSelecionado = chipGroup.checkedChipId
             if (chipSelecionado != View.NO_ID) {
                 val chip = findViewById<Chip>(chipSelecionado)
                 val horarioSelecionado = chip.text.toString()
-                Toast.makeText(this, "Horário selecionado: $horarioSelecionado", Toast.LENGTH_SHORT)
-                    .show()
-
                 val diaSelecionado = "${calendarView.selectedDate.year}-${
                     (calendarView.selectedDate.month + 1).toString().padStart(2, '0')
                 }-${calendarView.selectedDate.day.toString().padStart(2, '0')}"
@@ -75,6 +73,8 @@ class AgendarCalendarioActivity : CommonInterfaceActivity() {
                     .show()
             }
         }
+
+
 
         calendarView.setOnDateChangedListener { _, date, selected ->
             if (selected) {
@@ -190,6 +190,19 @@ class AgendarCalendarioActivity : CommonInterfaceActivity() {
             chip.text = horario
             chip.isClickable = true
             chip.isCheckable = true
+
+            chip.setChipBackgroundColorResource(R.color.grey_ltr)
+            chip.setTextColor(getColor(R.color.grey))
+
+            chip.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    chip.setChipBackgroundColorResource(R.color.primary)
+                    chip.setTextColor(getColor(R.color.grey_ltr))
+                } else {
+                    chip.setChipBackgroundColorResource(R.color.grey_ltr)
+                    chip.setTextColor(getColor(R.color.grey))
+                }
+            }
 
             chipGroup.addView(chip)
         }
