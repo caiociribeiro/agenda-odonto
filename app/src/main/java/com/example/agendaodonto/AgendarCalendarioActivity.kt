@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.google.android.material.button.MaterialButton
@@ -19,6 +20,8 @@ import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 
 class AgendarCalendarioActivity : CommonInterfaceActivity() {
 
+    private lateinit var tvDentistaName: TextView
+    private lateinit var tvSubtitle: TextView
     private lateinit var calendarView: MaterialCalendarView
     private lateinit var chipGroup: ChipGroup
     private lateinit var btnNext: MaterialButton
@@ -41,6 +44,12 @@ class AgendarCalendarioActivity : CommonInterfaceActivity() {
 
         val dentistaID = intent.getStringExtra("dentistaID") ?: ""
         val dentistaName = intent.getStringExtra("dentistaName") ?: ""
+
+        tvDentistaName = findViewById(R.id.tv_dentista_name)
+        tvDentistaName.text = dentistaName
+
+        tvSubtitle = findViewById(R.id.tv_subtitle)
+        tvSubtitle.text = getString(R.string.calendario_subtitle)
 
         if (dentistaID.isNotEmpty()) {
             carregarDiasDisponiveis(dentistaID)
@@ -170,7 +179,7 @@ class AgendarCalendarioActivity : CommonInterfaceActivity() {
                     document.get("horarios") as? Map<String, Boolean> ?: emptyMap()
 
                 val horariosDisponiveis =
-                    horarios.filter { it.value }.keys.toList()
+                    horarios.filter { it.value }.keys.sortedBy { it }
 
                 atualizarChips(horariosDisponiveis)
             } else {

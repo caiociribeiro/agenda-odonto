@@ -65,7 +65,7 @@ class ConsultaAdapter(private val consultas: List<Consulta>) :
         val targetHeight = holder.expandedView.measuredHeight
 
         holder.expandedView.visibility = View.VISIBLE
-        holder.expandedView.layoutParams.height = 0 // Start with height 0
+        holder.expandedView.layoutParams.height = 0
         holder.expandedView.requestLayout()
 
         val animator = ValueAnimator.ofInt(0, targetHeight)
