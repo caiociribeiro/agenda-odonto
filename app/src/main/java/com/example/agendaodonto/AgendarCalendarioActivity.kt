@@ -211,7 +211,7 @@ class AgendarCalendarioActivity : CommonInterfaceActivity() {
             chip.isClickable = true
             chip.isCheckable = true
 
-            chip.setChipBackgroundColorResource(R.color.grey_ltr)
+            chip.setChipBackgroundColorResource(R.color.white)
             chip.setTextColor(getColor(R.color.grey))
 
             chip.setOnCheckedChangeListener { _, isChecked ->
@@ -219,7 +219,7 @@ class AgendarCalendarioActivity : CommonInterfaceActivity() {
                     chip.setChipBackgroundColorResource(R.color.primary)
                     chip.setTextColor(getColor(R.color.grey_ltr))
                 } else {
-                    chip.setChipBackgroundColorResource(R.color.grey_ltr)
+                    chip.setChipBackgroundColorResource(R.color.white)
                     chip.setTextColor(getColor(R.color.grey))
                 }
             }
