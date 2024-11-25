@@ -47,11 +47,30 @@
         app:layout_constraintStart_toStartOf="parent"
 
         app:layout_constraintTop_toBottomOf="@id/tv_subtitle"
-        app:mcv_dateTextAppearance="@style/TextAppearance.AppCompat.Small"
 
+        app:mcv_arrowColor="@color/grey"
+
+        app:mcv_dateTextAppearance="@style/TextAppearance.AppCompat.Small"
 
         app:mcv_selectionColor="@color/grey_lt"
         app:mcv_showOtherDates="all" />
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/loading_horarios"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+
+        android:layout_margin="16dp"
+
+        app:trackColor="@color/white"
+
+        android:visibility="gone"
+
+        app:layout_constraintTop_toBottomOf="@id/calendarView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
     <com.google.android.material.chip.ChipGroup
