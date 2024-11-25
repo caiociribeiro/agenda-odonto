@@ -1,80 +1,63 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
-    android:background="#F5F5F5">
 
-    <!-- Spinner para selecionar médicos -->
-    <Spinner
-        android:id="@+id/doctor_spinner"
-        android:layout_width="match_parent"
-        android:layout_height="62dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/rounded_corners"
-        android:padding="10dp"
-        android:textColor="@android:color/black" />
+    >
 
-    <!-- Calendário com bordas arredondadas -->
-    <CalendarView
+    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
         android:id="@+id/calendarView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/rounded_corners"
-        android:clickable="false"
-        android:dateTextAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:defaultFocusHighlightEnabled="false"
-        android:elevation="4dp"
-        android:focusedMonthDateColor="#000000"
-        android:padding="16dp"
-        android:selectedWeekBackgroundColor="@color/black"
-        android:weekNumberColor="#33000000"
-        android:weekSeparatorLineColor="#19000000"
-
-        />
-
-    <!-- Texto de horários disponíveis -->
-    <TextView
-        android:id="@+id/tv_available_times_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Horários disponíveis:"
-        android:textSize="18sp"
-        android:textColor="#333333"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="8dp" />
-
-    <!-- Lista de horários disponíveis com bordas arredondadas -->
-    <TextView
-        android:id="@+id/available_times"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/rounded_corners"
-        android:elevation="4dp"
-        android:padding="10dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:textColor="@android:color/black"
-        android:textSize="16sp" />
+        android:layout_margin="16dp"
+
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:mcv_dateTextAppearance="@style/TextAppearance.AppCompat.Small"
+        app:mcv_selectionColor="@color/grey_ltr"
+
+
+        app:mcv_showOtherDates="all" />
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chipGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_margin="16dp"
+
+        app:singleSelection="true"
+        app:selectionRequired="true"
+
+        app:layout_constraintTop_toBottomOf="@id/calendarView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Chips can be declared here, or added dynamically. -->
+
+    </com.google.android.material.chip.ChipGroup>
 
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_next"
         style="@style/Widget.Material3.Button.ElevatedButton.Icon"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_margin="16dp"
         android:padding="12dp"
         android:text="Avancar"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         app:backgroundTint="@color/primary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:shapeAppearance="?attr/shapeAppearanceSmallComponent" />
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

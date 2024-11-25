@@ -69,4 +69,6 @@ dependencies {
     implementation(libs.firebase.auth)
 
     implementation(libs.library)
+
+    implementation(libs.material.calendarview)
 }
