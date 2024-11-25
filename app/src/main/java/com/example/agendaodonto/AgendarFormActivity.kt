@@ -9,6 +9,9 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 
 class AgendarFormActivity : CommonInterfaceActivity() {
+    private lateinit var tvSubtitle: TextView
+    private lateinit var tvInfo: TextView
+
     private lateinit var rgAparelho: RadioGroup
     private lateinit var rgFumante: RadioGroup
     private lateinit var rgAlergico: RadioGroup
@@ -22,6 +25,25 @@ class AgendarFormActivity : CommonInterfaceActivity() {
 
         val pageName = findViewById<TextView>(R.id.tv_page_name)
         pageName.text = "Agendamento"
+
+        val dentistaName = intent.getStringExtra("dentistaName")
+        val dentistaID = intent.getStringExtra("dentistaID")
+        val dia = intent.getStringExtra("dia")
+
+        val partes = dia?.split("-")
+        var diaFormatado = ""
+        if (partes?.size == 3) {
+            diaFormatado = "${partes[2]}/${partes[1]}/${partes[0]}"
+        }
+
+        val horario = intent.getStringExtra("horario")
+
+        tvSubtitle = findViewById<TextView?>(R.id.tv_subtitle)
+        tvSubtitle.text = "Formulário de consulta com $dentistaName"
+
+        tvInfo = findViewById(R.id.tv_info)
+        tvInfo.text = "$diaFormatado as $horario"
+
 
         btnConfirmar = findViewById(R.id.btn_confirmar)
         btnConfirmar.setOnClickListener {

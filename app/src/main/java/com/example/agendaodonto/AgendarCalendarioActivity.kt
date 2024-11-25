@@ -1,5 +1,6 @@
 package com.example.agendaodonto
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.style.ForegroundColorSpan
 import android.util.Log
@@ -39,6 +40,7 @@ class AgendarCalendarioActivity : CommonInterfaceActivity() {
         super.onStart()
 
         val dentistaID = intent.getStringExtra("dentistaID") ?: ""
+        val dentistaName = intent.getStringExtra("dentistaName") ?: ""
 
         if (dentistaID.isNotEmpty()) {
             carregarDiasDisponiveis(dentistaID)
@@ -48,12 +50,25 @@ class AgendarCalendarioActivity : CommonInterfaceActivity() {
         }
 
         btnNext.setOnClickListener {
+
             val chipSelecionado = chipGroup.checkedChipId
             if (chipSelecionado != View.NO_ID) {
                 val chip = findViewById<Chip>(chipSelecionado)
                 val horarioSelecionado = chip.text.toString()
                 Toast.makeText(this, "Horário selecionado: $horarioSelecionado", Toast.LENGTH_SHORT)
                     .show()
+
+                val diaSelecionado = "${calendarView.selectedDate.year}-${
+                    (calendarView.selectedDate.month + 1).toString().padStart(2, '0')
+                }-${calendarView.selectedDate.day.toString().padStart(2, '0')}"
+
+                val intent = Intent(this, AgendarFormActivity::class.java)
+                intent.putExtra("dentistaID", dentistaID)
+                intent.putExtra("dentistaName", dentistaName)
+                intent.putExtra("dia", diaSelecionado)
+                intent.putExtra("horario", horarioSelecionado)
+                startActivity(intent)
+
 
             } else {
                 Toast.makeText(this, "Selecione um horário antes de avançar.", Toast.LENGTH_SHORT)
