@@ -36,7 +36,6 @@ class ConsultaAdapter(private val consultas: List<Consulta>) :
         holder.tvMedico.text = consulta.medico
         holder.tvArquivos.text = consulta.arquivos.joinToString("\n")
 
-        // Expand/Collapse logic
         holder.collapsedView.setOnClickListener {
             handleExpandedCollapsedViewVisibility(holder)
         }

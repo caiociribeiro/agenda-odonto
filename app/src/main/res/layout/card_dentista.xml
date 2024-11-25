@@ -70,6 +70,7 @@
                     android:layout_height="wrap_content"
                     android:maxHeight="16dp"
                     android:rating="4.3"
+                    android:isIndicator="true"
                     app:mrb_progressTint="@color/primary" />
 
                 <TextView
