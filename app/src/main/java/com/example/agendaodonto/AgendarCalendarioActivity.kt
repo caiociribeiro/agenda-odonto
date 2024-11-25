@@ -1,8 +1,8 @@
 package com.example.agendaodonto
 
 import android.os.Bundle
-import android.text.style.BackgroundColorSpan
 import android.text.style.ForegroundColorSpan
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -24,7 +24,10 @@ class AgendarCalendarioActivity : CommonInterfaceActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_agendar_calendario)
+        layoutInflater.inflate(
+            R.layout.activity_agendar_calendario,
+            findViewById(R.id.content_frame)
+        )
 
         calendarView = findViewById(R.id.calendarView)
         chipGroup = findViewById(R.id.chipGroup)
@@ -60,8 +63,11 @@ class AgendarCalendarioActivity : CommonInterfaceActivity() {
 
         calendarView.setOnDateChangedListener { _, date, selected ->
             if (selected) {
-                val diaSelecionado = "${date.day}/${date.month + 1}/${date.year}"
+                val diaSelecionado = "${date.year}-${
+                    (date.month + 1).toString().padStart(2, '0')
+                }-${date.day.toString().padStart(2, '0')}"
                 carregarHorariosDisponiveis(diaSelecionado, dentistaID)
+
             }
         }
 
@@ -80,7 +86,7 @@ class AgendarCalendarioActivity : CommonInterfaceActivity() {
                 val partes = data.split("-")
                 if (partes.size == 3) {
                     val year = partes[0].toInt()
-                    val month = partes[1].toInt()
+                    val month = partes[1].toInt() - 1
                     val day = partes[2].toInt()
 
                     diasComDisponibilidade.add(CalendarDay.from(year, month, day))
@@ -98,6 +104,10 @@ class AgendarCalendarioActivity : CommonInterfaceActivity() {
     }
 
     private fun atualizarCalendario(diasDisponiveis: List<CalendarDay>) {
+        for (dia in diasDisponiveis) {
+            Log.e("data", dia.toString())
+        }
+
         calendarView.addDecorator(object : DayViewDecorator {
             override fun shouldDecorate(day: CalendarDay): Boolean {
                 return day in diasDisponiveis
@@ -110,12 +120,6 @@ class AgendarCalendarioActivity : CommonInterfaceActivity() {
                         R.color.primary
                     )
                 ) {})
-                view.addSpan(object : BackgroundColorSpan(
-                    ContextCompat.getColor(
-                        this@AgendarCalendarioActivity,
-                        R.color.accent
-                    )
-                ) {})
             }
         })
 
@@ -126,21 +130,33 @@ class AgendarCalendarioActivity : CommonInterfaceActivity() {
 
             override fun decorate(view: DayViewFacade) {
                 view.setDaysDisabled(true)
+                view.addSpan(object : ForegroundColorSpan(
+                    ContextCompat.getColor(
+                        this@AgendarCalendarioActivity,
+                        R.color.grey_lt
+                    )
+                ) {})
             }
         })
     }
 
     private fun carregarHorariosDisponiveis(dataSelecionada: String, dentistaID: String) {
+        Log.e("Dentista", dentistaID)
+        Log.e("Dia Selecionado", dataSelecionada)
+
         val db = FirebaseFirestore.getInstance()
-        val dataFormatada =
-            dataSelecionada.replace("/", "-") // Converte "1/12/2024" para "2024-12-01"
         val horariosRef =
             db.collection("dentistas").document(dentistaID).collection("disponibilidade")
-                .document(dataFormatada)
+                .document(dataSelecionada)
 
         horariosRef.get().addOnSuccessListener { document ->
             if (document.exists()) {
-                val horariosDisponiveis = document.get("horarios") as? List<String> ?: emptyList()
+                val horarios =
+                    document.get("horarios") as? Map<String, Boolean> ?: emptyMap()
+
+                val horariosDisponiveis =
+                    horarios.filter { it.value }.keys.toList()
+
                 atualizarChips(horariosDisponiveis)
             } else {
                 atualizarChips(emptyList())
