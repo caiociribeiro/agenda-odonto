@@ -18,7 +18,7 @@ import com.example.agendaodonto.DoctorProfileActivity
 import me.zhanghai.android.materialratingbar.MaterialRatingBar
 
 
-class DentistaAdapter(private val doctorList: List<Dentista>) :
+class DentistaAdapter(private val dentistaList: List<Dentista>) :
     RecyclerView.Adapter<DentistaAdapter.DentistaViewHolder>() {
 
     class DentistaViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -37,13 +37,13 @@ class DentistaAdapter(private val doctorList: List<Dentista>) :
     }
 
     override fun onBindViewHolder(holder: DentistaViewHolder, position: Int) {
-        val doctor = doctorList[position]
-        holder.name.text = doctor.name
-        holder.especialidade.text = doctor.especialidade
-        holder.ratings.text = doctor.rating.toString()
-        holder.ratingBar.rating = doctor.rating
+        val dentista = dentistaList[position]
+        holder.name.text = dentista.name
+        holder.especialidade.text = dentista.especialidade
+        holder.ratings.text = dentista.rating.toString()
+        holder.ratingBar.rating = dentista.rating
 
-        val imageUrl = if (doctor.avatar != "") doctor.avatar else R.drawable.user
+        val imageUrl = if (dentista.avatar != "") dentista.avatar else R.drawable.user
 
         Glide.with(holder.itemView.context)
             .load(imageUrl)
@@ -52,20 +52,21 @@ class DentistaAdapter(private val doctorList: List<Dentista>) :
         holder.itemView.setOnClickListener {
             val context = holder.itemView.context
             val intent = Intent(context, AgendarCalendarioActivity::class.java)
-            intent.putExtra("doctorName", doctor.name)
+            intent.putExtra("doctorName", dentista.name)
+            intent.putExtra("dentistaID", dentista.id)
             context.startActivity(intent)
         }
 
         holder.btnCardMenu.setOnClickListener { v ->
-            showCardMenu(v, R.menu.card_dentista_menu, doctor)
+            showCardMenu(v, R.menu.card_dentista_menu, dentista)
         }
     }
 
     override fun getItemCount(): Int {
-        return doctorList.size
+        return dentistaList.size
     }
 
-    private fun showCardMenu(view: View, @MenuRes menuRes: Int, doctor: Dentista) {
+    private fun showCardMenu(view: View, @MenuRes menuRes: Int, dentista: Dentista) {
         val popup = PopupMenu(view.context, view)
         popup.menuInflater.inflate(menuRes, popup.menu)
 
@@ -75,9 +76,9 @@ class DentistaAdapter(private val doctorList: List<Dentista>) :
                     val context = view.context
                     val intent = Intent(context, DoctorProfileActivity::class.java)
 
-                    intent.putExtra("name", doctor.name)
-                    intent.putExtra("especialidade", doctor.especialidade)
-                    intent.putExtra("rating", doctor.rating)
+                    intent.putExtra("name", dentista.name)
+                    intent.putExtra("especialidade", dentista.especialidade)
+                    intent.putExtra("rating", dentista.rating)
 
                     context.startActivity(intent)
                     true

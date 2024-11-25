@@ -35,7 +35,7 @@ class AgendarCalendarioActivity : CommonInterfaceActivity() {
     override fun onStart() {
         super.onStart()
 
-        val dentistaID = intent.getStringExtra("dentistaId") ?: ""
+        val dentistaID = intent.getStringExtra("dentistaID") ?: ""
 
         if (dentistaID.isNotEmpty()) {
             carregarDiasDisponiveis(dentistaID)
@@ -77,7 +77,7 @@ class AgendarCalendarioActivity : CommonInterfaceActivity() {
 
             for (document in querySnapshot.documents) {
                 val data = document.id
-                val partes = data.split("-") // Divide em ano, mês e dia
+                val partes = data.split("-")
                 if (partes.size == 3) {
                     val year = partes[0].toInt()
                     val month = partes[1].toInt()
