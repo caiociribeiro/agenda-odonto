@@ -18,67 +18,67 @@ import com.example.agendaodonto.DoctorProfileActivity
 import me.zhanghai.android.materialratingbar.MaterialRatingBar
 
 
-class DentistaAdapter(private val doctorList: List<Dentista>) :
-    RecyclerView.Adapter<DentistaAdapter.DoctorViewHolder>() {
+class DentistaAdapter(private val dentistaList: List<Dentista>) :
+    RecyclerView.Adapter<DentistaAdapter.DentistaViewHolder>() {
 
-    class DoctorViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val doctorName: TextView = view.findViewById(R.id.tv_doctor_name)
-        val doctorSpecialty: TextView = view.findViewById(R.id.tv_specialty)
-        val doctorRating: TextView = view.findViewById(R.id.tv_doctor_rating)
-        val doctorAvatar: ImageView = view.findViewById(R.id.iv_doctor_avatar)
+    class DentistaViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val name: TextView = view.findViewById(R.id.tv_doctor_name)
+        val especialidade: TextView = view.findViewById(R.id.tv_specialty)
+        val ratings: TextView = view.findViewById(R.id.tv_doctor_rating)
+        val avatar: ImageView = view.findViewById(R.id.iv_doctor_avatar)
         val ratingBar: MaterialRatingBar = view.findViewById(R.id.rb_rating)
         val btnCardMenu: Button = view.findViewById(R.id.btn_card_menu)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DoctorViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DentistaViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.card_dentista, parent, false)
-        return DoctorViewHolder(view)
+        return DentistaViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: DoctorViewHolder, position: Int) {
-        val doctor = doctorList[position]
-        holder.doctorName.text = doctor.name
-        holder.doctorSpecialty.text = doctor.specialty
-        holder.doctorRating.text = doctor.rating.toString()
-        holder.ratingBar.rating = doctor.rating
+    override fun onBindViewHolder(holder: DentistaViewHolder, position: Int) {
+        val dentista = dentistaList[position]
+        holder.name.text = dentista.name
+        holder.especialidade.text = dentista.especialidade
+        holder.ratings.text = dentista.rating.toString()
+        holder.ratingBar.rating = dentista.rating
 
-        val imageUrl = "https://i.pravatar.cc/200?uniqueParam=${System.currentTimeMillis()}"
+        val imageUrl = if (dentista.avatar != "") dentista.avatar else R.drawable.user
 
         Glide.with(holder.itemView.context)
             .load(imageUrl)
-            .into(holder.doctorAvatar)
+            .into(holder.avatar)
 
         holder.itemView.setOnClickListener {
             val context = holder.itemView.context
             val intent = Intent(context, AgendarCalendarioActivity::class.java)
-            intent.putExtra("doctorName", doctor.name)  // Pass the doctor's name
+            intent.putExtra("doctorName", dentista.name)
+            intent.putExtra("dentistaID", dentista.id)
             context.startActivity(intent)
         }
 
         holder.btnCardMenu.setOnClickListener { v ->
-            showCardMenu(v, R.menu.card_dentista_menu, doctor)
+            showCardMenu(v, R.menu.card_dentista_menu, dentista)
         }
     }
 
     override fun getItemCount(): Int {
-        return doctorList.size
+        return dentistaList.size
     }
 
-    private fun showCardMenu(view: View, @MenuRes menuRes: Int, doctor: Dentista) {
+    private fun showCardMenu(view: View, @MenuRes menuRes: Int, dentista: Dentista) {
         val popup = PopupMenu(view.context, view)
         popup.menuInflater.inflate(menuRes, popup.menu)
 
         popup.setOnMenuItemClickListener { item ->
             when (item.itemId) {
-                R.id.option_1 -> { // First option in the popup menu
+                R.id.option_1 -> {
                     val context = view.context
                     val intent = Intent(context, DoctorProfileActivity::class.java)
 
-                    // Pass the doctor's details to the profile activity
-                    intent.putExtra("doctorName", doctor.name)
-                    intent.putExtra("doctorSpecialty", doctor.specialty)
-                    intent.putExtra("doctorRating", doctor.rating)
+                    intent.putExtra("name", dentista.name)
+                    intent.putExtra("especialidade", dentista.especialidade)
+                    intent.putExtra("rating", dentista.rating)
 
                     context.startActivity(intent)
                     true

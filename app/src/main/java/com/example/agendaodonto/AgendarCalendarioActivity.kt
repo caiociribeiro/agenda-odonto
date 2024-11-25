@@ -1,87 +1,188 @@
 package com.example.agendaodonto
 
 import android.os.Bundle
+import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.CalendarView
-import android.widget.Spinner
-import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import java.util.Locale
+import androidx.core.content.ContextCompat
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
+import com.google.firebase.firestore.FirebaseFirestore
+import com.prolificinteractive.materialcalendarview.CalendarDay
+import com.prolificinteractive.materialcalendarview.DayViewDecorator
+import com.prolificinteractive.materialcalendarview.DayViewFacade
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView
+
 
 class AgendarCalendarioActivity : CommonInterfaceActivity() {
 
-    private lateinit var calendarView: CalendarView
-    private lateinit var availableTimesTextView: TextView
-    private lateinit var doctorSpinner: Spinner // Spinner para selecionar médicos
+    private lateinit var calendarView: MaterialCalendarView
+    private lateinit var chipGroup: ChipGroup
+    private lateinit var btnNext: MaterialButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        layoutInflater.inflate(R.layout.activity_agendar_calendario, findViewById(R.id.content_frame))
+        layoutInflater.inflate(
+            R.layout.activity_agendar_calendario,
+            findViewById(R.id.content_frame)
+        )
 
-        val pageName = findViewById<TextView>(R.id.tv_page_name)
-        pageName.text = "Agendamento"
-
-        val locale = Locale("pt", "BR")
-        Locale.setDefault(locale)
-        val config = resources.configuration
-        config.setLocale(locale)
-        resources.updateConfiguration(config, resources.displayMetrics)
-
-        // Inicializa os componentes da View
         calendarView = findViewById(R.id.calendarView)
-        availableTimesTextView = findViewById(R.id.available_times)
-        doctorSpinner = findViewById(R.id.doctor_spinner)
+        chipGroup = findViewById(R.id.chipGroup)
+        btnNext = findViewById(R.id.btn_next)
 
-        // Recebe o nome do médico selecionado a partir do Intent
-        val selectedDoctorName = intent.getStringExtra("doctorName")
-        Log.d("Doctor Name: ", selectedDoctorName.toString())
-
-        // Lista de todos os médicos
-        val doctors = mutableListOf("Dr. João", "Dra. Maria", "Dr. Pedro", "Dra. Ana")
-
-        // Organiza a lista para colocar o médico selecionado em primeiro lugar
-        setupDoctorSpinner(selectedDoctorName, doctors)
-
-        // Quando uma data for selecionada
-        calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
-            val selectedDate = "$dayOfMonth/${month + 1}/$year"
-            loadAvailableTimes(selectedDate)
-        }
     }
 
-    // Configuração do Spinner de médicos
-    private fun setupDoctorSpinner(selectedDoctorName: String?, doctors: MutableList<String>) {
-        // Coloca o médico selecionado como o primeiro da lista
-        if (selectedDoctorName != null && doctors.contains(selectedDoctorName)) {
-            doctors.remove(selectedDoctorName) // Remove da lista original
-            doctors.add(0, selectedDoctorName) // Adiciona como o primeiro
+    override fun onStart() {
+        super.onStart()
+
+        val dentistaID = intent.getStringExtra("dentistaID") ?: ""
+
+        if (dentistaID.isNotEmpty()) {
+            carregarDiasDisponiveis(dentistaID)
+        } else {
+            Toast.makeText(this, "Erro ao carregar dentista.", Toast.LENGTH_SHORT).show()
+            finish()
         }
 
-        // Cria um ArrayAdapter para alimentar o Spinner
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, doctors)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        doctorSpinner.adapter = adapter
+        btnNext.setOnClickListener {
+            val chipSelecionado = chipGroup.checkedChipId
+            if (chipSelecionado != View.NO_ID) {
+                val chip = findViewById<Chip>(chipSelecionado)
+                val horarioSelecionado = chip.text.toString()
+                Toast.makeText(this, "Horário selecionado: $horarioSelecionado", Toast.LENGTH_SHORT)
+                    .show()
 
-        // Configura o listener para capturar a seleção do médico
-        doctorSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                val selectedDoctor = parent.getItemAtPosition(position).toString()
-                Toast.makeText(applicationContext, "Médico selecionado: $selectedDoctor", Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>) {
-                // Nenhum item foi selecionado, pode deixar vazio ou tratar
+            } else {
+                Toast.makeText(this, "Selecione um horário antes de avançar.", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
+
+        calendarView.setOnDateChangedListener { _, date, selected ->
+            if (selected) {
+                val diaSelecionado = "${date.year}-${
+                    (date.month + 1).toString().padStart(2, '0')
+                }-${date.day.toString().padStart(2, '0')}"
+                carregarHorariosDisponiveis(diaSelecionado, dentistaID)
+
+            }
+        }
+
     }
 
-    // Exemplo simples: mostrar horários disponíveis
-    private fun loadAvailableTimes(date: String) {
-        val availableTimes = listOf("12:00", "15:25", "17:30") // Ajuste para dados reais
-        availableTimesTextView.text = availableTimes.joinToString(", ")
+    private fun carregarDiasDisponiveis(dentistaID: String) {
+        val db = FirebaseFirestore.getInstance()
+        val disponibilidadeRef =
+            db.collection("dentistas").document(dentistaID).collection("disponibilidade")
+
+        disponibilidadeRef.get().addOnSuccessListener { querySnapshot ->
+            val diasComDisponibilidade = mutableListOf<CalendarDay>()
+
+            for (document in querySnapshot.documents) {
+                val data = document.id
+                val partes = data.split("-")
+                if (partes.size == 3) {
+                    val year = partes[0].toInt()
+                    val month = partes[1].toInt() - 1
+                    val day = partes[2].toInt()
+
+                    diasComDisponibilidade.add(CalendarDay.from(year, month, day))
+                }
+            }
+
+            atualizarCalendario(diasComDisponibilidade)
+        }.addOnFailureListener { e ->
+            Toast.makeText(
+                this,
+                "Erro ao carregar disponibilidade: ${e.message}",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
     }
+
+    private fun atualizarCalendario(diasDisponiveis: List<CalendarDay>) {
+        for (dia in diasDisponiveis) {
+            Log.e("data", dia.toString())
+        }
+
+        calendarView.addDecorator(object : DayViewDecorator {
+            override fun shouldDecorate(day: CalendarDay): Boolean {
+                return day in diasDisponiveis
+            }
+
+            override fun decorate(view: DayViewFacade) {
+                view.addSpan(object : ForegroundColorSpan(
+                    ContextCompat.getColor(
+                        this@AgendarCalendarioActivity,
+                        R.color.primary
+                    )
+                ) {})
+            }
+        })
+
+        calendarView.addDecorator(object : DayViewDecorator {
+            override fun shouldDecorate(day: CalendarDay): Boolean {
+                return day !in diasDisponiveis
+            }
+
+            override fun decorate(view: DayViewFacade) {
+                view.setDaysDisabled(true)
+                view.addSpan(object : ForegroundColorSpan(
+                    ContextCompat.getColor(
+                        this@AgendarCalendarioActivity,
+                        R.color.grey_lt
+                    )
+                ) {})
+            }
+        })
+    }
+
+    private fun carregarHorariosDisponiveis(dataSelecionada: String, dentistaID: String) {
+        Log.e("Dentista", dentistaID)
+        Log.e("Dia Selecionado", dataSelecionada)
+
+        val db = FirebaseFirestore.getInstance()
+        val horariosRef =
+            db.collection("dentistas").document(dentistaID).collection("disponibilidade")
+                .document(dataSelecionada)
+
+        horariosRef.get().addOnSuccessListener { document ->
+            if (document.exists()) {
+                val horarios =
+                    document.get("horarios") as? Map<String, Boolean> ?: emptyMap()
+
+                val horariosDisponiveis =
+                    horarios.filter { it.value }.keys.toList()
+
+                atualizarChips(horariosDisponiveis)
+            } else {
+                atualizarChips(emptyList())
+            }
+        }.addOnFailureListener { e ->
+            Toast.makeText(this, "Erro ao carregar horários: ${e.message}", Toast.LENGTH_SHORT)
+                .show()
+        }
+    }
+
+    private fun atualizarChips(horarios: List<String>) {
+        chipGroup.removeAllViews()
+
+        horarios.forEach { horario ->
+            val chip = Chip(this)
+            chip.text = horario
+            chip.isClickable = true
+            chip.isCheckable = true
+
+            chipGroup.addView(chip)
+        }
+
+        if (horarios.isEmpty()) {
+            Toast.makeText(this, "Nenhum horário disponível para esta data.", Toast.LENGTH_SHORT)
+                .show()
+        }
+    }
+
 }

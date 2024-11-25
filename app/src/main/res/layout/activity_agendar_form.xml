@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="Para finalizar, preencha o formulario abaixo"
+        android:text="Formulario de consulta com Dr. Fulano"
         android:textColor="@color/grey"
         android:textStyle="bold"
         android:textSize="18sp"
@@ -29,7 +29,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <RadioGroup
-        android:id="@+id/usa_aparelho_radio_group"
+        android:id="@+id/rg_aparelho"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -37,13 +37,13 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <RadioButton
-            android:id="@+id/usa_aparelho_sim"
+            android:id="@+id/aparelho_sim"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/label_sim" />
 
         <RadioButton
-            android:id="@+id/usa_aparelho_no"
+            android:id="@+id/aparelho_nao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
@@ -56,11 +56,11 @@
         android:layout_height="wrap_content"
         android:text="@string/label_fumante"
         android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@id/usa_aparelho_radio_group"
+        app:layout_constraintTop_toBottomOf="@id/rg_aparelho"
         app:layout_constraintStart_toStartOf="parent" />
 
     <RadioGroup
-        android:id="@+id/fumante_radio_group"
+        android:id="@+id/rg_fumante"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -74,7 +74,7 @@
             android:text="@string/label_sim" />
 
         <RadioButton
-            android:id="@+id/fumante_no"
+            android:id="@+id/fumante_nao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
@@ -87,11 +87,11 @@
         android:layout_height="wrap_content"
         android:text="@string/label_frequencia_escova_dentes"
         android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@id/fumante_radio_group"
+        app:layout_constraintTop_toBottomOf="@id/rg_fumante"
         app:layout_constraintStart_toStartOf="parent" />
 
     <RadioGroup
-        android:id="@+id/esconva_constantemente_radio_group"
+        android:id="@+id/rg_escova"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -120,11 +120,11 @@
         android:layout_height="wrap_content"
         android:text="@string/label_alergia"
         android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@id/esconva_constantemente_radio_group"
+        app:layout_constraintTop_toBottomOf="@id/rg_escova"
         app:layout_constraintStart_toStartOf="parent" />
 
     <RadioGroup
-        android:id="@+id/alergico_radio_group"
+        android:id="@+id/rg_alergico"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -153,28 +153,34 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/label_motivo_consulta"
-        app:layout_constraintTop_toBottomOf="@id/alergico_radio_group"
+        app:layout_constraintTop_toBottomOf="@id/rg_alergico"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
-        android:id="@+id/consulta_motivo"
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+        android:id="@+id/ti_motivo"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:textColorHint="@color/grey_lt"
-        android:inputType="text"
-        android:textColor="@color/black"
-        android:padding="12dp"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/label_consulta_motivo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
 
-    <Button
-        android:id="@+id/btn_agendar"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_motivo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:lines="6"
+            android:gravity="top"
+            android:padding="12dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        app:shapeAppearance="@style/ShapeAppearance.Material3.SmallComponent"
+        android:id="@+id/btn_confirmar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="12dp"
         android:text="@string/bnt_confirmar_agendamento"
-        app:layout_constraintTop_toBottomOf="@id/consulta_motivo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />

@@ -9,6 +9,7 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.example.agendaodonto.activities.HomeActivityTemp
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.Timestamp
@@ -37,15 +38,19 @@ open class BaseActivity : AppCompatActivity() {
     }
 
     fun fetchUserData(
+        auth: FirebaseAuth,
         user: FirebaseUser?,
-        onDataFetched: (String, String, String, String, String, String) -> Unit
+        isDentist: Boolean,
+        onDataFetched: (String, String, String, String, String) -> Unit,
     ) {
         if (user != null) {
             val firestore = FirebaseFirestore.getInstance()
             val userId = user.uid
 
+            val collectionPath = if (isDentist) "dentistas" else "users"
 
-            firestore.collection("users")
+
+            firestore.collection(collectionPath)
                 .document(userId)
                 .get()
                 .addOnSuccessListener { document ->
@@ -53,19 +58,23 @@ open class BaseActivity : AppCompatActivity() {
                         val name = document.getString("name") ?: ""
                         val email = document.getString("email") ?: ""
                         val phoneNumber = document.getString("phoneNumber") ?: ""
-                        val userType = document.getString("userType") ?: ""
-                        val avatar = document.getString("avatar") ?: ""
+                        val avatar = document.getString("avatarUrl") ?: ""
 
-                        val dobTimestamp = document.get("dateOfBirth") as? Timestamp
-                        val dob = dobTimestamp?.toDate()?.let { date ->
-                            SimpleDateFormat("dd/MM/yyyy", Locale("pt", "BR")).format(date)
-                        } ?: ""
+                        val userType = if (isDentist) "dentista" else "paciente"
 
-                        onDataFetched(name, email, phoneNumber, dob, userType, avatar)
+
+                        onDataFetched(name, email, phoneNumber, userType, avatar)
                     }
                 }
-                .addOnFailureListener { exception ->
-                    Log.e("FetchUserData", "Error fetching user data", exception)
+                .addOnFailureListener { e ->
+                    Log.e("FetchUserData", "Error fetching user data", e)
+                    auth.signOut()
+                    Toast.makeText(
+                        baseContext,
+                        "Algo deu errado. Tente novamente mais tarde.",
+                        Toast.LENGTH_LONG,
+                    ).show()
+
                 }
         }
 
@@ -76,7 +85,8 @@ open class BaseActivity : AppCompatActivity() {
         email: String,
         password: String,
         emailInputText: TextInputLayout,
-        passwordInputText: TextInputLayout
+        passwordInputText: TextInputLayout,
+        isDentist: Boolean
     ) {
 
         val main: LinearLayout = findViewById(R.id.main)
@@ -91,14 +101,18 @@ open class BaseActivity : AppCompatActivity() {
 
                     val user = auth.currentUser
 
-                    fetchUserData(user) { name, email, phoneNumber, dob, userType, avatar ->
-                        saveUserData(name, email, phoneNumber, dob, userType, avatar)
+                    fetchUserData(
+                        auth,
+                        user,
+                        isDentist
+                    ) { name, email, phoneNumber, userType, avatar ->
+                        saveUserData(name, email, phoneNumber, userType, avatar)
 
-                        if (userType == "dentista") {
+                        if (isDentist) {
                             val intent = Intent(this, HomeDentistaActivity::class.java)
                             startActivity(intent)
                             finish()
-                        } else if (userType == "paciente") {
+                        } else {
                             val intent = Intent(this, HomeActivity::class.java)
                             startActivity(intent)
                             finish()
@@ -113,7 +127,7 @@ open class BaseActivity : AppCompatActivity() {
             }
     }
 
-    fun signUp(auth: FirebaseAuth, name: String, email: String, dob: String, password: String) {
+    fun signUp(auth: FirebaseAuth, name: String, email: String, password: String) {
 
         val registerLayout: LinearLayout = findViewById(R.id.register)
         val loading: ConstraintLayout = findViewById(R.id.loading_overlay)
@@ -134,7 +148,6 @@ open class BaseActivity : AppCompatActivity() {
                     val userData = hashMapOf(
                         "name" to name,
                         "email" to email,
-                        "dateOfBirth" to dob,
                         "phoneNumber" to "",
                         "userType" to "Paciente",
                         "avatar" to ""
@@ -143,8 +156,12 @@ open class BaseActivity : AppCompatActivity() {
                     userId?.let {
                         firestore.collection("users").document(it).set(userData)
                             .addOnSuccessListener {
-                                fetchUserData(user) { name, email, phoneNumber, dob, userType, avatar ->
-                                    saveUserData(name, email, phoneNumber, dob, userType, avatar)
+                                fetchUserData(
+                                    auth,
+                                    user,
+                                    false
+                                ) { name, email, phoneNumber, userType, avatar ->
+                                    saveUserData(name, email, phoneNumber, userType, avatar)
 
                                     val intent = Intent(this, HomeActivity::class.java)
                                     startActivity(intent)
@@ -175,7 +192,6 @@ open class BaseActivity : AppCompatActivity() {
         name: String,
         email: String,
         phoneNumber: String,
-        dob: String,
         userType: String,
         avatar: String
     ) {
@@ -188,7 +204,6 @@ open class BaseActivity : AppCompatActivity() {
         editor.putString("email", email)
         editor.putString("avatar", avatar)
         editor.putString("phoneNumber", phoneNumber)
-        editor.putString("dob", dob)
         editor.putString("userType", userType)
 
         editor.apply()
@@ -200,10 +215,57 @@ open class BaseActivity : AppCompatActivity() {
             "name" to sharedPreferences.getString("name", null),
             "email" to sharedPreferences.getString("email", null),
             "phoneNumber" to sharedPreferences.getString("phoneNumber", null),
-            "dob" to sharedPreferences.getString("dob", null),
             "userType" to sharedPreferences.getString("userType", null),
             "avatar" to sharedPreferences.getString("avatar", null)
         )
+    }
+
+    fun gerarDisponibilidadeDentista(dentistaId: String) {
+        val db = FirebaseFirestore.getInstance()
+        val disponibilidadeRef =
+            db.collection("dentistas").document(dentistaId).collection("disponibilidade")
+
+        val calendar = Calendar.getInstance()
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+
+        for (i in 0 until 30) {
+            val data = dateFormat.format(calendar.time)
+
+            disponibilidadeRef.document(data).get()
+                .addOnSuccessListener { document ->
+                    if (!document.exists()) {
+                        val horarios = hashMapOf(
+                            "09:00" to true,
+                            "10:00" to true,
+                            "11:00" to true,
+                            "14:00" to true,
+                            "15:00" to true,
+                            "16:00" to true
+                        )
+
+                        val diaDisponivel = hashMapOf(
+                            "data" to data,
+                            "horarios" to horarios
+                        )
+
+                        disponibilidadeRef.document(data)
+                            .set(diaDisponivel)
+                            .addOnSuccessListener {
+                                println("Disponibilidade para o dia $data adicionada com sucesso!")
+                            }
+                            .addOnFailureListener { e ->
+                                println("Erro ao adicionar disponibilidade para o dia $data: ${e.message}")
+                            }
+                    } else {
+                        println("Dia $data já existe, não será necessário criar novamente.")
+                    }
+                }
+                .addOnFailureListener { e ->
+                    println("Erro ao verificar disponibilidade para o dia $data: ${e.message}")
+                }
+
+            calendar.add(Calendar.DAY_OF_MONTH, 1)
+        }
     }
 
 }

@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
-            android:text="@string/entrar"
+            android:text="@string/login_dentista"
             android:textSize="32sp"
             android:textStyle="bold" />
 
@@ -73,74 +73,6 @@
             app:backgroundTint="@color/primary"
             app:shapeAppearance="?attr/shapeAppearanceSmallComponent" />
 
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp">
-
-            <TextView
-                android:id="@+id/tvText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:text="ou" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="16dp"
-                android:layout_toLeftOf="@id/tvText"
-                android:background="@color/grey_lt" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="16dp"
-                android:layout_toEndOf="@id/tvText"
-                android:background="@color/grey_lt" />
-
-        </RelativeLayout>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_login_google"
-            style="@style/Widget.Material3.Button.ElevatedButton.Icon"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginBottom="16dp"
-            android:backgroundTint="@color/red_google"
-            android:padding="12dp"
-            android:text="@string/btn_login_google"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            app:icon="@drawable/ic_google_brand"
-            app:iconGravity="start"
-            app:iconPadding="-15dp"
-            app:iconTint="#FFF"
-            app:shapeAppearance="?attr/shapeAppearanceSmallComponent" />
-
-
-        <TextView
-            android:id="@+id/tv_register"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_gravity="center"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center_horizontal|center_vertical"
-            android:text="@string/link_register"
-            android:textColor="@color/secondary"
-            android:textSize="14sp"
-            android:drawablePadding="4dp"
-            app:drawableEndCompat="@drawable/ic_link"
-            app:drawableTint="@color/secondary" />
 
     </LinearLayout>
 

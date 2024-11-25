@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_dentistas"
+        android:enabled="true"
+        android:icon="@drawable/ic_home"
+        android:title="@string/home"
+        android:contentDescription="menu dentistas" />
+
+    <item
+        android:id="@+id/nav_historico"
+        android:enabled="true"
+        android:icon="@drawable/ic_receipt_long_24px"
+        android:title="@string/historico"
+        android:contentDescription="@string/historico" />
+
+    <item
+        android:id="@+id/nav_menu"
+        android:icon="@drawable/ic_menu_24px"
+        android:enabled="true"
+        android:title="Menu"
+        android:contentDescription="Menu" />
+
+
+</menu>

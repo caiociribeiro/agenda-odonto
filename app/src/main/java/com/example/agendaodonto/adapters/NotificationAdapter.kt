@@ -10,8 +10,7 @@ import com.example.agendaodonto.R
 import com.example.agendaodonto.models.Notification
 
 class NotificationsAdapter(
-    private val notifications: MutableList<Notification>,
-    private val onDeleteClick: (Notification) -> Unit
+    private val notifications: MutableList<Notification>
 ) : RecyclerView.Adapter<NotificationsAdapter.NotificationViewHolder>() {
 
     class NotificationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -31,10 +30,6 @@ class NotificationsAdapter(
 
         holder.titleTextView.text = notification.title
         holder.descriptionTextView.text = notification.message
-
-        holder.btnDelete.setOnClickListener {
-            onDeleteClick(notification)
-        }
     }
 
     override fun getItemCount(): Int {
