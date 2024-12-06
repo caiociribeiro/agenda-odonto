@@ -2,6 +2,7 @@ package com.example.agendaodonto
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.agendaodonto.adapters.DentistaAdapter
 import com.example.agendaodonto.models.Dentista
 import com.example.agendaodonto.ui.components.CustomDividerItemDecoration
+import com.google.android.material.progressindicator.LinearProgressIndicator
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -16,6 +18,8 @@ class AgendarListaDentistaActivity : CommonInterfaceActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: DentistaAdapter
     private val dentistasList = mutableListOf<Dentista>()
+
+    private lateinit var loadingDentistas: LinearProgressIndicator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,17 +40,24 @@ class AgendarListaDentistaActivity : CommonInterfaceActivity() {
         val itemDecoration = CustomDividerItemDecoration(this, divider)
         recyclerView.addItemDecoration(itemDecoration)
 
-        loadDentistasList()
+        loadingDentistas = findViewById(R.id.loading_dentistas)
 
+        loadDentistasList()
     }
 
+
     private fun loadDentistasList() {
+        loadingDentistas.visibility = View.VISIBLE
+
         val db = FirebaseFirestore.getInstance()
         val dentistasRef = db.collection("dentistas")
 
         dentistasRef.get()
             .addOnSuccessListener { documents ->
                 dentistasList.clear()
+
+                val totalDentistas = documents.size()
+                var processados = 0
 
                 for (document in documents) {
                     val id = document.id
@@ -60,12 +71,18 @@ class AgendarListaDentistaActivity : CommonInterfaceActivity() {
                         val dentista = Dentista(id, name, especialidade, averageRating, avatarUrl)
                         dentistasList.add(dentista)
                         adapter.notifyItemInserted(dentistasList.size - 1)
+
+                        processados++
+
+                        if (totalDentistas == processados) loadingDentistas.visibility = View.GONE
                     }
                 }
             }
             .addOnFailureListener { e ->
                 Log.e("ListaDentistasFragment", "Erro ao buscar dados: ", e)
+                loadingDentistas.visibility = View.GONE
             }
+
     }
 
     private fun calculateAverageRating(

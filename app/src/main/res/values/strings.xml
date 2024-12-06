@@ -77,5 +77,8 @@
     <string name="login_dentista">Área do Dentista</string>
     <string name="agendamento_lista_dentistas_titulo">Para continuar, selecione o dentista</string>
 
+    <string name="calendario_subtitle">Selecione data e horario</string>
+    <string name="btn_calendario">Continuar</string>
+
 
 </resources>
