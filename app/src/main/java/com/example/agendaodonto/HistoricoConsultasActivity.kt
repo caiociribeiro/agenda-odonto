@@ -5,10 +5,12 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.NumberPicker
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.agendaodonto.adapters.ConsultaAdapter
 import com.example.agendaodonto.models.Consulta
+import com.example.agendaodonto.ui.components.CustomDividerItemDecoration
 import java.util.Calendar
 
 class HistoricoConsultasActivity : CommonInterfaceActivity() {
