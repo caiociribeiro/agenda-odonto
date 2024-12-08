@@ -1,14 +1,17 @@
 package com.example.agendaodonto
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
+import com.google.android.material.progressindicator.LinearProgressIndicator
 import com.google.firebase.firestore.FirebaseFirestore
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.DayViewDecorator
@@ -18,9 +21,12 @@ import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 
 class AgendarCalendarioActivity : CommonInterfaceActivity() {
 
+    private lateinit var tvDentistaName: TextView
+    private lateinit var tvSubtitle: TextView
     private lateinit var calendarView: MaterialCalendarView
     private lateinit var chipGroup: ChipGroup
     private lateinit var btnNext: MaterialButton
+    private lateinit var loadingHorarios: LinearProgressIndicator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +44,16 @@ class AgendarCalendarioActivity : CommonInterfaceActivity() {
     override fun onStart() {
         super.onStart()
 
+        loadingHorarios = findViewById(R.id.loading_horarios)
+
         val dentistaID = intent.getStringExtra("dentistaID") ?: ""
+        val dentistaName = intent.getStringExtra("dentistaName") ?: ""
+
+        tvDentistaName = findViewById(R.id.tv_dentista_name)
+        tvDentistaName.text = dentistaName
+
+        tvSubtitle = findViewById(R.id.tv_subtitle)
+        tvSubtitle.text = getString(R.string.calendario_subtitle)
 
         if (dentistaID.isNotEmpty()) {
             carregarDiasDisponiveis(dentistaID)
@@ -47,19 +62,32 @@ class AgendarCalendarioActivity : CommonInterfaceActivity() {
             finish()
         }
 
+
         btnNext.setOnClickListener {
+
             val chipSelecionado = chipGroup.checkedChipId
             if (chipSelecionado != View.NO_ID) {
                 val chip = findViewById<Chip>(chipSelecionado)
                 val horarioSelecionado = chip.text.toString()
-                Toast.makeText(this, "Horário selecionado: $horarioSelecionado", Toast.LENGTH_SHORT)
-                    .show()
+                val diaSelecionado = "${calendarView.selectedDate.year}-${
+                    (calendarView.selectedDate.month + 1).toString().padStart(2, '0')
+                }-${calendarView.selectedDate.day.toString().padStart(2, '0')}"
+
+                val intent = Intent(this, AgendarFormActivity::class.java)
+                intent.putExtra("dentistaID", dentistaID)
+                intent.putExtra("dentistaName", dentistaName)
+                intent.putExtra("dia", diaSelecionado)
+                intent.putExtra("horario", horarioSelecionado)
+                startActivity(intent)
+
 
             } else {
                 Toast.makeText(this, "Selecione um horário antes de avançar.", Toast.LENGTH_SHORT)
                     .show()
             }
         }
+
+
 
         calendarView.setOnDateChangedListener { _, date, selected ->
             if (selected) {
@@ -74,6 +102,7 @@ class AgendarCalendarioActivity : CommonInterfaceActivity() {
     }
 
     private fun carregarDiasDisponiveis(dentistaID: String) {
+
         val db = FirebaseFirestore.getInstance()
         val disponibilidadeRef =
             db.collection("dentistas").document(dentistaID).collection("disponibilidade")
@@ -94,6 +123,7 @@ class AgendarCalendarioActivity : CommonInterfaceActivity() {
             }
 
             atualizarCalendario(diasComDisponibilidade)
+
         }.addOnFailureListener { e ->
             Toast.makeText(
                 this,
@@ -141,6 +171,10 @@ class AgendarCalendarioActivity : CommonInterfaceActivity() {
     }
 
     private fun carregarHorariosDisponiveis(dataSelecionada: String, dentistaID: String) {
+        loadingHorarios.visibility = View.VISIBLE
+
+        atualizarChips(emptyList())
+
         Log.e("Dentista", dentistaID)
         Log.e("Dia Selecionado", dataSelecionada)
 
@@ -155,12 +189,13 @@ class AgendarCalendarioActivity : CommonInterfaceActivity() {
                     document.get("horarios") as? Map<String, Boolean> ?: emptyMap()
 
                 val horariosDisponiveis =
-                    horarios.filter { it.value }.keys.toList()
-
+                    horarios.filter { it.value }.keys.sortedBy { it }
                 atualizarChips(horariosDisponiveis)
             } else {
                 atualizarChips(emptyList())
             }
+
+            loadingHorarios.visibility = View.GONE
         }.addOnFailureListener { e ->
             Toast.makeText(this, "Erro ao carregar horários: ${e.message}", Toast.LENGTH_SHORT)
                 .show()
@@ -176,13 +211,20 @@ class AgendarCalendarioActivity : CommonInterfaceActivity() {
             chip.isClickable = true
             chip.isCheckable = true
 
+            chip.setChipBackgroundColorResource(R.color.white)
+            chip.setTextColor(getColor(R.color.grey))
+
+            chip.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    chip.setChipBackgroundColorResource(R.color.primary)
+                    chip.setTextColor(getColor(R.color.grey_ltr))
+                } else {
+                    chip.setChipBackgroundColorResource(R.color.white)
+                    chip.setTextColor(getColor(R.color.grey))
+                }
+            }
+
             chipGroup.addView(chip)
         }
-
-        if (horarios.isEmpty()) {
-            Toast.makeText(this, "Nenhum horário disponível para esta data.", Toast.LENGTH_SHORT)
-                .show()
-        }
     }
-
 }

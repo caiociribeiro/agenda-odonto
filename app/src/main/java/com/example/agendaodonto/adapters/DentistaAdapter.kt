@@ -52,7 +52,7 @@ class DentistaAdapter(private val dentistaList: List<Dentista>) :
         holder.itemView.setOnClickListener {
             val context = holder.itemView.context
             val intent = Intent(context, AgendarCalendarioActivity::class.java)
-            intent.putExtra("doctorName", dentista.name)
+            intent.putExtra("dentistaName", dentista.name)
             intent.putExtra("dentistaID", dentista.id)
             context.startActivity(intent)
         }
