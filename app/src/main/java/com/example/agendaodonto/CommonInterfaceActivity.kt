@@ -4,16 +4,24 @@ import android.app.Activity
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
 import android.widget.Button
+import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.RatingBar
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.bumptech.glide.Glide
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FirebaseFirestore
 
 abstract class CommonInterfaceActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -115,4 +123,5 @@ abstract class CommonInterfaceActivity : BaseActivity() {
         val frameLayout: FrameLayout = findViewById(R.id.content_frame)
         layoutInflater.inflate(layoutResID, frameLayout, true)
     }
+
 }

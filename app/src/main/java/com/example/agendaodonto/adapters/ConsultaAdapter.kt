@@ -1,6 +1,7 @@
 package com.example.agendaodonto.adapters
 
 import android.animation.ValueAnimator
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,9 +33,18 @@ class ConsultaAdapter(private val consultas: List<Consulta>) :
 
     override fun onBindViewHolder(holder: ConsultaViewHolder, position: Int) {
         val consulta = consultas[position]
+        Log.i("ConsultaAdapter", "Data: ${consulta.data}, Médico: ${consulta.medico}, Arquivos: ${consulta.arquivos}")
+
         holder.tvData.text = consulta.data
-        holder.tvMedico.text = consulta.medico
-        holder.tvArquivos.text = consulta.arquivos.joinToString("\n")
+        holder.tvMedico.text = consulta.medico.ifEmpty { "Médico não informado" }
+
+        if (consulta.arquivos.isNotEmpty()) {
+            holder.tvArquivos.text = consulta.arquivos.joinToString("\n")
+            holder.tvArquivos.visibility = View.VISIBLE
+        } else {
+            holder.tvArquivos.text = "Nenhum arquivo anexado"
+            holder.tvArquivos.visibility = View.VISIBLE
+        }
 
         holder.collapsedView.setOnClickListener {
             handleExpandedCollapsedViewVisibility(holder)
