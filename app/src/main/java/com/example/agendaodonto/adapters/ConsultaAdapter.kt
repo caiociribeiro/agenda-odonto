@@ -32,9 +32,9 @@ class ConsultaAdapter(private val consultas: List<Consulta>) :
 
     override fun onBindViewHolder(holder: ConsultaViewHolder, position: Int) {
         val consulta = consultas[position]
-        holder.tvData.text = consulta.data
-        holder.tvMedico.text = consulta.medico
-        holder.tvArquivos.text = consulta.arquivos.joinToString("\n")
+        holder.tvData.text = consulta.data.toString()
+        holder.tvMedico.text = consulta.dentista
+        holder.tvArquivos.text = consulta.dentistaFormData.arquivos.joinToString("\n")
 
         holder.collapsedView.setOnClickListener {
             handleExpandedCollapsedViewVisibility(holder)

@@ -80,9 +80,6 @@ class HistoricoConsultasActivity : CommonInterfaceActivity() {
     }
 
     private fun loadConsultas(): List<Consulta> {
-        return listOf(
-            Consulta("10/01/2023", "Dr. José", listOf("Arquivo1.pdf", "Arquivo2.jpg")),
-            Consulta("20/05/2023", "Dra. Ana", listOf("Arquivo3.pdf")),
-        )
+        return emptyList()
     }
 }

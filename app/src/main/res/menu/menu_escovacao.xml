@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/option_1"
+        android:title="Menos de 2 vezes ao dia" />
+    <item android:id="@+id/option_2"
+        android:title="De 2 a 3 vezes ao dia" />
+    <item android:id="@+id/option_3"
+        android:title="Mais de 3 vezes ao dia" />
+</menu>
