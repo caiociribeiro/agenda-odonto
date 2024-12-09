@@ -33,7 +33,10 @@ class HistoricoConsultasActivity : CommonInterfaceActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        layoutInflater.inflate(R.layout.activity_historico_consultas, findViewById(R.id.content_frame))
+        layoutInflater.inflate(
+            R.layout.activity_historico_consultas,
+            findViewById(R.id.content_frame)
+        )
 
         val pageName = findViewById<TextView>(R.id.tv_page_name)
         pageName.text = getString(R.string.historico)
@@ -70,7 +73,8 @@ class HistoricoConsultasActivity : CommonInterfaceActivity() {
                 if (!isActivityAlive()) return@addOnSuccessListener
 
                 if (document.exists()) {
-                    val consultaRefs = document.get("consultas") as? List<DocumentReference> ?: emptyList()
+                    val consultaRefs =
+                        document.get("consultas") as? List<DocumentReference> ?: emptyList()
                     Log.i("HistoricoConsultas", "Consulta Refs: $consultaRefs")
 
                     if (consultaRefs.isNotEmpty()) {
@@ -119,17 +123,21 @@ class HistoricoConsultasActivity : CommonInterfaceActivity() {
                         val dentistRef = document.getDocumentReference("dentistaID")
                         val attachments = document.get("arquivos") as? List<String> ?: emptyList()
 
-                        Log.i("HistoricoConsultas", "Data: $date, Dentista Ref: $dentistRef, Arquivos: $attachments")
+                        Log.i(
+                            "HistoricoConsultas",
+                            "Data: $date, Dentista Ref: $dentistRef, Arquivos: $attachments"
+                        )
 
                         dentistRef?.get()
                             ?.addOnSuccessListener { dentistDoc ->
                                 if (!isActivityAlive()) return@addOnSuccessListener
 
-                                val doctorName = dentistDoc.getString("name") ?: "Médico não informado"
+                                val doctorName =
+                                    dentistDoc.getString("name") ?: "Médico não informado"
                                 Log.i("HistoricoConsultas", "Nome do dentista: $doctorName")
 
-                                consultas.add(Consulta(date, doctorName, attachments))
-                                consultaAdapter.notifyDataSetChanged()
+                                //consultas.add(Consulta(date, doctorName, attachments))
+                                //consultaAdapter.notifyDataSetChanged()
                                 tvNoInfo.visibility = View.GONE
                             }
                             ?.addOnFailureListener { e ->
