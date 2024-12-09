@@ -93,48 +93,31 @@ class HistoricoConsultasActivity : CommonInterfaceActivity() {
         consultas.clear()
 
         for (ref in consultaRefs) {
-            Log.i("HistoricoConsultas", "Buscando detalhes da consulta: ${ref.path}")
-
             ref.get()
                 .addOnSuccessListener { document ->
                     if (!isActivityAlive()) return@addOnSuccessListener
 
                     if (document.exists()) {
-
-                        // Verificar se o campo formPendente é true, ou seja que a consulta ja foi feita
-                        val formPendente = document.getBoolean("status.formPendente") ?: true
-                        if (formPendente) {
-                            Log.i("HistoricoConsultas", "Consulta ignorada, formPendente é true.")
-                            return@addOnSuccessListener
-                        }
-
                         val dateTimestamp = document.getTimestamp("data")
-                        val date = dateTimestamp?.toDate()?.let { date ->
-                            val formatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-                            formatter.format(date)
+                        val date = dateTimestamp?.toDate()?.let {
+                            SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(it)
                         } ?: "Data desconhecida"
 
                         val dentistRef = document.getDocumentReference("dentistaID")
-                        val attachments = document.get("arquivos") as? List<String> ?: emptyList()
-
-                        Log.i("HistoricoConsultas", "Data: $date, Dentista Ref: $dentistRef, Arquivos: $attachments")
+                        val attachments = document.get("dentistaFormData.arquivos") as? List<String> ?: emptyList()
+                        val observacoes = document.getString("dentistaFormData.observacoes") ?: "Sem observações"
 
                         dentistRef?.get()
                             ?.addOnSuccessListener { dentistDoc ->
-                                if (!isActivityAlive()) return@addOnSuccessListener
-
                                 val doctorName = dentistDoc.getString("name") ?: "Médico não informado"
-                                Log.i("HistoricoConsultas", "Nome do dentista: $doctorName")
 
-                                consultas.add(Consulta(date, doctorName, attachments))
+                                consultas.add(Consulta(date, doctorName, attachments, observacoes))
                                 consultaAdapter.notifyDataSetChanged()
                                 tvNoInfo.visibility = View.GONE
                             }
                             ?.addOnFailureListener { e ->
                                 Log.e("HistoricoConsultas", "Erro ao buscar dentista: ${e.message}")
                             }
-                    } else {
-                        Log.e("HistoricoConsultas", "Documento da consulta não encontrado.")
                     }
                 }
                 .addOnFailureListener { e ->
@@ -142,6 +125,7 @@ class HistoricoConsultasActivity : CommonInterfaceActivity() {
                 }
         }
     }
+
 
 
     private fun isActivityAlive(): Boolean {

@@ -1,16 +1,18 @@
 package com.example.agendaodonto.adapters
 
-import android.animation.ValueAnimator
-import android.util.Log
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.example.agendaodonto.models.Consulta
 import com.example.agendaodonto.R
+import com.example.agendaodonto.models.Consulta
 
 class ConsultaAdapter(private val consultas: List<Consulta>) :
     RecyclerView.Adapter<ConsultaAdapter.ConsultaViewHolder>() {
@@ -18,9 +20,9 @@ class ConsultaAdapter(private val consultas: List<Consulta>) :
     class ConsultaViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvData: TextView = view.findViewById(R.id.tv_data_consulta)
         val tvMedico: TextView = view.findViewById(R.id.tv_nome_medico)
+        val tvObservacoes: TextView = view.findViewById(R.id.tv_observacoes)
+        val llArquivos: LinearLayout = view.findViewById(R.id.ll_arquivos)
         val expandedView: LinearLayout = view.findViewById(R.id.expanded_view)
-        val collapsedView: LinearLayout = view.findViewById(R.id.collapsed_view)
-        val tvArquivos: TextView = view.findViewById(R.id.tv_arquivo)
         val btnIconArrowDown: Button = view.findViewById(R.id.btn_icon_arrow_down)
         val btnIconArrowUp: Button = view.findViewById(R.id.btn_icon_arrow_up)
     }
@@ -33,85 +35,51 @@ class ConsultaAdapter(private val consultas: List<Consulta>) :
 
     override fun onBindViewHolder(holder: ConsultaViewHolder, position: Int) {
         val consulta = consultas[position]
-        Log.i("ConsultaAdapter", "Data: ${consulta.data}, Médico: ${consulta.medico}, Arquivos: ${consulta.arquivos}")
-
         holder.tvData.text = consulta.data
-        holder.tvMedico.text = consulta.medico.ifEmpty { "Médico não informado" }
+        holder.tvMedico.text = consulta.medico
+        holder.tvObservacoes.text = consulta.observacoes + "\n" ?: "Sem observações"
 
-        if (consulta.arquivos.isNotEmpty()) {
-            holder.tvArquivos.text = consulta.arquivos.joinToString("\n")
-            holder.tvArquivos.visibility = View.VISIBLE
-        } else {
-            holder.tvArquivos.text = "Nenhum arquivo anexado"
-            holder.tvArquivos.visibility = View.VISIBLE
+        // Preencher a lista de arquivos com ícones de download
+        holder.llArquivos.removeAllViews()
+        for (arquivo in consulta.arquivos) {
+            val fileName = arquivo.substringAfterLast("_").substringBefore("?")
+
+            // Layout para cada item de arquivo
+            val fileLayout = LayoutInflater.from(holder.itemView.context)
+                .inflate(R.layout.item_arquivo, holder.llArquivos, false)
+
+            val tvFileName = fileLayout.findViewById<TextView>(R.id.tv_file_name)
+            val btnDownload = fileLayout.findViewById<ImageView>(R.id.btn_download)
+
+            tvFileName.text = fileName
+
+            btnDownload.setOnClickListener {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(arquivo))
+                holder.itemView.context.startActivity(intent)
+            }
+
+            holder.llArquivos.addView(fileLayout)
         }
 
-        holder.collapsedView.setOnClickListener {
-            handleExpandedCollapsedViewVisibility(holder)
-        }
+        // Configurar visibilidade inicial
+        holder.expandedView.visibility = View.GONE
+        holder.btnIconArrowDown.visibility = View.VISIBLE
+        holder.btnIconArrowUp.visibility = View.GONE
 
+        // Configurar o clique para expandir/recolher
         holder.btnIconArrowDown.setOnClickListener {
-            handleExpandedCollapsedViewVisibility(holder)
+            holder.expandedView.visibility = View.VISIBLE
+            holder.btnIconArrowDown.visibility = View.GONE
+            holder.btnIconArrowUp.visibility = View.VISIBLE
         }
 
         holder.btnIconArrowUp.setOnClickListener {
-            handleExpandedCollapsedViewVisibility(holder)
+            holder.expandedView.visibility = View.GONE
+            holder.btnIconArrowDown.visibility = View.VISIBLE
+            holder.btnIconArrowUp.visibility = View.GONE
         }
     }
 
-    private fun handleExpandedCollapsedViewVisibility(holder: ConsultaViewHolder) {
-        if (holder.expandedView.visibility == View.VISIBLE) {
-            collapseView(holder)
-        } else {
-            expandView(holder)
-        }
-    }
-
-    private fun expandView(holder: ConsultaViewHolder) {
-        holder.expandedView.measure(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT
-        )
-        val targetHeight = holder.expandedView.measuredHeight
-
-        holder.expandedView.visibility = View.VISIBLE
-        holder.expandedView.layoutParams.height = 0
-        holder.expandedView.requestLayout()
-
-        val animator = ValueAnimator.ofInt(0, targetHeight)
-        animator.addUpdateListener { animation ->
-            val animatedValue = animation.animatedValue as Int
-            holder.expandedView.layoutParams.height = animatedValue
-            holder.expandedView.requestLayout()
-        }
-        animator.addListener(object : android.animation.AnimatorListenerAdapter() {
-            override fun onAnimationEnd(animation: android.animation.Animator) {
-                holder.btnIconArrowDown.visibility = View.GONE
-                holder.btnIconArrowUp.visibility = View.VISIBLE
-            }
-        })
-        animator.duration = 150
-        animator.start()
-    }
-
-    private fun collapseView(holder: ConsultaViewHolder) {
-        val initialHeight = holder.expandedView.height
-        val animator = ValueAnimator.ofInt(initialHeight, 0)
-        animator.addUpdateListener { animation ->
-            val animatedValue = animation.animatedValue as Int
-            holder.expandedView.layoutParams.height = animatedValue
-            holder.expandedView.requestLayout()
-        }
-        animator.addListener(object : android.animation.AnimatorListenerAdapter() {
-            override fun onAnimationEnd(animation: android.animation.Animator) {
-                holder.expandedView.visibility = View.GONE
-                holder.btnIconArrowUp.visibility = View.GONE
-                holder.btnIconArrowDown.visibility = View.VISIBLE
-            }
-        })
-        animator.duration = 150
-        animator.start()
-    }
 
     override fun getItemCount(): Int {
         return consultas.size

@@ -1,10 +1,9 @@
 package com.example.agendaodonto
 
 import android.content.Intent
-import com.example.agendaodonto.activities.HomeActivityTemp
+import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
-import com.google.firebase.Firebase
 
 class MainActivity : BaseActivity() {
     private lateinit var auth: FirebaseAuth
