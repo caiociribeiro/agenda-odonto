@@ -5,10 +5,12 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.NumberPicker
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.agendaodonto.adapters.ConsultaAdapter
 import com.example.agendaodonto.models.Consulta
+import com.example.agendaodonto.ui.components.CustomDividerItemDecoration
 import java.util.Calendar
 
 class HistoricoConsultasActivity : CommonInterfaceActivity() {
@@ -78,9 +80,6 @@ class HistoricoConsultasActivity : CommonInterfaceActivity() {
     }
 
     private fun loadConsultas(): List<Consulta> {
-        return listOf(
-            Consulta("10/01/2023", "Dr. José", listOf("Arquivo1.pdf", "Arquivo2.jpg")),
-            Consulta("20/05/2023", "Dra. Ana", listOf("Arquivo3.pdf")),
-        )
+        return emptyList()
     }
 }
