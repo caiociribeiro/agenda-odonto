@@ -2,8 +2,12 @@ package com.example.agendaodonto
 
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.widget.EditText
+import android.widget.RatingBar
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -11,10 +15,12 @@ import com.example.agendaodonto.adapters.DentistaAdapter
 import com.example.agendaodonto.models.Dentista
 import com.example.agendaodonto.ui.components.CustomDividerItemDecoration
 import com.google.android.material.progressindicator.LinearProgressIndicator
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 
 class AgendarListaDentistaActivity : CommonInterfaceActivity() {
+
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: DentistaAdapter
     private val dentistasList = mutableListOf<Dentista>()
@@ -23,10 +29,7 @@ class AgendarListaDentistaActivity : CommonInterfaceActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        layoutInflater.inflate(
-            R.layout.activity_agendar_lista_dentista,
-            findViewById(R.id.content_frame)
-        )
+        layoutInflater.inflate(R.layout.activity_agendar_lista_dentista, findViewById(R.id.content_frame))
 
         val pageName = findViewById<TextView>(R.id.tv_page_name)
         pageName.text = "Agendamento"
@@ -43,9 +46,10 @@ class AgendarListaDentistaActivity : CommonInterfaceActivity() {
         loadingDentistas = findViewById(R.id.loading_dentistas)
 
         loadDentistasList()
+
     }
 
-
+    // Método para carregar a lista de dentistas
     private fun loadDentistasList() {
         loadingDentistas.visibility = View.VISIBLE
 
@@ -82,10 +86,10 @@ class AgendarListaDentistaActivity : CommonInterfaceActivity() {
                 Log.e("ListaDentistasFragment", "Erro ao buscar dados: ", e)
                 loadingDentistas.visibility = View.GONE
             }
-
     }
 
-    private fun calculateAverageRating(
+    // Método para calcular a média das avaliações dos dentistas
+     fun calculateAverageRating(
         ratingsRefs: List<DocumentReference>,
         callback: (Float) -> Unit
     ) {
@@ -117,4 +121,6 @@ class AgendarListaDentistaActivity : CommonInterfaceActivity() {
                 }
         }
     }
+
+
 }

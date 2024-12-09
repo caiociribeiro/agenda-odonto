@@ -21,7 +21,6 @@
             android:padding="12dp">
 
             <ImageView
-                android:layout_gravity="center"
                 android:id="@+id/ic_calendar"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
@@ -30,12 +29,10 @@
                 android:src="@drawable/ic_clinical_notes_24px"
                 app:tint="@color/primary" />
 
-
             <TextView
                 android:id="@+id/tv_data_consulta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="start"
                 android:textStyle="bold"
                 android:text="01/01/2001"
                 android:textSize="16sp" />
@@ -44,10 +41,9 @@
                 android:id="@+id/tv_nome_medico"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Dra. Fabiana Melo"
                 android:layout_marginStart="8dp"
+                android:text="Dra. Fabiana Melo"
                 android:textSize="16sp" />
-
         </LinearLayout>
 
         <LinearLayout
@@ -70,31 +66,11 @@
                 android:layout_height="wrap_content"
                 android:text="Arquivos relacionados" />
 
-            <TextView
-                android:id="@+id/tv_arquivo"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/ll_arquivos"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Arquivo 1.pdf" />
+                android:orientation="vertical" />
         </LinearLayout>
     </LinearLayout>
-
-    <Button
-        android:id="@+id/btn_icon_arrow_down"
-        style="@style/Widget.Material3.Button.IconButton"
-        android:layout_gravity="top|end"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:icon="@drawable/ic_arrow_down_24px"
-        app:iconTint="@color/grey" />
-
-
-    <Button
-        android:id="@+id/btn_icon_arrow_up"
-        style="@style/Widget.Material3.Button.IconButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top|end"
-        android:visibility="gone"
-        app:icon="@drawable/ic_arrow_up_24px"
-        app:iconTint="@color/grey" />
 </com.google.android.material.card.MaterialCardView>
