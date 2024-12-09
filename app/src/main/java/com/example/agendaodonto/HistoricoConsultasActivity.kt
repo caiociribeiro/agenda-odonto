@@ -12,12 +12,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.agendaodonto.adapters.ConsultaAdapter
 import com.example.agendaodonto.models.Consulta
+import com.example.agendaodonto.models.DentistaFormData
 import com.example.agendaodonto.ui.components.CustomDividerItemDecoration
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Date
 import java.util.Locale
 
 class HistoricoConsultasActivity : CommonInterfaceActivity() {
@@ -107,7 +109,7 @@ class HistoricoConsultasActivity : CommonInterfaceActivity() {
 
                     if (document.exists()) {
 
-                        // Verificar se o campo formPendente é true, ou seja que a consulta ja foi feita
+                        // Verificar se o campo formPendente é true, ou seja que a consulta já foi feita
                         val formPendente = document.getBoolean("status.formPendente") ?: true
                         if (formPendente) {
                             Log.i("HistoricoConsultas", "Consulta ignorada, formPendente é true.")
@@ -116,12 +118,15 @@ class HistoricoConsultasActivity : CommonInterfaceActivity() {
 
                         val dateTimestamp = document.getTimestamp("data")
                         val date = dateTimestamp?.toDate()?.let { date ->
-                            val formatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-                            formatter.format(date)
+                            SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(date)
                         } ?: "Data desconhecida"
 
                         val dentistRef = document.getDocumentReference("dentistaID")
-                        val attachments = document.get("arquivos") as? List<String> ?: emptyList()
+                        val attachments = document.get("dentistaFormData.arquivos") as? List<String>
+                            ?: emptyList()
+                        val observacoes = document.getString("dentistaFormData.observacoes") ?: ""
+
+                        val dentistaID = document.getDocumentReference("dentistaID")
 
                         Log.i(
                             "HistoricoConsultas",
@@ -136,8 +141,17 @@ class HistoricoConsultasActivity : CommonInterfaceActivity() {
                                     dentistDoc.getString("name") ?: "Médico não informado"
                                 Log.i("HistoricoConsultas", "Nome do dentista: $doctorName")
 
-                                //consultas.add(Consulta(date, doctorName, attachments))
-                                //consultaAdapter.notifyDataSetChanged()
+                                if (dateTimestamp != null && dentistaID != null)
+                                    consultas.add(
+                                        Consulta(
+                                            DentistaFormData(
+                                                attachments,
+                                                observacoes
+                                            ), dentistaID, dateTimestamp
+                                        )
+                                    )
+
+                                consultaAdapter.notifyDataSetChanged()
                                 tvNoInfo.visibility = View.GONE
                             }
                             ?.addOnFailureListener { e ->
@@ -152,7 +166,6 @@ class HistoricoConsultasActivity : CommonInterfaceActivity() {
                 }
         }
     }
-
 
     private fun isActivityAlive(): Boolean {
         return !(isFinishing || isDestroyed)
@@ -187,9 +200,5 @@ class HistoricoConsultasActivity : CommonInterfaceActivity() {
         }
 
         dialog.show()
-    }
-
-    private fun loadConsultas(): List<Consulta> {
-        return emptyList()
     }
 }

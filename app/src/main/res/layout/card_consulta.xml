@@ -3,8 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardBackgroundColor="@color/white"
+    app:cardBackgroundColor="@color/grey_ltr"
     android:layout_marginBottom="8dp"
+    android:elevation="4dp"
     app:strokeWidth="0dp">
 
     <LinearLayout
@@ -13,19 +14,20 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/collapsed_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="12dp">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/ic_calendar"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="12dp"
                 android:layout_marginEnd="12dp"
-                android:contentDescription="Icone de consulta"
+                android:contentDescription="Ícone de consulta"
                 android:src="@drawable/ic_clinical_notes_24px"
                 app:tint="@color/primary" />
 
@@ -33,6 +35,8 @@
                 android:id="@+id/tv_data_consulta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/ic_calendar"
+                android:layout_centerVertical="true"
                 android:textStyle="bold"
                 android:text="01/01/2001"
                 android:textSize="16sp" />
@@ -41,10 +45,34 @@
                 android:id="@+id/tv_nome_medico"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/tv_data_consulta"
                 android:layout_marginStart="8dp"
-                android:text="Dra. Fabiana Melo"
+                android:ellipsize="end"
+                android:layout_marginEnd="4dp"
+                android:layout_centerVertical="true"
                 android:textSize="16sp" />
-        </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_icon_arrow_down"
+                style="@style/Widget.Material3.Button.IconButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                app:icon="@drawable/ic_arrow_down_24px"
+                app:iconTint="@color/grey" />
+
+            <Button
+                android:id="@+id/btn_icon_arrow_up"
+                style="@style/Widget.Material3.Button.IconButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:visibility="gone"
+                app:icon="@drawable/ic_arrow_up_24px"
+                app:iconTint="@color/grey" />
+        </RelativeLayout>
 
         <LinearLayout
             android:id="@+id/expanded_view"
@@ -54,16 +82,31 @@
             android:padding="16dp"
             android:visibility="gone">
 
-            <com.google.android.material.divider.MaterialDivider
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/tv_observacoes_antes"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                app:dividerColor="@color/grey_lt" />
+                android:text="Observações"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_observacoes"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_height="wrap_content"
+                android:text="Observações do dentista"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/tv_titulo_arquivos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textSize="16sp"
+                android:textStyle="bold"
                 android:text="Arquivos relacionados" />
 
             <LinearLayout

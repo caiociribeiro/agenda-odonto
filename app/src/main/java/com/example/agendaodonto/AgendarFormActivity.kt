@@ -101,7 +101,7 @@ class AgendarFormActivity : CommonInterfaceActivity() {
                     "motivoConsulta" to "",
                     "usaAparelho" to usaAparelho
                 ),
-                "userID" to FirebaseFirestore.getInstance().collection("usuarios")
+                "userID" to FirebaseFirestore.getInstance().collection("users")
                     .document(userID ?: "")
             )
 

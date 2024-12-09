@@ -7,7 +7,7 @@ plugins {
 android {
     signingConfigs {
         getByName("debug") {
-            storeFile = file("C:\\Users\\marce\\.android\\debug.keystore")
+            storeFile = file("C:\\Users\\caio\\.android\\debug.keystore")
         }
     }
     namespace = "com.example.agendaodonto"
